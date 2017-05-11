@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block content %}
+
+<div id="presentation-detail">
+    <h1>A Big Title</h1>
+
+    <section>
+        <ul class="media-list">
+            <li class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="http://placehold.it/500x300/e8117f/ffffff" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Sobre a Big Title</h4> Ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+            </li>
+        </ul>
+        <hr />
+    </section>
+
+    <section>
+        <h2>Objetos</h2>
+        <div class="row">
+            <div class="col-xs-6 col-md-2">
+                <a href="{% url 'object_detail' %}" class="thumbnail">
+                    <img src="http://placehold.it/50x50" alt="...">
+                </a>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <a href="{% url 'object_detail' %}" class="thumbnail">
+                    <img src="http://placehold.it/50x50" alt="...">
+                </a>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <a href="{% url 'object_detail' %}" class="thumbnail">
+                    <img src="http://placehold.it/50x50" alt="...">
+                </a>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <a href="{% url 'object_detail' %}" class="thumbnail">
+                    <img src="http://placehold.it/50x50" alt="...">
+                </a>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <a href="{% url 'object_detail' %}" class="thumbnail">
+                    <img src="http://placehold.it/50x50" alt="...">
+                </a>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <a href="{% url 'object_detail' %}" class="thumbnail">
+                    <img src="http://placehold.it/50x50" alt="...">
+                </a>
+            </div>
+        </div>
+        <hr />
+    </section>
+
+    <section>
+        <h2>Contato</h2>
+        <a href="#" class="btn btn-default" role="button">Facebook</a>
+        <a href="#" class="btn btn-default" role="button">Whatsapp</a>
+    </section>
+
+</div>
+
+{% endblock %}
