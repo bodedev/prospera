@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from django.views.generic import ListView, TemplateView
+from django.views.generic import DetailView, ListView, TemplateView
 
 from plataforma.models import Nodos
 
@@ -27,9 +27,11 @@ class NosView(ListView):
     template_name = "pages/nos.html"
 
 
-class NosDetailView(TemplateView):
+class NosDetailView(DetailView):
 
+    model = Nodos
     template_name = "pages/nos_detail.html"
+    slug_url_kwarg = "nos"
 
 
 class ObjectDetailView(TemplateView):

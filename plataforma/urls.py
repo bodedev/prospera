@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'^login/$', LoginView.as_view(), name="login"),
     url(r'^create-account/$', CreateAccountView.as_view(), name="create_account"),
     url(r'^nos/$', NosView.as_view(), name="nos"),
-    url(r'^nos/detail$', NosDetailView.as_view(), name="nos_detail"),
-    url(r'^object/detail$', ObjectDetailView.as_view(), name="object_detail"),
+    url(r'^nos/(?P<nos>[-\w]+)/detalhes/$', NosDetailView.as_view(), name="nos_detail"),
+    url(r'^object/detalhes/$', ObjectDetailView.as_view(), name="object_detail"),
 ]

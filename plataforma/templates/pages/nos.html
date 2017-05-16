@@ -12,7 +12,7 @@
           <div class="caption">
             <h3>{{ nos.nome }}</h3>
             <p>{{ nos.descricao }}</p>
-            <p><a href="{% url 'nos_detail' %}" class="btn btn-default" role="button">Saiba Mais</a></p>
+            <p><a href="{% url 'nos_detail' nos.slug %}" class="btn btn-default" role="button">Saiba Mais</a></p>
           </div>
         </div>
       </div>
