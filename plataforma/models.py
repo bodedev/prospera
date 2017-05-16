@@ -21,6 +21,9 @@ class Nodos(BaseModel, LogicDeletable):
     titulo = models.CharField(u"Título", max_length=50, null=True, blank=True)
     descricao = models.TextField(u"Descrição", null=True, blank=True)
 
+    contato_facebook = models.URLField(u"Facebook", null=True, blank=True)
+    contato_whatsapp = models.URLField(u"WhatsApp", null=True, blank=True)
+
     def __unicode__(self):
         return u"%s" % self.nome
 
