@@ -1,6 +1,27 @@
 # -*- coding: utf-8 -*-
+
+
 from __future__ import unicode_literals
+
 
 from django.contrib import admin
 
-# Register your models here.
+
+from plataforma.models import Nodos, Objeto
+
+
+@admin.register(Nodos)
+class NodosAdmin(admin.ModelAdmin):
+
+    list_display = ("id", "nome", "titulo")
+
+
+@admin.register(Objeto)
+class ObjetoAdmin(admin.ModelAdmin):
+
+    list_display = ("id", "nodos", "nome", "titulo")
+
+
+admin.site.site_header = u"Administração Prospera"
+admin.site.site_title = u"Administração Prospera"
+admin.site.index_title = u"Administração"
