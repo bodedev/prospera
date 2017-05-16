@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-from django.views.generic import TemplateView
+from django.views.generic import ListView, TemplateView
+
+from plataforma.models import Nodos
 
 
 class LandingPageView(TemplateView):
@@ -19,8 +21,9 @@ class CreateAccountView(TemplateView):
     template_name = "pages/create_account.html"
 
 
-class NosView(TemplateView):
+class NosView(ListView):
 
+    model = Nodos
     template_name = "pages/nos.html"
 
 
