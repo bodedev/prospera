@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="landing-page">
+    <h1>Landing Page</h1>
+    <p>Uma organização aberta e inclusiva, transparente e que segue um modelo exponencial e abundante, com foco na evolução bem como na sobrevivência, uma organização que Prospera.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login &raquo;</a>
+    <a class="btn btn-primary btn-lg" href="{% url 'create_account' %}" role="button">Create Account &raquo;</a>
+
+    <a href="{% url 'nos' %}" class="btn btn-default" role="button">Nós</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,107 @@
+@import '_colors';
+
+.navbar-prospera {
+    background-color: $prime;
+    border-color: $primeHighlight;
+    color: $branco;
+
+    .navbar-brand {
+        color: $branco;
+    }
+
+    .navbar-nav {
+        > li {
+            > a {
+                color: $branco;
+
+                &:focus,
+                &:hover {
+                    color: $branco;
+                }
+            }
+        }
+        > .active {
+             > a:focus,
+             > a:hover,
+            > a {
+                color: $branco;
+                background-color: $primeHighlight;
+            }
+        }
+        > .open {
+             > a:focus,
+             > a:hover,
+            > a {
+                color: $branco;
+                background-color: $primeHighlight;
+            }
+        }
+    }
+
+    .navbar-collapse,
+    .navbar-form {
+        border-color: $branco;
+    }
+
+    .navbar-link {
+        color: $branco;
+
+        &:hover {
+            color: $branco;
+        }
+    }
+}
+
+.content {
+
+    hr{
+      width: 85%;
+      border: 0;
+      height: 1px;
+      background: $preto;
+      opacity: 0.5;
+    }
+
+    // Forms
+    .form-control {
+        position: relative;
+        height: auto;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    // Login
+    .login {
+        max-width: 330px;
+        margin: 0 auto;
+
+        input#usuario {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        input#senha {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    }
+
+    // Create Account
+    .create-account {
+        max-width: 330px;
+        margin: 0 auto;
+
+        input#usuario, input#senha {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        input#repetir-senha {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    }
+}
