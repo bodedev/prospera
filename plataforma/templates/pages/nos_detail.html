@@ -1,7 +1,8 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
 
 <div id="presentation-detail">
-    <h1>A Big Title</h1>
+    <h1>{{ nos.nome }}</h1>
 
     <section>
         <ul class="media-list">
@@ -12,8 +13,8 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">Sobre a Big Title</h4> Ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <h4 class="media-heading">{{ nos.titulo }}</h4>
+                    {{ nos.descricao|default_if_none:"" }}
                 </div>
             </li>
         </ul>
@@ -23,50 +24,30 @@
     <section>
         <h2>Objetos</h2>
         <div class="row">
+            {% for objeto in nos.objeto_set.all %}
             <div class="col-xs-6 col-md-2">
-                <a href="{% url 'object_detail' %}" class="thumbnail">
-                    <img src="http://placehold.it/50x50" alt="...">
+                <a href="{% url 'object_detail' objeto.slug %}" class="thumbnail">
+                    <img src="http://placehold.it/50x50" alt="{{ objeto.nome }}">
                 </a>
             </div>
-
-            <div class="col-xs-6 col-md-2">
-                <a href="{% url 'object_detail' %}" class="thumbnail">
-                    <img src="http://placehold.it/50x50" alt="...">
-                </a>
-            </div>
-
-            <div class="col-xs-6 col-md-2">
-                <a href="{% url 'object_detail' %}" class="thumbnail">
-                    <img src="http://placehold.it/50x50" alt="...">
-                </a>
-            </div>
-
-            <div class="col-xs-6 col-md-2">
-                <a href="{% url 'object_detail' %}" class="thumbnail">
-                    <img src="http://placehold.it/50x50" alt="...">
-                </a>
-            </div>
-
-            <div class="col-xs-6 col-md-2">
-                <a href="{% url 'object_detail' %}" class="thumbnail">
-                    <img src="http://placehold.it/50x50" alt="...">
-                </a>
-            </div>
-
-            <div class="col-xs-6 col-md-2">
-                <a href="{% url 'object_detail' %}" class="thumbnail">
-                    <img src="http://placehold.it/50x50" alt="...">
-                </a>
-            </div>
+            {% empty %}
+            <p>Sem objetos para este Nós.</p>
+            {% endfor %}
         </div>
         <hr />
     </section>
 
+    {% if nos.contato_facebook or nos.contato_whatsapp %}
     <section>
         <h2>Contato</h2>
-        <a href="#" class="btn btn-default" role="button">Facebook</a>
-        <a href="#" class="btn btn-default" role="button">Whatsapp</a>
+        {% if nos.contato_facebook %}
+        <a href="{{ nos.contato_facebook }}" class="btn btn-default" role="button">Facebook</a>
+        {% endif %}
+        {% if nos.contato_whatsapp %}
+        <a href="{{ nos.contato_whatsapp }}" class="btn btn-default" role="button">Whatsapp</a>
+        {% endif %}
     </section>
+    {% endif %}
 
 </div>
 

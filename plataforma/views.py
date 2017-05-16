@@ -3,7 +3,7 @@
 
 from django.views.generic import DetailView, ListView, TemplateView
 
-from plataforma.models import Nodos
+from plataforma.models import Nodos, Objeto
 
 
 class LandingPageView(TemplateView):
@@ -29,11 +29,15 @@ class NosView(ListView):
 
 class NosDetailView(DetailView):
 
+    context_object_name = "nos"
     model = Nodos
-    template_name = "pages/nos_detail.html"
     slug_url_kwarg = "nos"
+    template_name = "pages/nos_detail.html"
 
 
-class ObjectDetailView(TemplateView):
+class ObjectDetailView(DetailView):
 
+    context_object_name = "objeto"
+    model = Objeto
+    slug_url_kwarg = "objeto"
     template_name = "pages/object_detail.html"

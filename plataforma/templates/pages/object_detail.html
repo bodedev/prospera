@@ -1,11 +1,12 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
 
 <div id="object-detail">
     <img class="media-object center-block" src="http://placehold.it/800x244/e8117f/ffffff" alt="...">
 
     <section>
-        <h4 class="media-heading">Sobre a Big Title</h4> Ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <h4 class="media-heading">{{ objeto.nome }}</h4>
+        {{ objeto.descricao }}
         <hr />
     </section>
 
@@ -17,11 +18,17 @@
         <hr />
     </section>
 
+    {% if objeto.contato_facebook or objeto.contato_whatsapp %}
     <section>
         <h2>Contato</h2>
-        <a href="#" class="btn btn-default" role="button">Facebook</a>
-        <a href="#" class="btn btn-default" role="button">Whatsapp</a>
+        {% if objeto.contato_facebook %}
+        <a href="{{ objeto.contato_facebook }}" class="btn btn-default" role="button">Facebook</a>
+        {% endif %}
+        {% if objeto.contato_whatsapp %}
+        <a href="{{ objeto.contato_whatsapp }}" class="btn btn-default" role="button">Whatsapp</a>
+        {% endif %}
     </section>
+    {% endif %}
 
 </div>
 

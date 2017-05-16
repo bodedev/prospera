@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^create-account/$', CreateAccountView.as_view(), name="create_account"),
     url(r'^nos/$', NosView.as_view(), name="nos"),
     url(r'^nos/(?P<nos>[-\w]+)/detalhes/$', NosDetailView.as_view(), name="nos_detail"),
-    url(r'^object/detalhes/$', ObjectDetailView.as_view(), name="object_detail"),
+    url(r'^objeto/(?P<objeto>[-\w]+)/detalhes/$', ObjectDetailView.as_view(), name="object_detail"),
 ]
