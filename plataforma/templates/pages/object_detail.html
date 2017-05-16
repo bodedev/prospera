@@ -2,7 +2,11 @@
 {% block content %}
 
 <div id="object-detail">
+    {% if objeto.imagem_detalhes %}
+    <img class="media-object center-block" src="{{ objeto.imagem_detalhes.url }}" alt="...">
+    {% else %}
     <img class="media-object center-block" src="http://placehold.it/800x244/e8117f/ffffff" alt="...">
+    {% endif %}
 
     <section>
         <h4 class="media-heading">{{ objeto.nome }}</h4>

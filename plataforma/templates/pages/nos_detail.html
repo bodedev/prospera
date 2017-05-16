@@ -9,7 +9,11 @@
             <li class="media">
                 <div class="media-left">
                     <a href="#">
+                        {% if nos.imagem_detalhes %}
+                        <img class="media-object" src="{{ nos.imagem_detalhes.url }}" alt="...">
+                        {% else %}
                         <img class="media-object" src="http://placehold.it/500x300/e8117f/ffffff" alt="...">
+                        {% endif %}
                     </a>
                 </div>
                 <div class="media-body">
@@ -27,7 +31,11 @@
             {% for objeto in nos.objeto_set.all %}
             <div class="col-xs-6 col-md-2">
                 <a href="{% url 'object_detail' objeto.slug %}" class="thumbnail">
+                    {% if objeto.imagem_listagem %}
+                    <img src="{{ objeto.imagem_listagem.url }}" alt="{{ objeto.nome }}">
+                    {% else %}
                     <img src="http://placehold.it/50x50" alt="{{ objeto.nome }}">
+                    {% endif %}
                 </a>
             </div>
             {% empty %}
