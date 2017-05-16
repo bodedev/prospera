@@ -5,13 +5,14 @@ from __future__ import unicode_literals
 
 from autoslug import AutoSlugField
 from django.db import models
+from simple_history.models import HistoricalRecords
 
 from common.models import BaseModel, LogicDeletable
 
 
 class Nodo(BaseModel, LogicDeletable):
 
-    pass
+    history = HistoricalRecords()
 
 
 class Nodos(BaseModel, LogicDeletable):
@@ -23,6 +24,8 @@ class Nodos(BaseModel, LogicDeletable):
 
     contato_facebook = models.URLField(u"Facebook", null=True, blank=True)
     contato_whatsapp = models.URLField(u"WhatsApp", null=True, blank=True)
+
+    history = HistoricalRecords()
 
     def __unicode__(self):
         return u"%s" % self.nome
@@ -38,6 +41,8 @@ class Objeto(BaseModel, LogicDeletable):
 
     contato_facebook = models.URLField(u"Facebook", null=True, blank=True)
     contato_whatsapp = models.URLField(u"WhatsApp", null=True, blank=True)
+
+    history = HistoricalRecords()
 
     def __unicode__(self):
         return u"%s" % self.nome

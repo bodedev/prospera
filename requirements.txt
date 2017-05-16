@@ -1,2 +1,4 @@
 django==1.11.1
 django-autoslug==1.9.3
+django-simple-history
+pillow
