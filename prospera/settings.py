@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 """
 Django settings for prospera project.
 
