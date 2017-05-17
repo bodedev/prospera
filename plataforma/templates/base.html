@@ -36,8 +36,12 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="{% url 'nos' %}">Nós</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
             <li><a href="#about">Sobre</a></li>
             <li><a href="#contact">Contato</a></li>
+            {% if user %}
+            <li><a href="{% url 'no_detail' %}">Perfil</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>
