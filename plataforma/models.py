@@ -61,4 +61,4 @@ class Objeto(BaseModel, LogicDeletable):
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Nodo.objects.create(user=instance)
-    instance.novo.save()
+    instance.nodo.save()
