@@ -8,7 +8,7 @@ from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeFor
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, FormView, ListView, RedirectView, TemplateView
+from django.views.generic import DetailView, FormView, ListView, RedirectView, TemplateView, UpdateView
 from social_django.models import UserSocialAuth
 
 from plataforma.models import Nodos, Objeto
@@ -33,9 +33,16 @@ class CreateAccountView(TemplateView):
 
 
 @method_decorator(login_required, name='dispatch')
-class NoDetailView(TemplateView):
+class NoDetailView(UpdateView):
 
+    fields = ["quem_sou"]
     template_name = "pages/no_detail.html"
+    success_url = reverse_lazy("no_detail")
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, u'Os dados do seu perfil foram salvos.')
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
         context = super(NoDetailView, self).get_context_data(**kwargs)
@@ -59,6 +66,9 @@ class NoDetailView(TemplateView):
 
         context["can_disconnect"] = (self.request.user.social_auth.count() > 1 or self.request.user.has_usable_password())
         return context
+
+    def get_object(self, queryset=None):
+        return self.request.user.nodo
 
 
 @method_decorator(login_required, name='dispatch')
