@@ -17,9 +17,9 @@ urlpatterns = [
     url(r'^no/$', NoDetailView.as_view(), name="no_detail"),
     url(r'^no/alterar-senha/$', UserChangePassword.as_view(), name="no_change_password"),
     url(r'^no/novo/$', NoCreateView.as_view(), name="no_create"),
-    url(r'^nos/$', NosListView.as_view(), name="nos"),
+    url(r'^nos/$', NosListView.as_view(), name="nos_list"),
     url(r'^nos/novo/$', NosCreateView.as_view(), name="nos_create"),
     url(r'^nos/(?P<nos>[-\w]+)/detalhes/$', NosDetailView.as_view(), name="nos_detail"),
-    url(r'^(?P<nos>[-\w]+)/objeto/novo/$', ObjectCreateView.as_view(), name="object_create"),
-    url(r'^(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/detalhes/$', ObjectDetailView.as_view(), name="object_detail"),
+    url(r'^nos/(?P<nos>[-\w]+)/objeto/novo/$', ObjectCreateView.as_view(), name="object_create"),
+    url(r'^nos/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/detalhes/$', ObjectDetailView.as_view(), name="object_detail"),
 ]
