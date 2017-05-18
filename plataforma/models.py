@@ -22,6 +22,7 @@ class Nodo(BaseModel, LogicDeletable):
 
 class Nodos(BaseModel, LogicDeletable):
 
+    criado_por = models.ForeignKey(User, null=True)
     nome = models.CharField(u"Nome", max_length=50)
     slug = AutoSlugField(populate_from='nome')
     imagem_listagem = models.ImageField(upload_to="imagens/nodos/listagem", null=True, blank=True)
@@ -40,6 +41,7 @@ class Nodos(BaseModel, LogicDeletable):
 
 class Objeto(BaseModel, LogicDeletable):
 
+    criado_por = models.ForeignKey(User, null=True)
     nodos = models.ForeignKey(Nodos)
     nome = models.CharField(u"Nome", max_length=50, null=True, blank=True)
     slug = AutoSlugField(populate_from='nome')
