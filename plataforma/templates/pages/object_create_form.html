@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="presentation-detail">
+    <h1>Criar Novo Objeto</h1>
+
+    <form class="form-signin" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Criar Objeto</button>
+    </form>
+
+</div>
+
+{% endblock %}

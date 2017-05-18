@@ -67,7 +67,7 @@ class ObjetoForm(forms.ModelForm):
     class Meta:
 
         model = Objeto
-        exclude = ["created", "updated", "excluido", "excluido_por", "excluido_em"]
+        exclude = ["created", "updated", "excluido", "excluido_por", "excluido_em", "criado_por", "nodos"]
 
     def clean_imagem_listagem(self):
         picture = self.cleaned_data.get("imagem_listagem")

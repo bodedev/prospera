@@ -109,7 +109,6 @@ class UserChangePassword(FormView):
 @method_decorator(login_required, name='dispatch')
 class NosCreateView(CreateView):
 
-    exclude = ["criado_por"]
     form_class = NodosForm
     model = Nodos
     template_name = "pages/nos_create_form.html"
@@ -134,6 +133,22 @@ class NosDetailView(DetailView):
     model = Nodos
     slug_url_kwarg = "nos"
     template_name = "pages/nos_detail.html"
+
+
+@method_decorator(login_required, name='dispatch')
+class ObjectCreateView(CreateView):
+
+    form_class = ObjetoForm
+    model = Objeto
+    template_name = "pages/object_create_form.html"
+
+    def form_valid(self, form):
+        objeto = form.save(commit=False)
+        objeto.nodos = Nodos.objects.get(slug=self.kwargs["nos"])
+        objeto.criado_por = self.request.user
+        objeto.save()
+        messages.success(self.request, u'Objeto criado com sucesso!')
+        return HttpResponseRedirect(reverse_lazy("object_detail", args=[objeto.nodos.slug, objeto.slug]))
 
 
 class ObjectDetailView(DetailView):

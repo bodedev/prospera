@@ -30,7 +30,7 @@
         <div class="row">
             {% for objeto in nos.objeto_set.all %}
             <div class="col-xs-6 col-md-2">
-                <a href="{% url 'object_detail' objeto.slug %}" class="thumbnail">
+                <a href="{% url 'object_detail' nos.slug objeto.slug %}" class="thumbnail">
                     {% if objeto.imagem_listagem %}
                     <img src="{{ objeto.imagem_listagem.url }}" alt="{{ objeto.nome }}">
                     {% else %}
@@ -41,6 +41,8 @@
             {% empty %}
             <p>Sem objetos para este Nós.</p>
             {% endfor %}
+            <br />
+            <a href="{% url "object_create" nos.slug %}">Novo Objeto</a>
         </div>
         <hr />
     </section>
