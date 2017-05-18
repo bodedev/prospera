@@ -23,7 +23,7 @@ class LandingPageView(TemplateView):
 class NoCreateView(FormView):
 
     form_class = SignUpForm
-    template_name = "pages/create_account.html"
+    template_name = "pages/no_create_form.html"
 
     def form_valid(self, form):
         user = form.save()
