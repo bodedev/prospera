@@ -2,16 +2,24 @@
 
 
 from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, FormView, ListView, TemplateView
+from django.views.generic import DetailView, FormView, ListView, RedirectView, TemplateView
 from social_django.models import UserSocialAuth
 
 from plataforma.models import Nodos, Objeto
+
+
+@method_decorator(login_required, name='dispatch')
+class LogoutView(RedirectView):
+
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return HttpResponseRedirect(reverse_lazy("home"))
 
 
 class LandingPageView(TemplateView):

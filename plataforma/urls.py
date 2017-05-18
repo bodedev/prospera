@@ -4,13 +4,13 @@
 from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
 
-from plataforma.views import LandingPageView, CreateAccountView, NoDetailView, NosView, NosDetailView, ObjectDetailView, UserChangePassword
+from plataforma.views import LandingPageView, LogoutView, CreateAccountView, NoDetailView, NosView, NosDetailView, ObjectDetailView, UserChangePassword
 
 
 urlpatterns = [
-    url(r'^$', LandingPageView.as_view(), name="landing_page"),
+    url(r'^$', LandingPageView.as_view(), name="home"),
     url(r'^login/$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^create-account/$', CreateAccountView.as_view(), name="create_account"),
     url(r'^no/$', NoDetailView.as_view(), name="no_detail"),
