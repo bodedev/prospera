@@ -116,7 +116,7 @@ class NosCreateView(CreateView):
 class NosListView(ListView):
 
     model = Nodos
-    template_name = "pages/nos.html"
+    template_name = "pages/nos_list.html"
 
 
 class NosDetailView(DetailView):
