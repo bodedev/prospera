@@ -4,7 +4,10 @@
 from __future__ import unicode_literals
 
 from autoslug import AutoSlugField
+from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from simple_history.models import HistoricalRecords
 
 from common.models import BaseModel, LogicDeletable
@@ -12,6 +15,8 @@ from common.models import BaseModel, LogicDeletable
 
 class Nodo(BaseModel, LogicDeletable):
 
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    quem_sou = models.TextField(u"Quem Sou?", max_length=500, blank=True, null=True)
     history = HistoricalRecords()
 
 
@@ -50,3 +55,10 @@ class Objeto(BaseModel, LogicDeletable):
 
     def __unicode__(self):
         return u"%s" % self.nome
+
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Nodo.objects.create(user=instance)
+    instance.novo.save()
