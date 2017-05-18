@@ -79,7 +79,7 @@ class NoDetailView(UpdateView):
 @method_decorator(login_required, name='dispatch')
 class UserChangePassword(FormView):
 
-    template_name = "pages/password.html"
+    template_name = "pages/no_change_password.html"
 
     def get_form_class(self):
         if self.request.user.has_usable_password():
