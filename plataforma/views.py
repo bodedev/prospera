@@ -20,7 +20,7 @@ class LandingPageView(TemplateView):
     template_name = "pages/landing_page.html"
 
 
-class CreateAccountView(FormView):
+class NoCreateView(FormView):
 
     form_class = SignUpForm
     template_name = "pages/create_account.html"
