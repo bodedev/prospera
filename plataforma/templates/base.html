@@ -38,10 +38,7 @@
             <li><a href="{% url 'nos_list' %}">Nós</a></li>
             {% if not user.id %}
             <li><a href="{% url 'login' %}">Login</a></li>
-            {% endif %}
-            <li><a href="#about">Sobre</a></li>
-            <li><a href="#contact">Contato</a></li>
-            {% if user.id %}
+            {% else %}
             <li><a href="{% url 'no_detail' %}">Perfil</a></li>
             <li><a href="{% url 'logout' %}">Sair</a></li>
             {% endif %}
