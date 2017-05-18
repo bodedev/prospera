@@ -2,7 +2,7 @@
 
 
 from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.core.urlresolvers import reverse_lazy
@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, FormView, ListView, RedirectView, TemplateView, UpdateView
 from social_django.models import UserSocialAuth
 
+from plataforma.forms import SignUpForm
 from plataforma.models import Nodos, Objeto
 
 
@@ -27,9 +28,21 @@ class LandingPageView(TemplateView):
     template_name = "pages/landing_page.html"
 
 
-class CreateAccountView(TemplateView):
+class CreateAccountView(FormView):
 
+    form_class = SignUpForm
     template_name = "pages/create_account.html"
+
+    def form_valid(self, form):
+        user = form.save()
+        user.refresh_from_db()  # load the nodo instance created by the signal
+        user.nodo.quem_sou = form.cleaned_data.get('quem_sou')
+        user.save()
+        raw_password = form.cleaned_data.get('password1')
+        user = authenticate(username=user.username, password=raw_password)
+        login(self.request, user)
+        messages.success(self.request, u'Bem-vindo a Prospera!')
+        return HttpResponseRedirect(reverse_lazy("no_detail"))
 
 
 @method_decorator(login_required, name='dispatch')

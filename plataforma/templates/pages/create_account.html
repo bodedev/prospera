@@ -3,16 +3,10 @@
 
 <div class="create-account">
     <h1>Registre-se</h1>
-    <form class="form-signin">
-        <label for="usuario" class="sr-only">Usuário</label>
-        <input id="usuario" class="form-control" placeholder="Usuário" required autofocus>
-        <label for="senha" class="sr-only">Senha</label>
-        <input type="password" id="senha" class="form-control" placeholder="Senha" required>
-
-        <label for="repetir-senha" class="sr-only">Repetir Senha</label>
-        <input type="password" id="repetir-senha" class="form-control" placeholder="Repetir Senha" required>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    <form class="form-signin" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Criar Conta</button>
     </form>
 </div>
 

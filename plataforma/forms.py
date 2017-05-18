@@ -2,9 +2,20 @@
 
 
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.core.files.images import get_image_dimensions
 
 from plataforma.models import Nodos, Objeto
+
+
+class SignUpForm(UserCreationForm):
+
+    quem_sou = forms.CharField(max_length=500, required=False)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'quem_sou', 'password1', 'password2', )
 
 
 class NodosForm(forms.ModelForm):
