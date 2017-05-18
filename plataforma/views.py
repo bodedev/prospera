@@ -20,10 +20,10 @@ class LandingPageView(TemplateView):
     template_name = "pages/landing_page.html"
 
 
-class CreateAccountView(FormView):
+class NoCreateView(FormView):
 
     form_class = SignUpForm
-    template_name = "pages/create_account.html"
+    template_name = "pages/no_create_form.html"
 
     def form_valid(self, form):
         user = form.save()
@@ -79,7 +79,7 @@ class NoDetailView(UpdateView):
 @method_decorator(login_required, name='dispatch')
 class UserChangePassword(FormView):
 
-    template_name = "pages/password.html"
+    template_name = "pages/no_change_password.html"
 
     def get_form_class(self):
         if self.request.user.has_usable_password():
