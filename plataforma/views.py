@@ -2,25 +2,17 @@
 
 
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DetailView, FormView, ListView, RedirectView, TemplateView, UpdateView
+from django.views.generic import CreateView, DetailView, FormView, ListView, TemplateView, UpdateView
 from social_django.models import UserSocialAuth
 
 from plataforma.forms import NodosForm, ObjetoForm, SignUpForm
 from plataforma.models import Nodos, Objeto
-
-
-@method_decorator(login_required, name='dispatch')
-class LogoutView(RedirectView):
-
-    def get(self, request, *args, **kwargs):
-        logout(request)
-        return HttpResponseRedirect(reverse_lazy("home"))
 
 
 class LandingPageView(TemplateView):
@@ -121,7 +113,7 @@ class NosCreateView(CreateView):
         return HttpResponseRedirect(reverse_lazy("nos_detail", args=[nos.slug]))
 
 
-class NosView(ListView):
+class NosListView(ListView):
 
     model = Nodos
     template_name = "pages/nos.html"
