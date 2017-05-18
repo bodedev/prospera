@@ -8,10 +8,10 @@ from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeFor
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, FormView, ListView, RedirectView, TemplateView, UpdateView
+from django.views.generic import CreateView, DetailView, FormView, ListView, RedirectView, TemplateView, UpdateView
 from social_django.models import UserSocialAuth
 
-from plataforma.forms import SignUpForm
+from plataforma.forms import NodosForm, ObjetoForm, SignUpForm
 from plataforma.models import Nodos, Objeto
 
 
@@ -104,6 +104,22 @@ class UserChangePassword(FormView):
         update_session_auth_hash(self.request, form.user)
         messages.success(self.request, u'Sua senha foi alterada!')
         return HttpResponseRedirect(reverse_lazy('no_detail'))
+
+
+@method_decorator(login_required, name='dispatch')
+class NosCreateView(CreateView):
+
+    exclude = ["criado_por"]
+    form_class = NodosForm
+    model = Nodos
+    template_name = "pages/nos_create_form.html"
+
+    def form_valid(self, form):
+        nos = form.save(commit=False)
+        nos.criado_por = self.request.user
+        nos.save()
+        messages.success(self.request, u'Nós criado com sucesso!')
+        return HttpResponseRedirect(reverse_lazy("nos_detail", args=[nos.slug]))
 
 
 class NosView(ListView):

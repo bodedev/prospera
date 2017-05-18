@@ -25,8 +25,8 @@ class Nodos(BaseModel, LogicDeletable):
     criado_por = models.ForeignKey(User, null=True)
     nome = models.CharField(u"Nome", max_length=50)
     slug = AutoSlugField(populate_from='nome')
-    imagem_listagem = models.ImageField(upload_to="imagens/nodos/listagem", null=True, blank=True)
-    imagem_detalhes = models.ImageField(upload_to="imagens/nodos/detalhes", null=True, blank=True)
+    imagem_listagem = models.ImageField(upload_to="imagens/nodos/listagem", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (300, 300))
+    imagem_detalhes = models.ImageField(upload_to="imagens/nodos/detalhes", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (500, 300))
     titulo = models.CharField(u"Título", max_length=50, null=True, blank=True)
     descricao = models.TextField(u"Descrição", null=True, blank=True)
 

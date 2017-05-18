@@ -4,7 +4,7 @@
 from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
 
-from plataforma.views import LandingPageView, LogoutView, CreateAccountView, NoDetailView, NosView, NosDetailView, ObjectDetailView, UserChangePassword
+from plataforma.views import LandingPageView, LogoutView, NosCreateView, CreateAccountView, NoDetailView, NosView, NosDetailView, ObjectDetailView, UserChangePassword
 
 
 urlpatterns = [
@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^no/$', NoDetailView.as_view(), name="no_detail"),
     url(r'^no/senha/$', UserChangePassword.as_view(), name="no_change_password"),
     url(r'^nos/$', NosView.as_view(), name="nos"),
+    url(r'^nos/create/$', NosCreateView.as_view(), name="nos_create"),
     url(r'^nos/(?P<nos>[-\w]+)/detalhes/$', NosDetailView.as_view(), name="nos_detail"),
     url(r'^objeto/(?P<objeto>[-\w]+)/detalhes/$', ObjectDetailView.as_view(), name="object_detail"),
 ]
