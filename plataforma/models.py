@@ -11,6 +11,8 @@ from django.dispatch import receiver
 from simple_history.models import HistoricalRecords
 
 from common.models import BaseModel, LogicDeletable
+from plataforma.constants import NODOS_TAMANHO_IMAGEM_LISTAGEM_LARGURA, NODOS_TAMANHO_IMAGEM_LISTAGEM_ALTURA, NODOS_TAMANHO_IMAGEM_DETALHES_LARGURA, NODOS_TAMANHO_IMAGEM_DETALHES_ALTURA
+from plataforma.constants import OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA, OBJETO_TAMANHO_IMAGEM_DETALHES_LARGURA, OBJETO_TAMANHO_IMAGEM_DETALHES_ALTURA
 
 
 class Nodo(BaseModel, LogicDeletable):
@@ -25,8 +27,8 @@ class Nodos(BaseModel, LogicDeletable):
     criado_por = models.ForeignKey(User, null=True)
     nome = models.CharField(u"Nome", max_length=50)
     slug = AutoSlugField(populate_from='nome')
-    imagem_listagem = models.ImageField(upload_to="imagens/nodos/listagem", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (300, 300))
-    imagem_detalhes = models.ImageField(upload_to="imagens/nodos/detalhes", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (500, 300))
+    imagem_listagem = models.ImageField(upload_to="imagens/nodos/listagem", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (NODOS_TAMANHO_IMAGEM_LISTAGEM_LARGURA, NODOS_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
+    imagem_detalhes = models.ImageField(upload_to="imagens/nodos/detalhes", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (NODOS_TAMANHO_IMAGEM_DETALHES_LARGURA, NODOS_TAMANHO_IMAGEM_DETALHES_ALTURA))
     titulo = models.CharField(u"Título", max_length=50, null=True, blank=True)
     descricao = models.TextField(u"Descrição", null=True, blank=True)
 
@@ -45,8 +47,8 @@ class Objeto(BaseModel, LogicDeletable):
     nodos = models.ForeignKey(Nodos)
     nome = models.CharField(u"Nome", max_length=50, null=True, blank=True)
     slug = AutoSlugField(populate_from='nome')
-    imagem_listagem = models.ImageField(upload_to="imagens/objetos/listagem", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (50, 50))
-    imagem_detalhes = models.ImageField(upload_to="imagens/objetos/detalhes", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (800, 244))
+    imagem_listagem = models.ImageField(upload_to="imagens/objetos/listagem", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
+    imagem_detalhes = models.ImageField(upload_to="imagens/objetos/detalhes", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (OBJETO_TAMANHO_IMAGEM_DETALHES_LARGURA, OBJETO_TAMANHO_IMAGEM_DETALHES_ALTURA))
     titulo = models.CharField(u"Título", max_length=50, null=True, blank=True)
     descricao = models.TextField(u"Descrição", null=True, blank=True)
 
