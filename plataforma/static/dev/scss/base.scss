@@ -4,11 +4,9 @@
     background-color: $prime;
     border-color: $primeHighlight;
     color: $branco;
-
     .navbar-brand {
         color: $branco;
     }
-
     .navbar-nav {
         > li {
             > a {
@@ -37,12 +35,10 @@
             }
         }
     }
-
     .navbar-collapse,
     .navbar-form {
         border-color: $branco;
     }
-
     .navbar-link {
         color: $branco;
 
@@ -73,7 +69,7 @@
 
     // Login
     .login {
-        max-width: 330px;
+        max-width: 400px;
         margin: 0 auto;
 
         input#usuario {
@@ -90,7 +86,7 @@
 
     // Create Account
     .create-account {
-        max-width: 330px;
+        max-width: 400px;
         margin: 0 auto;
 
         input#usuario, input#senha {

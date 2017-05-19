@@ -1,25 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% if form.non_field_errors %}
-      <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {% for err in form.non_field_errors %}
-          {{ err }}
-        {% endfor %}
-      </div>
-    {% endif %}
-    {% csrf_token %}
-
-    {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.label_tag }}: {{ field }}
+  <div class="login">
+    <h2>Login</h2>
+    <form class="form-signin" method="post">
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {% for err in form.non_field_errors %}
+            {{ err }}
+          {% endfor %}
         </div>
-    {% endfor %}
-    <button type="submit">Login</button>
-  </form>
+      {% endif %}
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="form-group{% if field.errors%} has-error{% endif %}">
+			   <input id="{{ field.auto_id }}" class="form-control" placeholder="{{ field.label }}" name="{{ field.name }}" type="text">
+         <span class="help-block">{{ field.errors }}</span>
+			  </div>
+      {% endfor %}
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    </form>
+  </div>
   <br>
   <p><strong>-- OR --</strong></p>
   <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
