@@ -82,6 +82,27 @@
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
+
+        hr{
+            margin: 40px auto;
+            left: 0;
+            right: 0;
+        }
+        .btn-github, .btn-twitter, .btn-facebook{
+            display: inline-block;
+        }
+        .btn-github{
+            background-color: $github;
+            border-color: $cinza;
+        }
+        .btn-twitter{
+            background-color: $twitter;
+            border-color: $cinza;
+        }
+        .btn-facebook{
+            background-color: $facebook;
+            border-color: $cinza;
+        }
     }
 
     // Create Account
