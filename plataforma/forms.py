@@ -19,7 +19,21 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'quem_sou', 'password1', 'password2', )
 
 
-class NodosForm(forms.ModelForm):
+class ImageValidator():
+
+    def validar_imagem(self, imagem, mimetypes_aceitos, largura, altura):
+        if imagem:
+            if hasattr(imagem, "content_type") and imagem.content_type not in constants.MIMETYPES_IMAGENS_ACEITOS:
+                raise forms.ValidationError(u'O formato informado não é suportado.')
+            largura_imagem, altura_imagem = get_image_dimensions(imagem)
+            if largura_imagem != largura:
+                raise forms.ValidationError("A imagem enviada tem %i pixel(s) de largura. Ela necessita ter %i pixels." % (largura_imagem, largura))
+            if altura_imagem != altura:
+                raise forms.ValidationError("A imagem enviada tem %i pixel(s) de altura. Ela necessita ter %i pixels." % (altura_imagem, altura))
+        return imagem
+
+
+class NodosForm(forms.ModelForm, ImageValidator):
 
     class Meta:
 
@@ -27,31 +41,15 @@ class NodosForm(forms.ModelForm):
         exclude = ["created", "updated", "excluido", "excluido_por", "excluido_em", "criado_por"]
 
     def clean_imagem_listagem(self):
-        picture = self.cleaned_data.get("imagem_listagem")
-        if picture:
-            if hasattr(picture, "content_type") and picture.content_type not in constants.MIMETYPES_IMAGENS_ACEITOS:
-                raise forms.ValidationError(u'O formato informado não é suportado.')
-            w, h = get_image_dimensions(picture)
-            if w != constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_LARGURA:
-                raise forms.ValidationError("A imagem enviada tem %i pixel(s) de largura. Ela necessita ter %i pixels." % (w, constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_LARGURA))
-            if h != constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_ALTURA:
-                raise forms.ValidationError("A imagem enviada tem %i pixel(s) de altura. Ela necessita ter %i pixels." % (w, constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
-        return picture
+        imagem = self.cleaned_data.get("imagem_listagem")
+        return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
 
     def clean_imagem_detalhes(self):
-        picture = self.cleaned_data.get("imagem_detalhes")
-        if picture:
-            if hasattr(picture, "content_type") and picture.content_type not in constants.MIMETYPES_IMAGENS_ACEITOS:
-                raise forms.ValidationError(u'O formato informado não é suportado.')
-            w, h = get_image_dimensions(picture)
-            if w != constants.NODOS_TAMANHO_IMAGEM_DETALHES_LARGURA:
-                raise forms.ValidationError("A imagem enviada tem %i pixel(s) de largura. Ela necessita ter %i pixels." % (w, constants.NODOS_TAMANHO_IMAGEM_DETALHES_LARGURA))
-            if h != constants.NODOS_TAMANHO_IMAGEM_DETALHES_ALTURA:
-                raise forms.ValidationError("A imagem enviada tem %i pixel(s) de altura. Ela necessita ter %i pixels." % (w, constants.NODOS_TAMANHO_IMAGEM_DETALHES_ALTURA))
-        return picture
+        imagem = self.cleaned_data.get("imagem_detalhes")
+        return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODOS_TAMANHO_IMAGEM_DETALHES_LARGURA, constants.NODOS_TAMANHO_IMAGEM_DETALHES_ALTURA)
 
 
-class ObjetoForm(forms.ModelForm):
+class ObjetoForm(forms.ModelForm, ImageValidator):
 
     class Meta:
 
@@ -59,25 +57,9 @@ class ObjetoForm(forms.ModelForm):
         exclude = ["created", "updated", "excluido", "excluido_por", "excluido_em", "criado_por", "nodos"]
 
     def clean_imagem_listagem(self):
-        picture = self.cleaned_data.get("imagem_listagem")
-        if picture:
-            if hasattr(picture, "content_type") and picture.content_type not in constants.MIMETYPES_IMAGENS_ACEITOS:
-                raise forms.ValidationError(u'O formato informado não é suportado.')
-            w, h = get_image_dimensions(picture)
-            if w != constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA:
-                raise forms.ValidationError("A imagem enviada tem %i pixel(s) de largura. Ela necessita ter %i pixels." % (w, constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA))
-            if h != constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA:
-                raise forms.ValidationError("A imagem enviada tem %i pixel(s) de altura. Ela necessita ter %i pixels." % (w, constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
-        return picture
+        imagem = self.cleaned_data.get("imagem_listagem")
+        return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
 
     def clean_imagem_detalhes(self):
-        picture = self.cleaned_data.get("imagem_detalhes")
-        if picture:
-            if hasattr(picture, "content_type") and picture.content_type not in constants.MIMETYPES_IMAGENS_ACEITOS:
-                raise forms.ValidationError(u'O formato informado não é suportado.')
-            w, h = get_image_dimensions(picture)
-            if w != constants.OBJETO_TAMANHO_IMAGEM_DETALHES_LARGURA:
-                raise forms.ValidationError("A imagem enviada tem %i pixel(s) de largura. Ela necessita ter %i pixels." % (w, constants.OBJETO_TAMANHO_IMAGEM_DETALHES_LARGURA))
-            if h != constants.OBJETO_TAMANHO_IMAGEM_DETALHES_ALTURA:
-                raise forms.ValidationError("A imagem enviada tem %i pixel(s) de altura. Ela necessita ter %i pixels." % (w, constants.OBJETO_TAMANHO_IMAGEM_DETALHES_ALTURA))
-        return picture
+        imagem = self.cleaned_data.get("imagem_detalhes")
+        return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.OBJETO_TAMANHO_IMAGEM_DETALHES_LARGURA, constants.OBJETO_TAMANHO_IMAGEM_DETALHES_ALTURA)
