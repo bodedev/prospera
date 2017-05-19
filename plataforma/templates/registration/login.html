@@ -3,8 +3,21 @@
 {% block content %}
   <h2>Login</h2>
   <form method="post">
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {% for err in form.non_field_errors %}
+          {{ err }}
+        {% endfor %}
+      </div>
+    {% endif %}
     {% csrf_token %}
-    {{ form.as_p }}
+
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.label_tag }}: {{ field }}
+        </div>
+    {% endfor %}
     <button type="submit">Login</button>
   </form>
   <br>
