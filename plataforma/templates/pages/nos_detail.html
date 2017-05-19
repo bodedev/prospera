@@ -10,9 +10,9 @@
                 <div class="media-left">
                     <a href="#">
                         {% if nos.imagem_detalhes %}
-                        <img class="media-object" src="{{ nos.imagem_detalhes.url }}" alt="...">
+                        <img class="media-object" src="{{ nos.imagem_detalhes.url }}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
                         {% else %}
-                        <img class="media-object" src="http://placehold.it/500x300/e8117f/ffffff" alt="...">
+                        <img class="media-object" src="http://placehold.it/500x300/e8117f/ffffff" alt="{{ nos.nome }}" title="{{ nos.nome }}">
                         {% endif %}
                     </a>
                 </div>
@@ -32,9 +32,9 @@
             <div class="col-xs-6 col-md-2">
                 <a href="{% url 'object_detail' nos.slug objeto.slug %}" class="thumbnail">
                     {% if objeto.imagem_listagem %}
-                    <img src="{{ objeto.imagem_listagem.url }}" alt="{{ objeto.nome }}">
+                    <img src="{{ objeto.imagem_listagem.url }}" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
                     {% else %}
-                    <img src="http://placehold.it/50x50" alt="{{ objeto.nome }}">
+                    <img src="http://placehold.it/50x50" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
                     {% endif %}
                 </a>
             </div>
