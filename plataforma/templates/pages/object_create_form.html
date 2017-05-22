@@ -1,13 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div id="presentation-detail">
+<div class="object-create">
     <h1>Criar Novo Objeto</h1>
+    <form enctype="multipart/form-data" method="POST">
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {% for err in form.non_field_errors %}
+            {{ err }}
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% csrf_token %}
 
-    <form class="form-signin" enctype="multipart/form-data" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Criar Objeto</button>
+      {% for field in form %}
+        <div class="form-group{% if field.errors%} has-error{% endif %}">
+               <input id="{{ field.auto_id }}" class="form-control" placeholder="{{ field.label }}" name="{{ field.name }}" type="{{ field.field.widget.input_type }}">
+         <span class="help-block">{{ field.errors }}</span>
+              </div>
+      {% endfor %}
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Criar Objeto</button>
     </form>
 
 </div>
