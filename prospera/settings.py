@@ -122,3 +122,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
+
+if not os.path.exists(os.path.join(BASE_DIR, 'prospera', 'local.py')):
+    raise Exception("Couldn't import the local configuration file!")
+else:
+    from local import *
