@@ -69,6 +69,12 @@ class NoDetailView(UpdateView):
         except UserSocialAuth.DoesNotExist:
             pass
 
+        context["google_login"] = None
+        try:
+            context["google_login"] = self.request.user.social_auth.get(provider='google-oauth2')
+        except UserSocialAuth.DoesNotExist:
+            pass
+
         context["can_disconnect"] = (self.request.user.social_auth.count() > 1 or self.request.user.has_usable_password())
         return context
 
