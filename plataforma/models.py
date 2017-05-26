@@ -57,6 +57,9 @@ class Objeto(BaseModel, LogicDeletable):
 
     history = HistoricalRecords()
 
+    def get_endereco_sala(self):
+        return u"https://www.appear.in/prospera-%s" % self.criado_por.username
+
     def __unicode__(self):
         return u"%s" % self.nome
 
