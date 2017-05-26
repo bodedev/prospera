@@ -25,17 +25,22 @@
 
     <hr>
     <div class="row">
-      <div class="col-md-3">
-        <a href="{% url 'social:begin' 'github' %}" class="btn btn-primary btn-github">Entrar com <i class="fa fa-github" aria-hidden="true"></i></a>
+      <div class="col-xs-12 text-center">
+        <p>ENTRAR COM:</p>
       </div>
-      <div class="col-md-3 col-md-offset-1">
-        <a href="{% url 'social:begin' 'twitter' %}" class="btn btn-primary btn-twitter">Entrar com <i class="fa fa-twitter" aria-hidden="true"></i></a>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-2">
+        <a href="{% url 'social:begin' 'github' %}" class="btn btn-primary btn-github"><i class="fa fa-github" aria-hidden="true"></i></a>
       </div>
-      <div class="col-md-3 col-md-offset-1">
-        <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-primary btn-facebook">Entrar com <i class="fa fa-facebook" aria-hidden="true"></i></a>
+      <div class="col-md-2">
+        <a href="{% url 'social:begin' 'twitter' %}" class="btn btn-primary btn-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
       </div>
-      <div class="col-md-3 col-md-offset-1">
-        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-primary btn-facebook">Entrar com <i class="fa fa-google" aria-hidden="true"></i></a>
+      <div class="col-md-2">
+        <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-primary btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+      </div>
+      <div class="col-md-2">
+        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-primary btn-google"><i class="fa fa-google" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
