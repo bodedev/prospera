@@ -12,6 +12,11 @@
         <h4 class="media-heading">{{ objeto.nome }}</h4>
         {{ objeto.descricao }}
         <hr />
+
+        {% if objeto.criado_por == user %}
+        <a href="{% url "object_update" objeto.nodos.slug objeto.slug %}" class="btn btn-default" role="button">Editar</a>
+        {% endif %}
+        <br />
     </section>
 
     <section>

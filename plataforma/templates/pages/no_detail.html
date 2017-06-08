@@ -81,4 +81,18 @@
 
   <a href="{% url "no_change_password" %}">Alterar Senha</a>
 
+  {% if user.nodos_set.all %}
+  <h3>Nós Criados</h3>
+    {% for nodo in user.nodos_set.all %}
+      <a href="{% url "nos_detail" nodo.slug %}">{{ nodo.nome }}</a>
+    {% endfor %}
+  {% endif %}
+
+  {% if user.objeto_set.all %}
+  <h3>Objeto Criados</h3>
+    {% for o in user.objeto_set.all %}
+      <a href="{% url "object_detail" o.nodos.slug o.slug %}">{{ o.nome }}</a>
+    {% endfor %}
+  {% endif %}
+
 {% endblock %}

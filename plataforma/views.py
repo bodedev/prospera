@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
@@ -134,6 +135,22 @@ class NosDetailView(DetailView):
 
 
 @method_decorator(login_required, name='dispatch')
+class NosEditView(UpdateView):
+
+    form_class = NodosForm
+    model = Nodos
+    slug_url_kwarg = "nos"
+    success_url = reverse_lazy("nos_list")
+    template_name = "pages/nos_update_form.html"
+
+    def get_object(self, queryset=None):
+        self.object = super(NosEditView, self).get_object(queryset)
+        if self.object.criado_por != self.request.user:
+            raise PermissionDenied
+        return self.object
+
+
+@method_decorator(login_required, name='dispatch')
 class ObjectCreateView(CreateView):
 
     form_class = ObjetoForm
@@ -155,3 +172,21 @@ class ObjectDetailView(DetailView):
     model = Objeto
     slug_url_kwarg = "objeto"
     template_name = "pages/object_detail.html"
+
+
+@method_decorator(login_required, name='dispatch')
+class ObjectEditView(UpdateView):
+
+    form_class = ObjetoForm
+    model = Objeto
+    slug_url_kwarg = "objeto"
+    template_name = "pages/object_update_form.html"
+
+    def get_object(self, queryset=None):
+        self.object = super(ObjectEditView, self).get_object(queryset)
+        if self.object.criado_por != self.request.user:
+            raise PermissionDenied
+        return self.object
+
+    def get_success_url(self):
+        return reverse_lazy("object_detail", kwargs={"nos": self.object.nodos.slug, "objeto": self.object.slug})

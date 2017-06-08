@@ -5,8 +5,8 @@ from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
 
 from plataforma.views import NoCreateView, LandingPageView, NoDetailView, UserChangePassword
-from plataforma.views import NosCreateView, NosListView, NosDetailView
-from plataforma.views import ObjectDetailView, ObjectCreateView
+from plataforma.views import NosCreateView, NosDetailView, NosEditView, NosListView
+from plataforma.views import ObjectCreateView, ObjectDetailView, ObjectEditView
 
 
 urlpatterns = [
@@ -20,6 +20,8 @@ urlpatterns = [
     url(r'^nos/$', NosListView.as_view(), name="nos_list"),
     url(r'^nos/novo/$', NosCreateView.as_view(), name="nos_create"),
     url(r'^nos/(?P<nos>[-\w]+)/detalhes/$', NosDetailView.as_view(), name="nos_detail"),
+    url(r'^nos/(?P<nos>[-\w]+)/editar/$', NosEditView.as_view(), name="nos_update"),
     url(r'^nos/(?P<nos>[-\w]+)/objeto/novo/$', ObjectCreateView.as_view(), name="object_create"),
     url(r'^nos/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/detalhes/$', ObjectDetailView.as_view(), name="object_detail"),
+    url(r'^nos/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/editar/$', ObjectEditView.as_view(), name="object_update"),
 ]

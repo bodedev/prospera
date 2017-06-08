@@ -19,6 +19,11 @@
                 <div class="media-body">
                     <h4 class="media-heading">{{ nos.titulo }}</h4>
                     {{ nos.descricao|default_if_none:"" }}
+
+                    <br />
+                    {% if nos.criado_por == user %}
+                    <a href="{% url "nos_update" nos.slug %}" class="btn btn-default" role="button">Editar</a>
+                    {% endif %}
                 </div>
             </li>
         </ul>
