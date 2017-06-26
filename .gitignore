@@ -91,3 +91,6 @@ ENV/
 
 # Default Django SQLite Database
 db.sqlite3
+
+# npm
+node_modules/

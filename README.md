@@ -26,7 +26,13 @@ virtualenv env
 source env/bin/activate
 
 # Instalar dependências de bibliotecas do sistema
-pip install -r conf/requirements.txt
+pip install -r requirements.txt
+
+# Criar arquivo de configurações locais
+touch prospera/local.py
+
+# Aplicar migrações
+python manage.py migrate
 
 # Executar o servidor de testes
 python manage.py runserver 0.0.0.0:8000
