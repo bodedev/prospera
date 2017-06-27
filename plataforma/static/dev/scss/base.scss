@@ -89,8 +89,12 @@ h4{font-size: 12px;}
   padding: 15px 22px;
 }
 
-.content {
+// Maring
+.prospera-margin{
+  margin: 90px auto;
+}
 
+.content {
     // Landing Page
     #landing-page{
       background-image: url(../img/background.jpg);
@@ -114,9 +118,6 @@ h4{font-size: 12px;}
           margin: 0 auto;
           padding-top: 45px;
           margin-bottom: 60px;
-        }
-        .buttons-container{
-          margin: 90px auto;
         }
         button{
           margin: 10px;
@@ -180,12 +181,20 @@ h4{font-size: 12px;}
         p{
           font-family: $gotham;
           font-weight: 400;
-          font-size: 14px;
+          font-size: 12px;
           letter-spacing: 0.05em;
+          line-height: 2em;
         }
-        .video-container, .companies-container{
+        .text-container, .companies-container, .video-container{
           margin: auto;
           max-width: 900px;
+        }
+        .video-container{
+          margin: auto;
+          max-width: 700px;
+        }
+        .text-container{
+          max-width: 1200px;
         }
       }
 
@@ -203,6 +212,9 @@ h4{font-size: 12px;}
         i{
           font-size: 30px;
           vertical-align: sub;
+        }
+        .row{
+          margin: 0;
         }
       }
     }
