@@ -1,0 +1,35 @@
+@mixin font-face($name, $font-files, $weight, $style) {
+  @font-face {
+    font-family: $name;
+    font-weight: $weight;
+    font-style: $style;
+    src: url($font-files + ".eot");
+    src: url($font-files + ".eot?#iefix") format('embedded-opentype'),
+        url($font-files + ".woff2") format('woff2'),
+        url($font-files + ".woff") format('woff'),
+        url($font-files + ".ttf") format('truetype'),
+        url($font-files + ".svg#" + $name) format('svg');
+  }
+}
+
+$fontpath: "../fonts/";
+$fonts: (
+  ("gotham", "gotham/Gotham-Black", 900, normal),
+  ("gotham", "gotham/Gotham-BlackItalic", 900, italic),
+  ("gotham", "gotham/Gotham-Bold", 700, normal),
+  ("gotham", "gotham/Gotham-BoldItalic", 700, italic),
+  ("gotham", "gotham/Gotham-Medium", 500, normal),
+  ("gotham", "gotham/Gotham-MediumItalic", 500, italic),
+  ("gotham", "gotham/Gotham-Book", normal, normal),
+  ("gotham", "gotham/Gotham-BookItalic", normal, italic),
+  ("gotham", "gotham/Gotham-Light", 300, normal),
+  ("gotham", "gotham/Gotham-LightItalic", 300, italic),
+  ("gotham", "gotham/Gotham-ExtraLight", 200, normal),
+  ("gotham", "gotham/Gotham-ExtraLightItalic", 200, italic),
+  ("gotham", "gotham/Gotham-Thin", 100, normal),
+  ("gotham", "gotham/Gotham-ThinItalic", 100, italic)
+);
+
+@each $font in $fonts {
+  @include font-face( nth($font,1) , $fontpath + nth($font,2) , nth($font,3) , nth($font,4) );
+}

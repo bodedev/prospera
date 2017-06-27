@@ -18,32 +18,29 @@
     <link href="{% static "css/base.min.css" %}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-prospera">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'home' %}">Prospera</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="{% url 'nos_list' %}">Nós</a></li>
-            {% if not user.id %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-            {% else %}
-            <li><a href="{% url 'no_detail' %}">Perfil</a></li>
-            <li><a href="{% url 'logout' %}">Sair</a></li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="container content">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              MENU
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a class="scroll" href="#sobre">Prospera</a></li>
+              <li><a class="scroll" href="#programacao">Quem Somos</a></li>
+              <li><a class="scroll" href="#participar">Comunidades</a></li>
+              <li><a class="scroll" href="#contato">Contato</a></li>
+              <li><a class="scroll" href="#contato">Entrar</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    <div class="content">
         {% if messages %}
             {% for message in messages %}
             <div class="alert alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible" role="alert">

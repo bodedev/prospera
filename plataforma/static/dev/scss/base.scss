@@ -1,54 +1,211 @@
+@import '_screens';
 @import '_colors';
+@import '_fonts';
 
-.navbar-prospera {
-    background-color: $prime;
-    border-color: $primeHighlight;
-    color: $branco;
-    .navbar-brand {
-        color: $branco;
+$gotham: 'gotham', sans-serif;
+
+// Navbar
+.navbar-default {
+  background-color: transparentize($branco, .9);
+  border: 0;
+  margin-bottom: 0;
+  @media (min-width: $screen-sm-min) {
+    height: 70px;
+  }
+
+  .navbar-header {
+    .navbar-toggle {
+      border-radius: 3px;
+      border-color: $azulClaro;
+      color: $branco;
+      padding: 6px 20px 5px;
+      transition: color 0.3s ease;
+
+      &:hover, &:focus {
+        border-color: $azulClaro;
+        background-color: $azulClaro;
+        color: $azul;
+      }
     }
+  }
+
+  .navbar-collapse {
+    text-align: center;
+
     .navbar-nav {
-        > li {
-            > a {
-                color: $branco;
+      display: inline-block;
+      float: none;
+      vertical-align: top;
 
-                &:focus,
-                &:hover {
-                    color: $branco;
-                }
-            }
-        }
-        > .active {
-             > a:focus,
-             > a:hover,
-            > a {
-                color: $branco;
-                background-color: $primeHighlight;
-            }
-        }
-        > .open {
-             > a:focus,
-             > a:hover,
-            > a {
-                color: $branco;
-                background-color: $primeHighlight;
-            }
-        }
-    }
-    .navbar-collapse,
-    .navbar-form {
-        border-color: $branco;
-    }
-    .navbar-link {
+      a {
         color: $branco;
+        font-family: $gotham;
+        letter-spacing: 0.25em;
+        font-size: 14px;
+        text-transform: uppercase;
+        transition: color 0.3s ease;
 
-        &:hover {
-            color: $branco;
+        @media (min-width: $screen-sm-min) {
+          padding: 25px 35px;
         }
+
+        &:hover, &:focus {
+          color: $azulClaro;
+          outline: 0;
+        }
+      }
     }
+  }
+}
+
+.content{
+  margin-top: -70px;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+// Titles
+h3, h4{
+  color: $branco;
+  text-transform: uppercase;
+  font-family: $gotham;
+  letter-spacing: 0.2em;
+}
+h3{font-size: 14px;}
+h4{font-size: 12px;}
+
+// Button Prospera
+.btn-prospera{
+  background-color: $azul;
+  color: $branco;
+  border-radius: 0;
+  text-transform: uppercase;
+  font-family: $gotham;
+  font-weight: lighter;
+  font-size: 14px;
+  letter-spacing: 0.45em;
+  padding: 15px 22px;
 }
 
 .content {
+
+    // Landing Page
+    #landing-page{
+      background-image: url(../img/background.jpg);
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: $prime;
+
+      h3{
+        font-weight: normal;
+      }
+
+      .presentation-content{
+        max-width: 900px;
+        margin: auto;
+        padding: 80px 0;
+
+        .logo{
+          display: block;
+          margin: 0 auto;
+          padding-top: 45px;
+          margin-bottom: 60px;
+        }
+        .buttons-container{
+          margin: 90px auto;
+        }
+        button{
+          margin: 10px;
+          width: 215px;
+        }
+        .prsps-counter{
+          background: white;
+          width: 382px;
+          margin: auto;
+          padding: 8px;
+          img{
+            margin-right: 12px;
+          }
+          p{
+            margin: 0px;
+            font-family: $gotham;
+            font-weight: 300;
+            font-size: 20px;
+            letter-spacing: 0.2em;
+            vertical-align: middle;
+          }
+        }
+        .prsps-dist{
+          .table {
+            border: 0.5px solid $prime;
+          }
+          .table-bordered > thead > tr > th,
+          .table-bordered > tbody > tr > th,
+          .table-bordered > tfoot > tr > th,
+          .table-bordered > thead > tr > td,
+          .table-bordered > tbody > tr > td,
+          .table-bordered > tfoot > tr > td {
+             border: 0.5px solid $prime;
+          }
+          th{
+            color: $branco;
+            font-family: $gotham;
+            font-weight: 300;
+            font-size: 10px;
+            text-transform: uppercase;
+            text-align: center;
+          }
+          td{
+            background-color: $branco;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 12px;
+            padding: 20px;
+          }
+        }
+      }
+
+      .quemsomos-content{
+        padding: 80px 0;
+        background-color: $azulClaro;
+
+        h3{
+          font-weight: 500;
+          color: $preto;
+        }
+        p{
+          font-family: $gotham;
+          font-weight: 400;
+          font-size: 14px;
+          letter-spacing: 0.05em;
+        }
+        .video-container, .companies-container{
+          margin: auto;
+          max-width: 900px;
+        }
+      }
+
+      .contato-content{
+        padding: 80px 0;
+        background-image: url(../img/background-contato.jpg);
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        h3{
+          margin: 0;
+        }
+        p{margin-bottom: 0;}
+        i{
+          font-size: 30px;
+          vertical-align: sub;
+        }
+      }
+    }
 
     hr{
       width: 85%;
