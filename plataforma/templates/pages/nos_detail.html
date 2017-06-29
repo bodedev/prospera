@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
+{% block bodyclass %}class="comunidade-detail"{% endblock %}
 {% block content %}
-
 <div id="nos-detail">
-    <h1>{{ nos.nome }}</h1>
-
-    <section>
+    <section class="descricao-content">
+      <h1>+ Comunidade +</h1>
         <ul class="media-list">
             <li class="media">
                 <div class="media-left">
@@ -12,13 +13,14 @@
                         {% if nos.imagem_detalhes %}
                         <img class="media-object" src="{{ nos.imagem_detalhes.url }}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
                         {% else %}
-                        <img class="media-object" src="http://placehold.it/500x300/e8117f/ffffff" alt="{{ nos.nome }}" title="{{ nos.nome }}">
+                        <img class="media-object" src="http://placehold.it/500x300/ffffff/e8117f/" alt="{{ nos.nome }}" title="{{ nos.nome }}">
                         {% endif %}
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">{{ nos.titulo }}</h4>
-                    {{ nos.descricao|default_if_none:"" }}
+                    <h1 class="title">{{ nos.nome }}</h1>
+                    <h4 class="owner media-heading">Criado por: <a>{{ nos.criado_por }}</a></h4>
+                    <p class="description">{{ nos.descricao|default_if_none:"" }}</p>
 
                     <br />
                     {% if nos.criado_por == user %}
@@ -27,11 +29,10 @@
                 </div>
             </li>
         </ul>
-        <hr />
     </section>
 
-    <section>
-        <h2>Objetos</h2>
+    <section class="objetos-content">
+        <h1>_Objetos</h1>
         <div class="row">
             {% for objeto in nos.objeto_set.all %}
             <div class="col-xs-6 col-md-2">
@@ -49,18 +50,19 @@
             <br />
             <a href="{% url "object_create" nos.slug %}">Novo Objeto</a>
         </div>
-        <hr />
     </section>
 
     {% if nos.contato_facebook or nos.contato_whatsapp %}
-    <section>
-        <h2>Contato</h2>
+    <section class="contato-content">
+      <div class="text-center">
         {% if nos.contato_facebook %}
-        <a href="{{ nos.contato_facebook }}" class="btn btn-default" role="button">Facebook</a>
+        <a href="{{ nos.contato_facebook }}" target="_blank"><i class="fa fa-facebook item-contato" aria-hidden="true"></i></a>
         {% endif %}
         {% if nos.contato_whatsapp %}
-        <a href="{{ nos.contato_whatsapp }}" class="btn btn-default" role="button">Whatsapp</a>
+        <a href="{{ nos.contato_whatsapp }}" target="_blank"><i class="fa fa-whatsapp item-contato" aria-hidden="true"></i></a>
         {% endif %}
+        <a href="{{ nos.contato_whatsapp }}" target="_blank"><img class="zoom item-contato" src="{% static 'img/zoom.png' %}" alt="Zoom"></a>
+      </div>
     </section>
     {% endif %}
 

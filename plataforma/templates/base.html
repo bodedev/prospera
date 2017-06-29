@@ -17,7 +17,7 @@
     <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
     <link href="{% static "css/base.min.css" %}" rel="stylesheet">
 </head>
-<body>
+<body {% block bodyclass %}{% endblock %}>
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->

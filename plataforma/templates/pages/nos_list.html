@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+
+
+{% block bodyclass %}class="comunidades"{% endblock %}
 {% block content %}
 
 <div id="nos">
@@ -16,20 +19,22 @@
   <section class="comunidades-content">
     <div class="row">
       {% for nos in object_list %}
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-          {% if nos.imagem_listagem %}
-            <img class="media-object" src="{{ nos.imagem_listagem.url }}" alt="...">
-          {% else %}
-            <img class="media-object" src="http://placehold.it/400x300/e8117f/ffffff" alt="...">
-          {% endif %}
-          <div class="caption">
-            <h2>{{ nos.nome }}</h2>
-            <p>{{ nos.descricao }}</p>
-            <!-- <p><a href="{% url 'nos_detail' nos.slug %}" class="btn btn-default" role="button">Saiba Mais</a></p> -->
+      <a href="{% url 'nos_detail' nos.slug %}">
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            {% if nos.imagem_listagem %}
+              <img class="media-object" src="{{ nos.imagem_listagem.url }}" alt="...">
+            {% else %}
+              <img class="media-object" src="http://placehold.it/400x300/ffffff/e8117f" alt="...">
+            {% endif %}
+            <div class="caption">
+              <h2>{{ nos.nome }}</h2>
+              <p>{{ nos.descricao }}</p>
+              <!-- <p><a href="{% url 'nos_detail' nos.slug %}" class="btn btn-default" role="button">Saiba Mais</a></p> -->
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail text-center">

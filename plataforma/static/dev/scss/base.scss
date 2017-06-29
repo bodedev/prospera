@@ -4,6 +4,15 @@
 
 $gotham: 'gotham', sans-serif;
 
+
+// Body Colors
+body.landing-page, body.comunidade-detail{
+  background-color: $prime;
+}
+body.comunidades{
+  background-color: $azul;
+}
+
 // Navbar
 .navbar-default {
   background-color: transparentize($branco, .9);
@@ -279,6 +288,64 @@ h4{font-size: 12px;}
               letter-spacing: .1em;
             }
           }
+        }
+      }
+    }
+
+    .title{
+      font-family: $gotham;
+      font-weight: 600;
+      font-size: 48px;
+      color: $branco;
+    }
+    .owner{
+      font-family: $gotham;
+      font-weight: 200;
+      font-size: 12px;
+      color: $branco;
+      a{
+        text-decoration: underline;
+        color: $branco;
+      }
+    }
+    .description{
+      margin-top: 40px;
+    }
+
+    // Detalhes de Comunidade
+    #nos-detail{
+      background-color: $prime;
+
+      p{
+        font-family: $gotham;
+        font-weight: 300;
+        font-size: 12px;
+        color: $branco;
+        letter-spacing: 0.05em;
+        line-height: 2em;
+      }
+
+      .descricao-content{
+        max-width: 900px;
+        margin: auto;
+        padding-top: 80px;
+      }
+
+      .objetos-content{
+        max-width: 900px;
+        margin: auto;
+      }
+      .contato-content{
+        margin: auto;
+
+        background-color: transparentize($branco, .9);
+        height: 70px;
+        .item-contato{
+          min-width: 128px;
+          color: $branco;
+          font-size: 35px;
+          vertical-align: bottom;
+          margin: 20px 5px;
         }
       }
     }
