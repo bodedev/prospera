@@ -6,6 +6,9 @@
 <div id="nos-detail">
     <section class="descricao-content container">
       <div class="row">
+        <a href="{% url 'nos_list' %}">
+          <img src="{% static 'img/voltar.png' %}" alt="Voltar">
+        </a>
         <h1>+ Comunidade +</h1>
         {% if nos.imagem_detalhes %}
         <img class="col-md-6" src="{{ nos.imagem_detalhes.url }}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
@@ -38,8 +41,6 @@
               <p class="sub">{{ objeto.nome }}</p>
             </a>
           </div>
-          {% empty %}
-          <p class="col-xs-12">Sem objetos para este Nós.</p>
           {% endfor %}
           <a class="col-xs-6 col-md-2 thumbnail-round text-center" href="{% url "object_create" nos.slug %}">
             <p class="plus">+</p>
