@@ -124,7 +124,6 @@ h4{font-size: 12px;}
       }
 
       .presentation-content{
-        max-width: 900px;
         margin: auto;
         padding: 80px 0;
 
@@ -202,14 +201,9 @@ h4{font-size: 12px;}
         }
         .text-container, .companies-container, .video-container{
           margin: auto;
-          max-width: 900px;
         }
         .video-container{
-          margin: auto;
-          max-width: 700px;
-        }
-        .text-container{
-          max-width: 1200px;
+          margin: 70px auto;
         }
       }
 
@@ -254,7 +248,6 @@ h4{font-size: 12px;}
       }
 
       .descricao-content{
-        max-width: 900px;
         margin: auto;
         padding: 80px 0;
 
@@ -265,27 +258,29 @@ h4{font-size: 12px;}
         }
       }
       .comunidades-content{
-        max-width: 1200px;
         margin: auto;
 
-        .thumbnail{
-          background-color: $azul;
-          border: 1px solid $azul;
+        .comunidades-list{
+          padding: 0;
+          .thumbnail{
+            background-color: $azul;
+            border: 1px solid $azul;
 
-          a{
-            font-size: 80px;
-            font-weight: bold;
-            color: $azul;
-          }
-          .caption{
-            // color: $branco;
-          }
-          .button-container{
-            background-color: $branco;
-            padding: 58px 0;
-            h2{
+            .plus{
+              font-size: 80px;
+              font-weight: bold;
               color: $azul;
-              letter-spacing: .1em;
+            }
+            .caption{
+              // color: $branco;
+            }
+            .button-container{
+              background-color: $branco;
+              padding: 58px 0;
+              h2{
+                color: $azul;
+                letter-spacing: .1em;
+              }
             }
           }
         }
@@ -326,14 +321,44 @@ h4{font-size: 12px;}
       }
 
       .descricao-content{
-        max-width: 900px;
         margin: auto;
         padding-top: 80px;
+
+        img{
+          padding: 0;
+          margin-top: 20px;
+        }
       }
 
       .objetos-content{
-        max-width: 900px;
         margin: auto;
+
+        h1{
+          margin: 45px auto;
+        }
+        .objeto-imagem{
+          border-radius: 50%;
+        }
+
+        .thumbnail-round {
+          display: block;
+          height: 120px;
+          width: 120px;
+          border-radius: 50%;
+          background-color: #fff;
+
+          .plus{
+            font-size: 62px;
+            font-weight: 700;
+            color: $prime;
+            margin-bottom: 0;
+          }
+        }
+        p.sub{
+          line-height: 1.4em;
+          margin-top: 6px;
+          text-transform: uppercase;
+        }
       }
       .contato-content{
         margin: auto;

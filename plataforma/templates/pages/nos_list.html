@@ -6,45 +6,47 @@
 {% block content %}
 
 <div id="nos">
-  <section class="descricao-content">
-    <h1>+ Comunidades +</h1>
+  <section class="descricao-content container">
     <div class="row">
-      <p class="col-md-10 text-justify">
+      <h1 class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">+ Comunidades +</h1>
+    </div>
+    <div class="row">
+      <p class="col-md-8 col-lg-10 col-md-offset-1 col-lg-offset-0 text-justify">
         Em 1937 o economista Ronald Coase publicou o artigo A Natureza da Firma: origem, evolução e desenvolvimento, onde afirma que as organizações surgem para atuar nos mercados com o objetivo de diminuir os custos de transação (custos de busca e aquisição, de contratação e controle, de coordenação e de confiança).
       </p>
-      <img class="inline-block" src="{% static 'img/prospera-circle.png' %}" alt="Prospera">
+      <img class="inline-block hidden-sm hidden-xs" src="{% static 'img/prospera-circle.png' %}" alt="Prospera">
     </div>
   </section>
 
-  <section class="comunidades-content">
+  <section class="comunidades-content container">
     <div class="row">
-      {% for nos in object_list %}
-      <a href="{% url 'nos_detail' nos.slug %}">
-        <div class="col-sm-6 col-md-4">
-          <div class="thumbnail">
-            {% if nos.imagem_listagem %}
-              <img class="media-object" src="{{ nos.imagem_listagem.url }}" alt="...">
-            {% else %}
-              <img class="media-object" src="http://placehold.it/400x300/ffffff/e8117f" alt="...">
-            {% endif %}
-            <div class="caption">
-              <h2>{{ nos.nome }}</h2>
-              <p>{{ nos.descricao }}</p>
-              <!-- <p><a href="{% url 'nos_detail' nos.slug %}" class="btn btn-default" role="button">Saiba Mais</a></p> -->
+      <div class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0 comunidades-list">
+        <div class="row">
+          {% for nos in object_list %}
+          <a class="col-sm-6 col-md-4" href="{% url 'nos_detail' nos.slug %}">
+            <div class="thumbnail">
+              {% if nos.imagem_listagem %}
+                <img class="media-object" src="{{ nos.imagem_listagem.url }}" alt="...">
+              {% else %}
+                <img class="media-object" src="http://placehold.it/400x300/ffffff/e8117f" alt="...">
+              {% endif %}
+              <div class="caption">
+                <h2>{{ nos.nome }}</h2>
+                <p>{{ nos.descricao }}</p>
+              </div>
             </div>
-          </div>
-        </div>
-      </a>
-      {% endfor %}
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail text-center">
-          <div class="button-container">
-            <a href="{% url "nos_create" %}">+</a>
-            <h2>CRIAR UMA COMUNIDADE</h2>
-          </div>
+          </a>
+          {% endfor %}
+          <a href="{% url "nos_create" %}" class="col-sm-6 col-md-4">
+            <div class="thumbnail text-center">
+              <div class="button-container">
+                <p class="plus">+</p>
+                <h2>CRIAR UMA COMUNIDADE</h2>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
-
     </div>
   </section>
 </div>

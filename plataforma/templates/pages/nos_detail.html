@@ -4,51 +4,47 @@
 {% block bodyclass %}class="comunidade-detail"{% endblock %}
 {% block content %}
 <div id="nos-detail">
-    <section class="descricao-content">
-      <h1>+ Comunidade +</h1>
-        <ul class="media-list">
-            <li class="media">
-                <div class="media-left">
-                    <a href="#">
-                        {% if nos.imagem_detalhes %}
-                        <img class="media-object" src="{{ nos.imagem_detalhes.url }}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
-                        {% else %}
-                        <img class="media-object" src="http://placehold.it/500x300/ffffff/e8117f/" alt="{{ nos.nome }}" title="{{ nos.nome }}">
-                        {% endif %}
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h1 class="title">{{ nos.nome }}</h1>
-                    <h4 class="owner media-heading">Criado por: <a>{{ nos.criado_por }}</a></h4>
-                    <p class="description">{{ nos.descricao|default_if_none:"" }}</p>
+    <section class="descricao-content container">
+      <div class="row">
+        <h1>+ Comunidade +</h1>
+        {% if nos.imagem_detalhes %}
+        <img class="col-md-6" src="{{ nos.imagem_detalhes.url }}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
+        {% else %}
+        <img class="col-md-6" src="http://placehold.it/500x300/ffffff/e8117f/" alt="{{ nos.nome }}" title="{{ nos.nome }}">
+        {% endif %}
 
-                    <br />
-                    {% if nos.criado_por == user %}
-                    <a href="{% url "nos_update" nos.slug %}" class="btn btn-default" role="button">Editar</a>
-                    {% endif %}
-                </div>
-            </li>
-        </ul>
+        <div class="col-md-6">
+          <h1 class="title">{{ nos.nome }}</h1>
+          <h4 class="owner media-heading">Criado por: <a>{{ nos.criado_por }}</a></h4>
+          <p class="description">{{ nos.descricao|default_if_none:"" }}</p>
+          {% if nos.criado_por == user %}
+          <a href="{% url "nos_update" nos.slug %}" class="btn btn-default" role="button">Editar</a>
+          {% endif %}
+        </div>
+      </div>
     </section>
 
-    <section class="objetos-content">
+    <section class="objetos-content container">
         <h1>_Objetos</h1>
-        <div class="row">
-            {% for objeto in nos.objeto_set.all %}
-            <div class="col-xs-6 col-md-2">
-                <a href="{% url 'object_detail' nos.slug objeto.slug %}" class="thumbnail">
-                    {% if objeto.imagem_listagem %}
-                    <img src="{{ objeto.imagem_listagem.url }}" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
-                    {% else %}
-                    <img src="http://placehold.it/50x50" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
-                    {% endif %}
-                </a>
-            </div>
-            {% empty %}
-            <p>Sem objetos para este Nós.</p>
-            {% endfor %}
-            <br />
-            <a href="{% url "object_create" nos.slug %}">Novo Objeto</a>
+        <div class="row text-center">
+          {% for objeto in nos.objeto_set.all %}
+          <div class="col-xs-6 col-md-2">
+            <a href="{% url 'object_detail' nos.slug objeto.slug %}">
+              {% if objeto.imagem_listagem %}
+              <img class="objeto-imagem" src="{{ objeto.imagem_listagem.url }}" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
+              {% else %}
+              <img class="objeto-imagem" src="http://placehold.it/120x120" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
+              {% endif %}
+              <p class="sub">{{ objeto.nome }}</p>
+            </a>
+          </div>
+          {% empty %}
+          <p class="col-xs-12">Sem objetos para este Nós.</p>
+          {% endfor %}
+          <a class="col-xs-6 col-md-2 thumbnail-round text-center" href="{% url "object_create" nos.slug %}">
+            <p class="plus">+</p>
+            <p class="sub">Adicionar um Objeto</p>
+          </a>
         </div>
     </section>
 
