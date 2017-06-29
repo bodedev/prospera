@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-
 {% block bodyclass %}class="comunidade-detail"{% endblock %}
 {% block content %}
 <div id="nos-detail">
     <section class="descricao-content container">
       <div class="row">
         <a href="{% url 'nos_list' %}">
-          <img src="{% static 'img/voltar.png' %}" alt="Voltar">
+          <img class="voltar" src="{% static 'img/voltar.png' %}" alt="Voltar">
         </a>
         <h1>+ Comunidade +</h1>
         {% if nos.imagem_detalhes %}

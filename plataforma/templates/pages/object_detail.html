@@ -1,45 +1,68 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% block bodyclass %}class="objeto-detail"{% endblock %}
 {% block content %}
-
 <div id="object-detail">
-    {% if objeto.imagem_detalhes %}
-    <img class="media-object center-block" src="{{ objeto.imagem_detalhes.url }}" alt="...">
-    {% else %}
-    <img class="media-object center-block" src="http://placehold.it/800x244/e8117f/ffffff" alt="...">
-    {% endif %}
 
-    <section>
-        <h4 class="media-heading">{{ objeto.nome }}</h4>
-        {{ objeto.descricao }}
-        <hr />
 
-        {% if objeto.criado_por == user %}
-        <a href="{% url "object_update" objeto.nodos.slug objeto.slug %}" class="btn btn-default" role="button">Editar</a>
+    <section class="descricao-content container">
+      <div class="row">
+        <a href="{% url 'nos_list' %}">
+          <img class="voltar" src="{% static 'img/voltar.png' %}" alt="Voltar">
+        </a>
+        <h1>+ OBJETO +</h1>
+        <div class="col-md-4">
+        {% if objeto.imagem_detalhes %}
+          <img class="objeto-imagem" src="{{ objeto.imagem_detalhes.url }}" alt="...">
+          {% else %}
+          <img class="objeto-imagem" src="http://placehold.it/350x350/ffffff/e8117f" alt="...">
         {% endif %}
-        <br />
+        </div>
+        <div class="col-md-6">
+          <h1 class="objeto-title">{{ objeto.nome }}</h1>
+          <h4 class="owner media-heading">Criado por: <a>{{ objeto.criado_por }}</a></h4>
+        </div>
+      </div>
+
+        <!-- {{ objeto.descricao }}
+        <hr /> -->
+
+        <!-- {% if objeto.criado_por == user %}
+        <a href="{% url "object_update" objeto.nodos.slug objeto.slug %}" class="btn btn-default" role="button">Editar</a>
+        {% endif %} -->
+        <!-- <br /> -->
     </section>
 
     <section>
-        <h4 class="media-heading">WYSIWYG</h4> Ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <!-- <h4 class="media-heading">WYSIWYG</h4> Ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         Ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        <hr />
+        <hr /> -->
     </section>
 
     {% if objeto.contato_facebook or objeto.contato_whatsapp %}
-    <section>
-        <h2>Contato</h2>
+    <section class="contato-content">
+      <div class="text-center">
+        {% if objeto.contato_facebook %}
+        <a href="{{ objeto.contato_facebook }}" target="_blank"><i class="fa fa-facebook item-contato" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if objeto.contato_whatsapp %}
+        <a href="{{ objeto.contato_whatsapp }}" target="_blank"><i class="fa fa-whatsapp item-contato" aria-hidden="true"></i></a>
+        {% endif %}
+        <a href="{{ objeto.contato_whatsapp }}" target="_blank"><img class="zoom item-contato" src="{% static 'img/zoom.png' %}" alt="Zoom"></a>
+      </div>
+        <!-- <h2>Contato</h2>
         {% if objeto.contato_facebook %}
         <a href="{{ objeto.contato_facebook }}" class="btn btn-default" role="button">Facebook</a>
         {% endif %}
         {% if objeto.contato_whatsapp %}
         <a href="{{ objeto.contato_whatsapp }}" class="btn btn-default" role="button">Whatsapp</a>
-        {% endif %}
+        {% endif %} -->
     </section>
     {% endif %}
 
-    <iframe src="{{ objeto.get_endereco_sala }}"></iframe>
+    <!-- <iframe src="{{ objeto.get_endereco_sala }}"></iframe> -->
 
 </div>
 
