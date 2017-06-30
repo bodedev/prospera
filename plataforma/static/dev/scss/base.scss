@@ -280,7 +280,7 @@ h4{font-size: 12px;}
             border: 1px solid $azul;
 
             .plus{
-              font-size: 80px;
+              font-size: 74px;
               font-weight: bold;
               color: $azul;
             }
@@ -373,7 +373,7 @@ h4{font-size: 12px;}
         .item-contato{
           min-width: 128px;
           color: $branco;
-          font-size: 35px;
+          font-size: 33px;
           vertical-align: bottom;
           margin: 20px 5px;
         }
@@ -391,6 +391,14 @@ h4{font-size: 12px;}
           margin-top: 100px;
         }
       }
+      p{
+        font-family: $gotham;
+        font-weight: 300;
+        font-size: 12px;
+        color: $branco;
+        letter-spacing: 0.05em;
+        line-height: 2em;
+      }
       .contato-content{
         margin: auto;
         margin-top: 80px;
@@ -399,7 +407,7 @@ h4{font-size: 12px;}
         .item-contato{
           min-width: 128px;
           color: $branco;
-          font-size: 35px;
+          font-size: 33px;
           vertical-align: bottom;
           margin: 20px 5px;
         }
