@@ -317,6 +317,7 @@ h4{font-size: 12px;}
         background-color: $azulCinza;
         border-radius: 0px;
         border: 0;
+        color: $branco;
       }
       button.btn-prospera{
         background-color: $azulClaro;
@@ -441,6 +442,32 @@ h4{font-size: 12px;}
       }
     }
 
+    // Objeto Create
+    .object-create{
+      .descricao-content{
+        margin: auto;
+        padding: 80px 0;
+      }
+      label{
+        font-family: $gotham;
+        font-weight: 300;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: $branco;
+      }
+      input{
+        background-color: $primeCinza;
+        border-radius: 0px;
+        border: 0;
+        color: $branco;
+      }
+      button.btn-prospera{
+        background-color: $azulClaro;
+        color: $preto;
+        font-weight: 300;
+      }
+    }
+
     hr{
       width: 85%;
       border: 0;
@@ -516,11 +543,5 @@ h4{font-size: 12px;}
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
-    }
-
-    // Create Object
-    .object-create{
-        max-width: 400px;
-        margin: 0 auto;
     }
 }
