@@ -300,6 +300,33 @@ h4{font-size: 12px;}
       }
     }
 
+    // Comunidade Create
+    .nos-create{
+      .descricao-content{
+        margin: auto;
+        padding: 80px 0;
+      }
+      label{
+        font-family: $gotham;
+        font-weight: 300;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: $branco;
+      }
+      input{
+        background-color: $azulCinza;
+        border-radius: 0px;
+        border: 0;
+      }
+      button.btn-prospera{
+        background-color: $azulClaro;
+        color: $preto;
+        font-weight: 300;
+      }
+    }
+
+
+
     .title{
       font-family: $gotham;
       font-weight: 600;
@@ -489,12 +516,6 @@ h4{font-size: 12px;}
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
-    }
-
-    // Create Nos
-    .nos-create{
-        max-width: 400px;
-        margin: 0 auto;
     }
 
     // Create Object
