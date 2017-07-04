@@ -81,6 +81,12 @@ body.objeto-detail{
           background-color: transparent;
         }
       }
+      .dropdown-menu{
+        border: solid 1px $branco;
+        a{
+          padding: 10px;
+        }
+      }
     }
   }
 }
