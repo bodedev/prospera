@@ -40,13 +40,9 @@ class NodosForm(forms.ModelForm, ImageValidator):
         model = Nodos
         exclude = ["created", "updated", "excluido", "excluido_por", "excluido_em", "criado_por"]
 
-    def clean_imagem_listagem(self):
-        imagem = self.cleaned_data.get("imagem_listagem")
+    def clean_imagem(self):
+        imagem = self.cleaned_data.get("imagem")
         return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
-
-    def clean_imagem_detalhes(self):
-        imagem = self.cleaned_data.get("imagem_detalhes")
-        return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODOS_TAMANHO_IMAGEM_DETALHES_LARGURA, constants.NODOS_TAMANHO_IMAGEM_DETALHES_ALTURA)
 
 
 class ObjetoForm(forms.ModelForm, ImageValidator):
@@ -56,10 +52,6 @@ class ObjetoForm(forms.ModelForm, ImageValidator):
         model = Objeto
         exclude = ["created", "updated", "excluido", "excluido_por", "excluido_em", "criado_por", "nodos"]
 
-    def clean_imagem_listagem(self):
-        imagem = self.cleaned_data.get("imagem_listagem")
+    def clean_imagem(self):
+        imagem = self.cleaned_data.get("imagem")
         return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
-
-    def clean_imagem_detalhes(self):
-        imagem = self.cleaned_data.get("imagem_detalhes")
-        return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.OBJETO_TAMANHO_IMAGEM_DETALHES_LARGURA, constants.OBJETO_TAMANHO_IMAGEM_DETALHES_ALTURA)

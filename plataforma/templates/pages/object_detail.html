@@ -10,10 +10,10 @@
         </a>
         <h1>+ OBJETO +</h1>
         <div class="col-md-4">
-        {% if objeto.imagem_detalhes %}
-          <img class="objeto-imagem" src="{{ objeto.imagem_detalhes.url }}" alt="...">
+        {% if objeto.imagem %}
+          <img class="objeto-imagem" src="{{ objeto.imagem.url }}" alt="...">
           {% else %}
-          <img class="objeto-imagem" src="http://placehold.it/350x350/ffffff/e8117f" alt="...">
+          <img class="objeto-imagem" src="{% static 'img/default_objeto.jpg' %}" alt="...">
         {% endif %}
         </div>
         <div class="col-md-6">
@@ -21,9 +21,9 @@
           <h4 class="owner media-heading">Criado por: <a>{{ objeto.criado_por }}</a></h4>
         </div>
       </div>
-        <!-- {% if objeto.criado_por == user %}
-        <a href="{% url "object_update" objeto.nodos.slug objeto.slug %}" class="btn btn-default" role="button">Editar</a>
-        {% endif %} -->
+        {% if objeto.criado_por == user %}
+        <a href="{% url "object_update" objeto.nodos.slug objeto.slug %}" class="btn btn-prospera btn-edit" role="button">Editar</a>
+        {% endif %}
         <!-- <br /> -->
     </section>
 

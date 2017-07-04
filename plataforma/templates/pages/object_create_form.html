@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block bodyclass %}class="comunidade-detail"{% endblock %}
 {% block content %}
 
-<div class="object-create">
+<div class="object-create create">
   <section class="descricao-content container">
     <div class="row">
       <h1 class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">+ Criar um Objeto +</h1>
@@ -18,19 +19,61 @@
           </div>
         {% endif %}
         {% csrf_token %}
-        <div class="col-md-6">
-          {% for field in form %}
-            <div class="form-group{% if field.errors%} has-error{% endif %}">
-              <label for="{{ field.auto_id }}">{{ field.label }}</label>
-              <input id="{{ field.auto_id }}" class="form-control" name="{{ field.name }}" type="{{ field.field.widget.input_type }}">
-             <span class="help-block">{{ field.errors }}</span>
-                  </div>
-          {% endfor %}
-          <button class="btn btn-prospera btn-lg" type="submit">Criar</button>
+        <div>
+          <div class="col-md-6">
+            <div class="form-group{% if form.nome.errors %} has-error{% endif %}">
+              <label for="nome">Nome da Comunidade</label>
+              <input type="text" name="nome" id="nome" class="form-control" value="{{ form.nome.value|default:"" }}">
+              <span class="help-block">{{ form.nome.errors }}</span>
+            </div>
+
+            <div class="form-group{% if form.descricao.errors %} has-error{% endif %}">
+              <label for="descricao">Descrição</label>
+              <input type="text" name="descricao" id="descricao" class="form-control" value="{{ form.descricao.value|default:"" }}">
+              <span class="help-block">{{ form.descricao.errors }}</span>
+            </div>
+
+            <div class="form-group{% if form.contato_facebook.errors %} has-error{% endif %}">
+              <label for="contato_facebook">Link para grupo no Facebook</label>
+              <input type="text" name="contato_facebook" id="contato_facebook" class="form-control" value="{{ form.contato_facebook.value|default:"" }}">
+              <span class="help-block">{{ form.contato_facebook.errors }}</span>
+            </div>
+
+            <div class="form-group{% if form.contato_whatsapp.errors %} has-error{% endif %}">
+              <label for="contato_whatsapp">Link para grupo no Whatsapp</label>
+              <input type="text" name="contato_whatsapp" id="contato_whatsapp" class="form-control" value="{{ form.contato_whatsapp.value|default:"" }}">
+              <span class="help-block">{{ form.contato_whatsapp.errors }}</span>
+            </div>
+
+            <div class="form-group{% if form.contato_zoom.errors %} has-error{% endif %}">
+              <label for="contato_zoom">Link para grupo no Zoom</label>
+              <input type="text" name="contato_zoom" id="contato_zoom" class="form-control" value="{{ form.contato_zoom.value|default:"" }}">
+              <span class="help-block">{{ form.contato_zoom.errors }}</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="upload-background round">
+              {% if form.imagem.value %}
+                <img class="inline-block upload-image" src="{{ form.imagem.value.url }}" alt="Prsp">
+              {% else %}
+                <img class="inline-block upload-image" src="{% static 'img/prospera-modal.png' %}" alt="Prsp">
+              {% endif %}
+            </div>
+            <label>Upload da Imagem</label>
+            <p class="ex">Best Fit: 400px x 400px</p>
+            <p class="ex">Tamanho máximo 2MB</p>
+            <div class="form-group {% if form.imagem.errors %} has-error{% endif %}">
+              <label for="id_imagem" class="file-upload btn btn-prospera btn-lg">Selecionar</label>
+              <input id="id_imagem" class="form-control" name="imagem" type="file">
+              <span class="help-block">{{ form.imagem.errors }}</span>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <button class="btn btn-prospera btn-lg" type="submit">{% if action %}{{action}}{% else %}Criar{% endif %}</button>
+          </div>
         </div>
       </form>
     </div>
   </section>
 </div>
-
 {% endblock %}

@@ -9,10 +9,10 @@
           <img class="voltar" src="{% static 'img/voltar.png' %}" alt="Voltar">
         </a>
         <h1>+ Comunidade +</h1>
-        {% if nos.imagem_detalhes %}
-        <img class="col-md-6" src="{{ nos.imagem_detalhes.url }}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
+        {% if nos.imagem %}
+        <img class="col-md-6" src="{{ nos.imagem.url }}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
         {% else %}
-        <img class="col-md-6" src="http://placehold.it/500x300/ffffff/e8117f/" alt="{{ nos.nome }}" title="{{ nos.nome }}">
+        <img class="col-md-6" src="{% static 'img/default_comunidade.jpg' %}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
         {% endif %}
 
         <div class="col-md-6">
@@ -20,7 +20,7 @@
           <h4 class="owner media-heading">Criado por: <a>{{ nos.criado_por }}</a></h4>
           <p class="description">{{ nos.descricao|default_if_none:"" }}</p>
           {% if nos.criado_por == user %}
-          <a href="{% url "nos_update" nos.slug %}" class="btn btn-default" role="button">Editar</a>
+          <a href="{% url "nos_update" nos.slug %}" class="btn btn-prospera btn-edit" role="button">Editar</a>
           {% endif %}
         </div>
       </div>
@@ -32,10 +32,10 @@
           {% for objeto in nos.objeto_set.all %}
           <div class="col-xs-6 col-md-2">
             <a href="{% url 'object_detail' nos.slug objeto.slug %}">
-              {% if objeto.imagem_listagem %}
-              <img class="objeto-imagem" src="{{ objeto.imagem_listagem.url }}" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
+              {% if objeto.imagem %}
+              <img class="objeto-imagem" src="{{ objeto.imagem.url }}" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
               {% else %}
-              <img class="objeto-imagem" src="http://placehold.it/120x120" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
+              <img class="objeto-imagem" src="{% static 'img/default_objeto.jpg' %}" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
               {% endif %}
               <p class="sub">{{ objeto.nome }}</p>
             </a>

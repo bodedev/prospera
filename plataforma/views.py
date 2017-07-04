@@ -166,7 +166,12 @@ class NosEditView(UpdateView):
     model = Nodos
     slug_url_kwarg = "nos"
     success_url = reverse_lazy("nos_list")
-    template_name = "pages/nos_update_form.html"
+    template_name = "pages/nos_create_form.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(NosEditView, self).get_context_data(**kwargs)
+        context["action"] = u'Editar'
+        return context
 
     def get_object(self, queryset=None):
         self.object = super(NosEditView, self).get_object(queryset)
@@ -205,7 +210,12 @@ class ObjectEditView(UpdateView):
     form_class = ObjetoForm
     model = Objeto
     slug_url_kwarg = "objeto"
-    template_name = "pages/object_update_form.html"
+    template_name = "pages/object_create_form.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ObjectEditView, self).get_context_data(**kwargs)
+        context["action"] = u'Editar'
+        return context
 
     def get_object(self, queryset=None):
         self.object = super(ObjectEditView, self).get_object(queryset)
