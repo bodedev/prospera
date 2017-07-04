@@ -35,25 +35,68 @@
               <li><a class="scroll" href="#programacao">Quem Somos</a></li>
               <li><a class="scroll" href="{% url 'nos_list' %}">Comunidades</a></li>
               <li><a class="scroll" href="#contato">Contato</a></li>
-              <li><a class="scroll" href="{% url 'login' %}">Entrar</a></li>
+              <li><a class="scroll" id="nav-login">Entrar</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
     <div class="content">
-        {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                {{ message }}
+      {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              {{ message }}
+          </div>
+          {% endfor %}
+      {% endif %}
+
+      {% block content %}{% endblock %}
+
+      {% if not user.pessoa %}
+        <div class="modal fade login-block" id="modalLogin" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                {% include 'pages/partial_login.html' %}
+              </div>
             </div>
-            {% endfor %}
-        {% endif %}
-        {% block content %}{% endblock %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if not user.pessoa %}
+        <div class="modal fade login-block" id="modalRegister" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                {% include 'pages/partial_register.html' %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
     </div>
     <script src="{% static "dist/jquery-1.12.4.min.js" %}"></script>
     <script src="{% static "dist/bootstrap.min.js" %}"></script>
     <script src="{% static "dist/alert.js" %}"></script>
     <script src="{% static "dist/main.min.js" %}"></script>
     {% block customjs %}{% endblock %}
+
+    <script>
+      $(document).ready(function() {
+        $('#btn-login, #nav-login').on('click', function(e) {
+          $('#modalLogin').modal('show');
+        });
+        $('#btn-registro').on('click', function(e) {
+          $('#modalRegister').modal('show');
+        });
+      });
+    </script>
 </body>

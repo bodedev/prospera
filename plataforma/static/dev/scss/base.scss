@@ -130,6 +130,13 @@ h4{font-size: 12px;}
 }
 
 .content {
+    // Inputs
+    input{
+      border-radius: 0px;
+      border: 0;
+      color: $branco;
+    }
+
     // Landing Page
     #landing-page{
       background-image: url(../img/background.jpg);
@@ -380,8 +387,6 @@ h4{font-size: 12px;}
 
 
 
-
-
     .title{
       font-family: $gotham;
       font-weight: 600;
@@ -401,6 +406,8 @@ h4{font-size: 12px;}
     .description{
       margin-top: 40px;
     }
+
+
 
     // Detalhes de Comunidade
     #nos-detail{
@@ -530,80 +537,81 @@ h4{font-size: 12px;}
       }
     }
 
-    hr{
-      width: 85%;
+    // // Login
+    // .login {
+    //     .btn-github, .btn-twitter, .btn-facebook{
+    //         display: inline-block;
+    //     }
+    //     .btn-github{
+    //         background-color: $github;
+    //         border-color: $cinza;
+    //     }
+    //     .btn-twitter{
+    //         background-color: $twitter;
+    //         border-color: $cinza;
+    //     }
+    //     .btn-facebook{
+    //         background-color: $facebook;
+    //         border-color: $cinza;
+    //     }
+    //     .btn-google{
+    //         background-color: $google;
+    //         border-color: $cinza;
+    //     }
+    // }
+
+  // Modal
+  .modal{
+    .modal-header {
       border: 0;
-      height: 1px;
-      background: $preto;
-      opacity: 0.5;
     }
+    .modal-content{
+      border-radius: 0px;
+      .close {
+        z-index: 99;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-weight: 100;
+        color: $preto;
+        opacity: 1;
+        padding: 18px;
+        border: 7px solid $branco;
+        background-color: $branco;
+        background-image: url('../img/close_dark.png');
+        background-size: 70%;
+        background-repeat: no-repeat;
+        background-position: center center;
 
-    // Forms
-    .form-control {
-        position: relative;
-        height: auto;
-        box-sizing: border-box;
-        padding: 10px;
-        font-size: 16px;
+        &:focus {
+          outline: 0;
+        }
+      }
+      .modal-body{
+        padding: 35px 140px;
+        h2{
+          margin-top: 40px;
+          color: $preto;
+        }
+        input{
+          font-family: $gotham;
+          letter-spacing: 0.2em;
+          color: $preto;
+          border: 1px solid #000;
+          height: 50px;
+        }
+        form{
+          margin-top: 40px;
+        }
+        .forgot{
+          text-align: left;
+          a{
+            font-family: $gotham;
+            color: $preto;
+            text-decoration: underline;
+          }
+        }
+      }
     }
-
-    // Login
-    .login {
-        max-width: 400px;
-        margin: 0 auto;
-
-        input#usuario {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-        input#senha {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
-        hr{
-            left: 0;
-            right: 0;
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
-        .btn-github, .btn-twitter, .btn-facebook{
-            display: inline-block;
-        }
-        .btn-github{
-            background-color: $github;
-            border-color: $cinza;
-        }
-        .btn-twitter{
-            background-color: $twitter;
-            border-color: $cinza;
-        }
-        .btn-facebook{
-            background-color: $facebook;
-            border-color: $cinza;
-        }
-        .btn-google{
-            background-color: $google;
-            border-color: $cinza;
-        }
-    }
-
-    // Create Account
-    .create-account {
-        max-width: 400px;
-        margin: 0 auto;
-
-        input#usuario, input#senha {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-        input#repetir-senha {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-    }
+  }
 }

@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<div class="row text-center">
+  <!-- <div class="content col-md-6"> -->
+    <img class="inline-block upload-image" src="{% static 'img/prospera-modal.png' %}" alt="Prsp">
+    <h2>LOGIN</h2>
+    <form action="" method="post" class="formAccessAjax" id="formLoginModal">
+      {% csrf_token %}
+      <div class="form-group">
+        <input type="text" id="nome" name="nome" placeholder="USUÁRIO" class="form-control" />
+        <p class="help-block"></p>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" name="password" placeholder="SENHA" class="form-control" />
+        <p class="help-block"></p>
+        <span class="help-block forgot"><a href="" style="text-transform: none;">Esqueci minha senha</a></span>
+      </div>
+      <button class="btn btn-prospera btn-lg" type="submit" style="margin-top: 40px;">Entrar</button>
+    </form>
+  <!-- </div> -->
+</div>
