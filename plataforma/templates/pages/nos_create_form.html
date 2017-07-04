@@ -28,10 +28,10 @@
               <span class="help-block">{{ form.nome.errors }}</span>
             </div>
 
-            <div class="form-group{% if form.descricao.errors %} has-error{% endif %}">
-              <label for="descricao">Resumo da Descrição (máx 140 caracteres)</label>
-              <input type="text" name="descricao" id="descricao" class="form-control" value="{{ form.descricao.value|default:"" }}">
-              <span class="help-block">{{ form.descricao.errors }}</span>
+            <div class="form-group{% if form.resumo.errors %} has-error{% endif %}">
+              <label for="resumo">Resumo da Descrição (máx 140 caracteres)</label>
+              <input type="text" name="resumo" id="resumo" class="form-control" value="{{ form.resumo.value|default:"" }}">
+              <span class="help-block">{{ form.resumo.errors }}</span>
             </div>
 
             <div class="form-group{% if form.descricao.errors %} has-error{% endif %}">
@@ -52,10 +52,10 @@
               <span class="help-block">{{ form.contato_whatsapp.errors }}</span>
             </div>
 
-            <div class="form-group{% if form.contato_whatsapp.errors %} has-error{% endif %}">
-              <label for="contato_whatsapp">Link para grupo no Zoom</label>
-              <input type="text" name="contato_whatsapp" id="contato_whatsapp" class="form-control" value="{{ form.contato_whatsapp.value|default:"" }}">
-              <span class="help-block">{{ form.contato_whatsapp.errors }}</span>
+            <div class="form-group{% if form.contato_zoom.errors %} has-error{% endif %}">
+              <label for="contato_zoom">Link para grupo no Zoom</label>
+              <input type="text" name="contato_zoom" id="contato_zoom" class="form-control" value="{{ form.contato_zoom.value|default:"" }}">
+              <span class="help-block">{{ form.contato_zoom.errors }}</span>
             </div>
           </div>
           <div class="col-md-6">
@@ -65,10 +65,10 @@
             <label>Upload da Imagem</label>
             <p class="ex">Best Fit: 500px x 315px</p>
             <p class="ex">Tamanho máximo 2MB</p>
-            <div class="form-group">
-              <label for="id_imagem_listagem" class="file-upload btn btn-prospera btn-lg">Selecionar</label>
-              <input id="id_imagem_listagem" class="form-control" name="imagem_listagem" type="file">
-              <span class="help-block"></span>
+            <div class="form-group {% if form.imagem.errors %} has-error{% endif %}">
+              <label for="id_imagem" class="file-upload btn btn-prospera btn-lg">Selecionar</label>
+              <input id="id_imagem" class="form-control" name="imagem" type="file">
+              <span class="help-block">{{ form.imagem.errors }}</span>
             </div>
           </div>
           <div class="col-xs-12">
@@ -84,7 +84,7 @@
 {% block customjs %}
 <script type="text/javascript">
   $(document).ready(function() {
-    $('#id_imagem_listagem').change(function(){
+    $('#id_imagem').change(function(){
       var imageInput = $(this)
       var file = imageInput[0].files[0]
       var reader = new FileReader()

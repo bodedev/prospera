@@ -10,8 +10,8 @@
         </a>
         <h1>+ OBJETO +</h1>
         <div class="col-md-4">
-        {% if objeto.imagem_detalhes %}
-          <img class="objeto-imagem" src="{{ objeto.imagem_detalhes.url }}" alt="...">
+        {% if objeto.imagem %}
+          <img class="objeto-imagem" src="{{ objeto.imagem.url }}" alt="...">
           {% else %}
           <img class="objeto-imagem" src="http://placehold.it/350x350/ffffff/e8117f" alt="...">
         {% endif %}
