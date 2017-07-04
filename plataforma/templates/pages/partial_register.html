@@ -3,7 +3,7 @@
   <!-- <div class="content col-md-6"> -->
     <img class="inline-block upload-image" src="{% static 'img/prospera-modal.png' %}" alt="Prsp">
     <h2>CADASTRO</h2>
-    <form action="" method="post" class="formAccessAjax" id="formLoginModal">
+    <form action="" method="post" class="{% if not noajax %}formAccessAjax{% endif %}" id="formLoginModal">
       {% csrf_token %}
       <div class="form-group">
         <input type="text" id="nome" name="nome" placeholder="USUÁRIO" class="form-control" />

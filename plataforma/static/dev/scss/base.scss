@@ -8,12 +8,21 @@ $gotham: 'gotham', sans-serif;
 // Body Colors
 body.landing-page, body.comunidade-detail, body.login, body.registro{
   background-color: $prime;
+  .dropdown-menu{
+    background-color: $prime;
+  }
 }
 body.comunidades{
   background-color: $azul;
+  .dropdown-menu{
+    background-color: $azul;
+  }
 }
 body.objeto-detail{
   background-color: $azulObjeto;
+  .dropdown-menu{
+    background-color: $azulObjeto;
+  }
 }
 
 // Navbar
@@ -64,6 +73,12 @@ body.objeto-detail{
         &:hover, &:focus {
           color: $azulClaro;
           outline: 0;
+          // background-color: $prime;
+        }
+      }
+      .open{
+        a{
+          background-color: transparent;
         }
       }
     }
