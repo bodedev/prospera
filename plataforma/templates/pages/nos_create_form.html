@@ -60,7 +60,11 @@
           </div>
           <div class="col-md-6">
             <div class="upload-background">
-              <img class="inline-block upload-image" src="{% static 'img/prospera-modal.png' %}" alt="Prsp">
+              {% if form.imagem %}
+                <img class="inline-block upload-image" src="{{ form.imagem.value.url }}" alt="Prsp">
+              {% else %}
+                <img class="inline-block upload-image" src="{% static 'img/prospera-modal.png' %}" alt="Prsp">
+              {% endif %}
             </div>
             <label>Upload da Imagem</label>
             <p class="ex">Best Fit: 500px x 315px</p>
@@ -72,7 +76,7 @@
             </div>
           </div>
           <div class="col-xs-12">
-            <button class="btn btn-prospera btn-lg" type="submit">Criar</button>
+            <button class="btn btn-prospera btn-lg" type="submit">{% if action %} {{action}} {% else %}Criar {% endif %}</button>
           </div>
         </div>
       </form>
