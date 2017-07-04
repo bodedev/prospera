@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
 
+from braces.views import JSONResponseMixin
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm, AdminPasswordChangeForm, PasswordChangeForm
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, DetailView, FormView, ListView, TemplateView, UpdateView
 from social_django.models import UserSocialAuth
 
@@ -19,6 +21,29 @@ from plataforma.models import Nodos, Objeto
 class LandingPageView(TemplateView):
 
     template_name = "pages/landing_page.html"
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class LoginAjaxView(JSONResponseMixin, FormView):
+    u""" Permite que os alunos façam login no site. """
+
+    form_class = AuthenticationForm
+    http_method_names = ['post']
+
+    def form_valid(self, form):
+        u""" Tenta fazer login com as credenciais enviadas e informa erro caso estejam incorretas ou o aluno não confirmou o email. """
+        username = form.cleaned_data.get('username', None)
+        password = form.cleaned_data.get('password', None)
+        user = authenticate(self.request, username=username, password=password)
+        if user is not None:
+            login(self.request, user)
+            return self.render_json_response({})
+        else:
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        u""" Retorna os erros dos campos em JSON com status de erro. """
+        return self.render_json_response(form.errors.as_json(), status=400)
 
 
 class NoCreateView(FormView):
