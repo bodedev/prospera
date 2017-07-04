@@ -15,14 +15,14 @@ from plataforma.models import Nodos, Objeto
 class NodosAdmin(admin.ModelAdmin):
 
     form = NodosForm
-    list_display = ("id", "nome", "titulo")
+    list_display = ("id", "nome")
 
 
 @admin.register(Objeto)
 class ObjetoAdmin(admin.ModelAdmin):
 
     form = ObjetoForm
-    list_display = ("id", "nodos", "nome", "titulo")
+    list_display = ("id", "nodos", "nome")
 
 
 admin.site.site_header = u"Administração Prospera"
