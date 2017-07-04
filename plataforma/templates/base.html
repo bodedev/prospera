@@ -35,7 +35,17 @@
               <li><a class="scroll" href="#programacao">Quem Somos</a></li>
               <li><a class="scroll" href="{% url 'nos_list' %}">Comunidades</a></li>
               <li><a class="scroll" href="#contato">Contato</a></li>
-              <li><a class="scroll" id="nav-login">Entrar</a></li>
+              {% if user.id %}
+              <li>
+                <a class="scroll" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user }}</a>
+                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                  <li><a href="">>> Perfil</a></li>
+                  <li><a href="{% url "logout" %}">>> Sair</a></li>
+                </ul>
+              </li>
+              {% else %}
+                <li><a class="scroll" id="nav-login">Entrar</a></li>
+              {% endif %}
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -87,6 +97,7 @@
     <script src="{% static "dist/bootstrap.min.js" %}"></script>
     <script src="{% static "dist/alert.js" %}"></script>
     <script src="{% static "dist/main.min.js" %}"></script>
+    <script src="{% static "dist/login_registro.min.js" %}"></script>
     {% block customjs %}{% endblock %}
 
     <script>
