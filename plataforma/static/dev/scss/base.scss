@@ -6,7 +6,7 @@ $gotham: 'gotham', sans-serif;
 
 
 // Body Colors
-body.landing-page, body.comunidade-detail{
+body.landing-page, body.comunidade-detail, body.login, body.registro{
   background-color: $prime;
 }
 body.comunidades{
@@ -537,6 +537,10 @@ h4{font-size: 12px;}
       }
     }
 
+    #login, #registro{
+      margin-top: 80px;
+    }
+
     // // Login
     // .login {
     //     .btn-github, .btn-twitter, .btn-facebook{
@@ -561,7 +565,7 @@ h4{font-size: 12px;}
     // }
 
   // Modal
-  .modal{
+  #modalLogin, #modalRegister{
     .modal-header {
       border: 0;
     }
@@ -588,7 +592,7 @@ h4{font-size: 12px;}
         }
       }
       .modal-body{
-        padding: 35px 140px;
+        padding: 35px 120px;
         h2{
           margin-top: 40px;
           color: $preto;
