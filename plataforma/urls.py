@@ -7,14 +7,13 @@ from django.contrib.auth import views as auth_views
 from plataforma.views import NoCreateView, LandingPageView, NoDetailView, UserChangePassword
 from plataforma.views import NosCreateView, NosDetailView, NosEditView, NosListView
 from plataforma.views import ObjectCreateView, ObjectDetailView, ObjectEditView
-from plataforma.views import LoginAjaxView
+from plataforma.views import LoginWithAjaxView
 from plataforma.views_ethereum import TotalEmitidoDetailView
 
 
 urlpatterns = [
     url(r'^$', LandingPageView.as_view(), name="home"),
-    url(r'^login/$', auth_views.login, name='login'),
-    url(r'^login/ajax/$', LoginAjaxView.as_view(), name='login_ajax'),
+    url(r'^login/$', LoginWithAjaxView.as_view(), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(next_page="home"), name="logout"),
     url(r'^oauth/', include('social_django.urls', namespace="social")),
     url(r'^no/$', NoDetailView.as_view(), name="no_detail"),
