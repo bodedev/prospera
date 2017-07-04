@@ -53,7 +53,7 @@
           </div>
           <div class="col-md-6">
             <div class="upload-background round">
-              {% if form.imagem %}
+              {% if form.imagem.value %}
                 <img class="inline-block upload-image" src="{{ form.imagem.value.url }}" alt="Prsp">
               {% else %}
                 <img class="inline-block upload-image" src="{% static 'img/prospera-modal.png' %}" alt="Prsp">
