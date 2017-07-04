@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from braces.views import JSONResponseMixin
+from braces.views import AjaxResponseMixin, JSONResponseMixin
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -46,12 +46,13 @@ class LoginAjaxView(JSONResponseMixin, FormView):
         return self.render_json_response(form.errors.as_json(), status=400)
 
 
-class NoCreateView(FormView):
+@method_decorator(csrf_exempt, name='dispatch')
+class NoCreateView(AjaxResponseMixin, JSONResponseMixin, FormView):
 
     form_class = SignUpForm
     template_name = "pages/no_create_form.html"
 
-    def form_valid(self, form):
+    def create_the_user(self, form):
         user = form.save()
         user.refresh_from_db()  # load the nodo instance created by the signal
         user.nodo.quem_sou = form.cleaned_data.get('quem_sou')
@@ -60,7 +61,19 @@ class NoCreateView(FormView):
         user = authenticate(username=user.username, password=raw_password)
         login(self.request, user)
         messages.success(self.request, u'Bem-vindo a Prospera!')
+        return True
+
+    def form_valid(self, form):
+        self.create_the_user(form)
         return HttpResponseRedirect(reverse_lazy("no_detail"))
+
+    def post_ajax(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            self.create_the_user(form)
+            return self.render_json_response({"next": reverse_lazy("no_detail")})
+        else:
+            return self.render_json_response(form.errors.as_json(), status=400)
 
 
 @method_decorator(login_required, name='dispatch')
