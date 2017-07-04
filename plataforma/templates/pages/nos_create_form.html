@@ -4,7 +4,7 @@
 {% block bodyclass %}class="comunidades"{% endblock %}
 {% block content %}
 
-<div class="nos-create">
+<div class="nos-create create">
   <section class="descricao-content container">
     <div class="row">
       <h1 class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">+ Criar uma Comunidade +</h1>
@@ -80,19 +80,3 @@
   </section>
 </div>
 {% endblock %}
-
-{% block customjs %}
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#id_imagem').change(function(){
-      var imageInput = $(this)
-      var file = imageInput[0].files[0]
-      var reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = function (index) {
-          $('img.upload-image').attr('src', this.result);
-      }.bind(reader);
-    });
-  })
-</script>
-{% endblock%}

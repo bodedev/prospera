@@ -20,7 +20,7 @@
           <h4 class="owner media-heading">Criado por: <a>{{ nos.criado_por }}</a></h4>
           <p class="description">{{ nos.descricao|default_if_none:"" }}</p>
           {% if nos.criado_por == user %}
-          <a href="{% url "nos_update" nos.slug %}" class="btn btn-default" role="button">Editar</a>
+          <a href="{% url "nos_update" nos.slug %}" class="btn btn-prospera btn-edit" role="button">Editar</a>
           {% endif %}
         </div>
       </div>
@@ -35,7 +35,7 @@
               {% if objeto.imagem %}
               <img class="objeto-imagem" src="{{ objeto.imagem.url }}" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
               {% else %}
-              <img class="objeto-imagem" src="http://placehold.it/120x120" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
+              <img class="objeto-imagem" src="{% static 'img/default_objeto.jpg' %}" alt="{{ objeto.nome }}" title="{{ objeto.nome }}">
               {% endif %}
               <p class="sub">{{ objeto.nome }}</p>
             </a>
