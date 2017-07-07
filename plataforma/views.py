@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 
-from braces.views import JSONResponseMixin
+from braces.views import AjaxResponseMixin, JSONResponseMixin
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, AdminPasswordChangeForm, PasswordChangeForm
+from django.contrib.auth.views import LoginView
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -24,34 +25,24 @@ class LandingPageView(TemplateView):
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class LoginAjaxView(JSONResponseMixin, FormView):
-    u""" Permite que os alunos façam login no site. """
+class LoginWithAjaxView(AjaxResponseMixin, JSONResponseMixin, LoginView):
 
-    form_class = AuthenticationForm
-    http_method_names = ['post']
-
-    def form_valid(self, form):
-        u""" Tenta fazer login com as credenciais enviadas e informa erro caso estejam incorretas ou o aluno não confirmou o email. """
-        username = form.cleaned_data.get('username', None)
-        password = form.cleaned_data.get('password', None)
-        user = authenticate(self.request, username=username, password=password)
-        if user is not None:
-            login(self.request, user)
+    def post_ajax(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            login(self.request, form.get_user())
             return self.render_json_response({})
         else:
-            return self.form_invalid(form)
-
-    def form_invalid(self, form):
-        u""" Retorna os erros dos campos em JSON com status de erro. """
-        return self.render_json_response(form.errors.as_json(), status=400)
+            return self.render_json_response(form.errors.as_json(), status=400)
 
 
-class NoCreateView(FormView):
+@method_decorator(csrf_exempt, name='dispatch')
+class NoCreateView(AjaxResponseMixin, JSONResponseMixin, FormView):
 
     form_class = SignUpForm
     template_name = "pages/no_create_form.html"
 
-    def form_valid(self, form):
+    def create_the_user(self, form):
         user = form.save()
         user.refresh_from_db()  # load the nodo instance created by the signal
         user.nodo.quem_sou = form.cleaned_data.get('quem_sou')
@@ -60,7 +51,19 @@ class NoCreateView(FormView):
         user = authenticate(username=user.username, password=raw_password)
         login(self.request, user)
         messages.success(self.request, u'Bem-vindo a Prospera!')
+        return True
+
+    def form_valid(self, form):
+        self.create_the_user(form)
         return HttpResponseRedirect(reverse_lazy("no_detail"))
+
+    def post_ajax(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            self.create_the_user(form)
+            return self.render_json_response({"next": reverse_lazy("no_detail")})
+        else:
+            return self.render_json_response(form.errors.as_json(), status=400)
 
 
 @method_decorator(login_required, name='dispatch')
