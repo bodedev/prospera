@@ -1,7 +1,27 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% block bodyclass %}class="no-detail"{% endblock %}
 {% block content %}
 
-  <h2>Prospera</h2>
+<div id="no-detail">
+  <section class="descricao-content container">
+    <div class="row">
+      <h1>+ Nó +</h1>
+      <div class="col-md-4">
+      {% if nodo.imagem %}
+        <img class="no-imagem" src="{{ nodo.imagem.url }}" alt="...">
+        {% else %}
+        <img class="no-imagem" src="{% static 'img/default_objeto.jpg' %}" alt="...">
+      {% endif %}
+      </div>
+      <div class="col-md-6">
+        <h1 class="objeto-title">{{ nodo.nome }}</h1>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <!-- <h2>Prospera</h2>
   <p>Olá {{ user.username }}!</p>
 
   <form method="post">
@@ -93,6 +113,6 @@
     {% for o in user.objeto_set.all %}
       <a href="{% url "object_detail" o.nodos.slug o.slug %}">{{ o.nome }}</a>
     {% endfor %}
-  {% endif %}
+  {% endif %} -->
 
 {% endblock %}

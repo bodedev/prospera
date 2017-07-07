@@ -24,6 +24,12 @@ body.objeto-detail{
     background-color: $azulObjeto;
   }
 }
+body.no-detail{
+  background-color: $azulClaro;
+  .dropdown-menu{
+    background-color: $azulClaro;
+  }
+}
 
 // Navbar
 .navbar-default {
@@ -557,6 +563,20 @@ h4{font-size: 12px;}
         font-weight: 300;
       }
     }
+
+    // No
+    #no-detail{
+      .descricao-content{
+        margin: auto;
+        padding-top: 80px;
+
+        .no-imagem{
+          border-radius: 50%;
+          width: 160px;
+        }
+      }
+    }
+
 
     #login, #registro{
       margin-top: 80px;
