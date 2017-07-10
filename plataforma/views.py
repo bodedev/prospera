@@ -108,7 +108,10 @@ class NoDetailView(UpdateView):
         return context
 
     def get_object(self, queryset=None):
+        if "pk" in self.kwargs:
+            return Nodo.objects.get(id=self.kwargs["pk"])
         return self.request.user.nodo
+
 
 @method_decorator(login_required, name='dispatch')
 class NoEditView(UpdateView):
