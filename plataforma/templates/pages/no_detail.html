@@ -21,8 +21,8 @@
         <h1 class="no-title">{{ nodo.user }}</h1>
       </div>
       <div class="col-md-2 text-center">
-        <p class="qr-title">Endereço qr:</p>
         {% if nodo.get_tracking_url %}
+        <p class="qr-title">Endereço qr:</p>
         <img class="no-qr" src="{{ nodo.get_tracking_url }}" alt="">
         {% endif %}
       </div>
