@@ -82,7 +82,6 @@ body.no-detail{
         &:hover, &:focus {
           color: $azulClaro;
           outline: 0;
-          // background-color: $prime;
         }
         &.profile{
           padding: 15px 35px;
@@ -101,6 +100,7 @@ body.no-detail{
       }
     }
     .profile-imagem{
+      position: relative;
       height: 40px;
       border-radius: 50%;
     }
@@ -778,33 +778,9 @@ h4{font-size: 12px;}
       }
     }
 
-
     #login, #registro{
       margin-top: 80px;
     }
-
-    // // Login
-    // .login {
-    //     .btn-github, .btn-twitter, .btn-facebook{
-    //         display: inline-block;
-    //     }
-    //     .btn-github{
-    //         background-color: $github;
-    //         border-color: $cinza;
-    //     }
-    //     .btn-twitter{
-    //         background-color: $twitter;
-    //         border-color: $cinza;
-    //     }
-    //     .btn-facebook{
-    //         background-color: $facebook;
-    //         border-color: $cinza;
-    //     }
-    //     .btn-google{
-    //         background-color: $google;
-    //         border-color: $cinza;
-    //     }
-    // }
 
   // Modal
   #modalLogin, #modalRegister{
