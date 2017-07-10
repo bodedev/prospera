@@ -344,9 +344,12 @@ h4{font-size: 12px;}
           }
           .thumbnail{
             background-color: $azul;
-            border: 1px solid $azul;
+            border: solid 1px transparent;
             height: 380px;
             opacity: .8;
+            img{
+              border: solid 4px transparent;
+            }
             .plus{
               font-size: 74px;
               font-weight: bold;
@@ -363,7 +366,6 @@ h4{font-size: 12px;}
             &:hover{
               opacity: 1;
               img{
-                margin: -2px;
                 border: solid 4px white;
               }
             }
