@@ -37,7 +37,13 @@
               <li><a class="scroll" href="{% url 'home' %}#contato">Contato</a></li>
               {% if user.id %}
               <li>
-                <a href="#" class="scroll" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user }}</a>
+                <a href="#" class="scroll {% if user.nodo.imagem %}profile{% endif %}" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% if user.nodo.imagem %}
+                    <img src="{{ user.nodo.imagem.url }}" class="profile-imagem"><span class="caret"></span>
+                  {% else %}
+                    {{ user }}
+                  {% endif %}
+                </a>
                 <ul class="dropdown-menu" aria-labelledby="dLabel">
                   <li><a href="{% url "no_detail" %}">Perfil</a></li>
                   <li><a href="{% url "logout" %}">Sair</a></li>

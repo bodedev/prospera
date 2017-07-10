@@ -84,6 +84,9 @@ body.no-detail{
           outline: 0;
           // background-color: $prime;
         }
+        &.profile{
+          padding: 15px 35px;
+        }
       }
       .open{
         a{
@@ -96,6 +99,10 @@ body.no-detail{
           padding: 10px;
         }
       }
+    }
+    .profile-imagem{
+      height: 40px;
+      border-radius: 50%;
     }
   }
 }
