@@ -167,6 +167,20 @@ h4{font-size: 12px;}
   }
 }
 
+.btn-facebook{
+  background-color: $facebook;
+  font-size: 15px;
+  border-radius: 3px;
+  margin-top: 30px;
+  i{
+    font-size: 20px;
+    vertical-align: bottom;
+  }
+  &:hover{
+    background-color: $facebook_bg;
+  }
+}
+
 .btn-edit{
   background-color: transparent;
   border: 1px solid;
