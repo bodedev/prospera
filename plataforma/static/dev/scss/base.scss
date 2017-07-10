@@ -84,6 +84,9 @@ body.no-detail{
           outline: 0;
           // background-color: $prime;
         }
+        &.profile{
+          padding: 15px 35px;
+        }
       }
       .open{
         a{
@@ -96,6 +99,10 @@ body.no-detail{
           padding: 10px;
         }
       }
+    }
+    .profile-imagem{
+      height: 40px;
+      border-radius: 50%;
     }
   }
 }
@@ -332,25 +339,32 @@ h4{font-size: 12px;}
 
         .comunidades-list{
           padding: 0;
+          a{
+            text-decoration: none;
+          }
           .thumbnail{
             background-color: $azul;
             border: 1px solid $azul;
             height: 380px;
-
+            opacity: .8;
             .plus{
               font-size: 74px;
               font-weight: bold;
               color: $azul;
             }
-            .caption{
-              // color: $branco;
-            }
             .button-container{
               background-color: $branco;
-              padding: 58px 0;
+              padding: 36px 0;
               h2{
                 color: $azul;
                 letter-spacing: .1em;
+              }
+            }
+            &:hover{
+              opacity: 1;
+              img{
+                margin: -2px;
+                border: solid 4px white;
               }
             }
           }
@@ -489,10 +503,20 @@ h4{font-size: 12px;}
         h1{
           margin: 45px auto;
         }
+        a{
+          text-decoration: none;
+        }
 
         .objeto-imagem{
           width: 120px;
           height: 120px;
+          opacity: .8;
+
+          &:hover{
+            opacity: 1;
+            // margin: -2px;
+            border: solid 4px white;
+          }
         }
 
         .thumbnail-round {
