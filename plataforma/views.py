@@ -164,7 +164,7 @@ class NosCreateView(CreateView):
         nos = form.save(commit=False)
         nos.criado_por = self.request.user
         nos.save()
-        messages.success(self.request, u'Nós criado com sucesso!')
+        messages.success(self.request, u'Comunidade criada com sucesso!')
         return HttpResponseRedirect(reverse_lazy("nos_detail", args=[nos.slug]))
 
 
