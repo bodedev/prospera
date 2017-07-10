@@ -30,7 +30,7 @@
 
             <div class="form-group{% if form.quem_sou.errors %} has-error{% endif %}">
               <label for="quem_sou">Descrição</label>
-              <input type="text" name="quem_sou" id="quem_sou" class="form-control" value="{{ form.quem_sou.value|default:"" }}">
+              <textarea type="text" name="quem_sou" id="quem_sou" class="form-control">{{ form.quem_sou.value|default:"" }}</textarea>
               <span class="help-block">{{ form.quem_sou.errors }}</span>
             </div>
 

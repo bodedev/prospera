@@ -27,7 +27,7 @@
     </div>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <p class="quem-sou text-justify">{{ nodo.quem_sou }} Em 1937 o economista Ronald Coase publicou o artigo A Natureza da Firma: origem, evolução e desenvolvimento, onde afirma que as organizações surgem para atuar nos mercados com o objetivo de diminuir os custos de transação (custos de busca e aquisição, de contratação e controle, de coordenação e de confiança). Em 1937 o economista Ronald Coase publicou o artigo A Natureza da Firma: origem, evolução e desenvolvimento, onde afirma que as organizações surgem para atuar nos mercados com o objetivo de diminuir os custos de transação (custos de busca e aquisição, de contratação e controle, de coordenação e de confiança).</p>
+        <div class="quem-sou text-justify">{{ nodo.quem_sou|linebreaks }}</div>
         {% if nodo.user == user %}
           <a href="{% url "no_update" %}" class="btn btn-prospera btn-edit" role="button">Editar</a>
         {% endif %}
@@ -101,100 +101,21 @@
       </table>
     </div>
   </section>
+  {% if nodo.contato_facebook or nodo.contato_whatsapp or nodo.contato_zoom  %}
+  <section class="contato-content">
+    <div class="text-center">
+      {% if nodo.contato_facebook %}
+      <a href="{{ nodo.contato_facebook }}" target="_blank"><i class="fa fa-facebook item-contato" aria-hidden="true"></i></a>
+      {% endif %}
+      {% if nodo.contato_whatsapp %}
+      <a href="{{ nodo.contato_whatsapp }}" target="_blank"><i class="fa fa-whatsapp item-contato" aria-hidden="true"></i></a>
+      {% endif %}
+      {% if nodo.contato_zoom %}
+      <a href="{{ nodo.contato_zoom }}" target="_blank"><img class="zoom item-contato" src="{% static 'img/zoom.png' %}" alt="Zoom"></a>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
 </div>
-
-  <!-- <h2>Prospera</h2>
-  <p>Olá {{ user.username }}!</p>
-
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_table }}
-    <button type="submit">Salvar</button>
-  </form>
-
-  <h3>GitHub</h3>
-  {% if github_login %}
-    <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
-    {% if can_disconnect %}
-      <form method="post" action="{% url 'social:disconnect' 'github' %}">
-        {% csrf_token %}
-        <button type="submit">Disconnect from GitHub</button>
-      </form>
-    {% else %}
-      <button type="button" disabled>Disconnect from GitHub</button>
-      <p style="color: red">You must <a href="{% url 'no_change_password' %}">define a password</a> for your account before disconnecting from Github.</p>
-    {% endif %}
-  {% else %}
-    <a href="{% url 'social:begin' 'github' %}">Connect to GitHub</a>
-  {% endif %}
-
-  <h3>Twitter</h3>
-  {% if twitter_login %}
-    <p>Connected as <a href="https://twitter.com/{{ twitter_login.extra_data.access_token.screen_name }}/" target="_blank">@{{ twitter_login.extra_data.access_token.screen_name }}</a></p>
-    {% if can_disconnect %}
-      <form method="post" action="{% url 'social:disconnect' 'twitter' %}">
-        {% csrf_token %}
-        <button type="submit">Disconnect from Twitter</button>
-      </form>
-    {% else %}
-      <button type="button" disabled>Disconnect from Twitter</button>
-      <p style="color: red">You must <a href="{% url 'no_change_password' %}">define a password</a> for your account before disconnecting from Twitter.</p>
-    {% endif %}
-  {% else %}
-    <a href="{% url 'social:begin' 'twitter' %}">Connect to Twitter</a>
-  {% endif %}
-
-  <h3>Facebook</h3>
-  {% if facebook_login %}
-    <p>Connected as <a href="https://facebook.com/{{ facebook_login.extra_data.id }}/" target="_blank">{{ facebook_login.extra_data.id }}</a></p>
-    {% if can_disconnect %}
-      <form method="post" action="{% url 'social:disconnect' 'facebook' %}">
-        {% csrf_token %}
-        <button type="submit">Disconnect from Facebook</button>
-      </form>
-    {% else %}
-      <button type="button" disabled>Disconnect from Facebook</button>
-      <p style="color: red">You must <a href="{% url 'no_change_password' %}">define a password</a> for your account before disconnecting from Facebook.</p>
-    {% endif %}
-  {% else %}
-    <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
-  {% endif %}
-
-  <h3>Google</h3>
-  {% if google_login %}
-    <p>Connected as {{ google_login.uid }}</p>
-    {% if can_disconnect %}
-      <form method="post" action="{% url 'social:disconnect' 'google-oauth2' %}">
-        {% csrf_token %}
-        <button type="submit">Disconnect from Google</button>
-      </form>
-    {% else %}
-      <button type="button" disabled>Disconnect from Google</button>
-      <p style="color: red">You must <a href="{% url 'no_change_password' %}">define a password</a> for your account before disconnecting from Google.</p>
-    {% endif %}
-  {% else %}
-    <a href="{% url 'social:begin' 'google-oauth2' %}">Connect to Google</a>
-  {% endif %}
-
-
-  <br />
-
-  <hr />
-
-  <a href="{% url "no_change_password" %}">Alterar Senha</a>
-
-  {% if user.nodos_set.all %}
-  <h3>Nós Criados</h3>
-    {% for nodo in user.nodos_set.all %}
-      <a href="{% url "nos_detail" nodo.slug %}">{{ nodo.nome }}</a>
-    {% endfor %}
-  {% endif %}
-
-  {% if user.objeto_set.all %}
-  <h3>Objeto Criados</h3>
-    {% for o in user.objeto_set.all %}
-      <a href="{% url "object_detail" o.nodos.slug o.slug %}">{{ o.nome }}</a>
-    {% endfor %}
-  {% endif %} -->
 
 {% endblock %}

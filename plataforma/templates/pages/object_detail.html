@@ -31,7 +31,7 @@
       <p class="description">{{ objeto.descricao }}</p>
     </section>
 
-    {% if objeto.contato_facebook or objeto.contato_whatsapp %}
+    {% if objeto.contato_facebook or objeto.contato_whatsapp or objeto.contato_zoom  %}
     <section class="contato-content">
       <div class="text-center">
         {% if objeto.contato_facebook %}
@@ -40,7 +40,9 @@
         {% if objeto.contato_whatsapp %}
         <a href="{{ objeto.contato_whatsapp }}" target="_blank"><i class="fa fa-whatsapp item-contato" aria-hidden="true"></i></a>
         {% endif %}
-        <a href="{{ objeto.get_endereco_sala }}" target="_blank"><img class="zoom item-contato" src="{% static 'img/zoom.png' %}" alt="Zoom"></a>
+        {% if objeto.contato_zoom %}
+        <a href="{{ objeto.contato_zoom }}" target="_blank"><img class="zoom item-contato" src="{% static 'img/zoom.png' %}" alt="Zoom"></a>
+        {% endif %}
       </div>
     </section>
     {% endif %}

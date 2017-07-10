@@ -47,8 +47,7 @@
           </a>
         </div>
     </section>
-
-    {% if nos.contato_facebook or nos.contato_whatsapp %}
+    {% if nos.contato_facebook or nos.contato_whatsapp or nos.contato_zoom  %}
     <section class="contato-content">
       <div class="text-center">
         {% if nos.contato_facebook %}
@@ -57,7 +56,9 @@
         {% if nos.contato_whatsapp %}
         <a href="{{ nos.contato_whatsapp }}" target="_blank"><i class="fa fa-whatsapp item-contato" aria-hidden="true"></i></a>
         {% endif %}
-        <a href="{{ nos.contato_whatsapp }}" target="_blank"><img class="zoom item-contato" src="{% static 'img/zoom.png' %}" alt="Zoom"></a>
+        {% if nos.contato_zoom %}
+        <a href="{{ nos.contato_zoom }}" target="_blank"><img class="zoom item-contato" src="{% static 'img/zoom.png' %}" alt="Zoom"></a>
+        {% endif %}
       </div>
     </section>
     {% endif %}

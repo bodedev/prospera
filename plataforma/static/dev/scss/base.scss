@@ -615,7 +615,7 @@ h4{font-size: 12px;}
         h1 {
           color: $azul;
         }
-        p.quem-sou{
+        .quem-sou p{
           font-family: $gotham;
           font-weight: 400;
           font-size: 12px;
@@ -671,6 +671,19 @@ h4{font-size: 12px;}
               color: $branco;
             }
           }
+        }
+      }
+      .contato-content{
+        margin: auto;
+        margin-top: 80px;
+        background-color: transparentize($branco, .9);
+        height: 70px;
+        .item-contato{
+          min-width: 128px;
+          color: $branco;
+          font-size: 33px;
+          vertical-align: bottom;
+          margin: 20px 5px;
         }
       }
     }
