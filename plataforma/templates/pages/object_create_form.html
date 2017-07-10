@@ -29,7 +29,7 @@
 
             <div class="form-group{% if form.descricao.errors %} has-error{% endif %}">
               <label for="descricao">Descrição</label>
-              <input type="text" name="descricao" id="descricao" class="form-control" value="{{ form.descricao.value|default:"" }}">
+              <textarea type="text" name="descricao" id="descricao" class="form-control">{{ form.descricao.value|default:"" }}</textarea>
               <span class="help-block">{{ form.descricao.errors }}</span>
             </div>
 

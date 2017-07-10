@@ -360,6 +360,9 @@ h4{font-size: 12px;}
 
     // Basic create
     .create{
+      textarea{
+        height: 250px;
+      }
       .upload-background{
         background: white;
         position: relative;
@@ -417,10 +420,19 @@ h4{font-size: 12px;}
         color: $branco;
       }
       input{
+        font-family: $gotham;
         background-color: $azulCinza;
         border-radius: 0px;
         border: 0;
         color: $branco;
+      }
+      textarea{
+        font-family: $gotham;
+        background-color: $azulCinza;
+        color: $branco;
+        border: 0;
+        border-radius: 0px;
+        resize: none;
       }
       button.btn-prospera{
         background-color: $azulClaro;
@@ -572,10 +584,19 @@ h4{font-size: 12px;}
         color: $branco;
       }
       input{
+        font-family: $gotham;
         background-color: $primeCinza;
         border-radius: 0px;
         border: 0;
         color: $branco;
+      }
+      textarea{
+        font-family: $gotham;
+        background-color: $primeCinza;
+        color: $branco;
+        border: 0;
+        border-radius: 0px;
+        resize: none;
       }
       button.btn-prospera{
         background-color: $azulClaro;
@@ -711,10 +732,19 @@ h4{font-size: 12px;}
         color: $azul;
       }
       input{
+        font-family: $gotham;
         background-color: $azulclarin;
         border-radius: 0px;
         border: 0;
         color: $azul;
+      }
+      textarea{
+        font-family: $gotham;
+        background-color: $azulclarin;
+        color: $azul;
+        border: 0;
+        border-radius: 0px;
+        resize: none;
       }
       button.btn-prospera, .file-upload{
         background-color: $prime;
