@@ -22,7 +22,9 @@
       </div>
       <div class="col-md-2 text-center">
         <p class="qr-title">Endereço qr:</p>
-        <img class="no-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&bgcolor=21efe9&color=111c3c&data=Example" alt="...">
+        {% if nodo.get_tracking_url %}
+        <img class="no-qr" src="{{ nodo.get_tracking_url }}" alt="">
+        {% endif %}
       </div>
     </div>
     <div class="row">

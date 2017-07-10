@@ -34,6 +34,11 @@ class Nodo(BaseModel, BaseContatoModel, LogicDeletable):
     carteira = models.CharField(u"Hash Carteira", max_length=42, blank=True, null=True)
     imagem = models.ImageField(upload_to="imagens/nodo/fotos", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, NODO_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
 
+    def get_tracking_url(self):
+        if self.carteira:
+            return "https://api.qrserver.com/v1/create-qr-code/?size=130x130&bgcolor=21efe9&color=111c3c&data=https://etherscan.io/address/%s" % self.carteira
+        return None
+
     history = HistoricalRecords()
 
 
