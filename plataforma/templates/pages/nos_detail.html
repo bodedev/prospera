@@ -17,7 +17,7 @@
 
         <div class="col-md-6">
           <h1 class="title">{{ nos.nome }}</h1>
-          <h4 class="owner media-heading">Criado por: <a>{{ nos.criado_por }}</a></h4>
+          <h4 class="owner media-heading">Criado por: <a href="{% url "no_detail_public" nos.criado_por.id %}">{{ nos.criado_por }}</a></h4>
           <p class="description">{{ nos.descricao|default_if_none:"" }}</p>
           {% if nos.criado_por == user %}
           <a href="{% url "nos_update" nos.slug %}" class="btn btn-prospera btn-edit" role="button">Editar</a>
