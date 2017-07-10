@@ -12,7 +12,7 @@ from plataforma.models import Nodo, Nodos, Objeto
 
 class SignUpForm(UserCreationForm):
 
-    quem_sou = forms.CharField(max_length=500, required=False)
+    quem_sou = forms.CharField(max_length=2000, required=False)
 
     class Meta:
         model = User
@@ -35,7 +35,7 @@ class ImageValidator():
 
 class NodoForm(forms.ModelForm, ImageValidator):
 
-    quem_sou = forms.CharField(max_length=500, required=False)
+    quem_sou = forms.CharField(max_length=2000, required=False)
 
     def clean_foto(self):
         imagem = self.cleaned_data.get("imagem")
