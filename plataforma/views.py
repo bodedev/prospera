@@ -109,7 +109,7 @@ class NoDetailView(UpdateView):
 
     def get_object(self, queryset=None):
         if "pk" in self.kwargs:
-            return Nodo.objects.get(id=self.kwargs["pk"])
+            return Nodo.objects.get(user__id=self.kwargs["pk"])
         return self.request.user.nodo
 
 
