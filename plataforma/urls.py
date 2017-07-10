@@ -4,7 +4,7 @@
 from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
 
-from plataforma.views import NoCreateView, LandingPageView, NoDetailView, UserChangePassword
+from plataforma.views import NoCreateView, NoEditView, LandingPageView, NoDetailView, UserChangePassword
 from plataforma.views import NosCreateView, NosDetailView, NosEditView, NosListView
 from plataforma.views import ObjectCreateView, ObjectDetailView, ObjectEditView
 from plataforma.views import LoginWithAjaxView
@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^logout/$', auth_views.LogoutView.as_view(next_page="home"), name="logout"),
     url(r'^oauth/', include('social_django.urls', namespace="social")),
     url(r'^no/$', NoDetailView.as_view(), name="no_detail"),
+    url(r'^no/editar$', NoEditView.as_view(), name="no_update"),
     url(r'^no/alterar-senha/$', UserChangePassword.as_view(), name="no_change_password"),
     url(r'^no/novo/$', NoCreateView.as_view(), name="no_create"),
     url(r'^comunidades/$', NosListView.as_view(), name="nos_list"),

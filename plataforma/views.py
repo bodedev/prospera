@@ -15,8 +15,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, DetailView, FormView, ListView, TemplateView, UpdateView
 from social_django.models import UserSocialAuth
 
-from plataforma.forms import NodosForm, ObjetoForm, SignUpForm
-from plataforma.models import Nodos, Objeto
+from plataforma.forms import NodoForm, NodosForm, ObjetoForm, SignUpForm
+from plataforma.models import Nodo, Nodos, Objeto
 
 
 class LandingPageView(TemplateView):
@@ -110,6 +110,22 @@ class NoDetailView(UpdateView):
     def get_object(self, queryset=None):
         return self.request.user.nodo
 
+@method_decorator(login_required, name='dispatch')
+class NoEditView(UpdateView):
+
+    form_class = NodoForm
+    model = Nodo
+    slug_url_kwarg = "no"
+    success_url = reverse_lazy("nos_list")
+    template_name = "pages/no_edit_form.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(NoEditView, self).get_context_data(**kwargs)
+        context["action"] = u'Editar'
+        return context
+
+    def get_object(self, queryset=None):
+        return self.request.user.nodo
 
 @method_decorator(login_required, name='dispatch')
 class UserChangePassword(FormView):

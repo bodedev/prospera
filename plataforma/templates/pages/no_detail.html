@@ -6,7 +6,10 @@
 <div id="no-detail">
   <section class="descricao-content container">
     <div class="row">
-      <h1>+ Nó +</h1>
+      <a href="#" onclick="window.history.go(-1); return false;">
+        <img class="voltar" src="{% static 'img/voltar_2.png' %}" alt="Voltar">
+      </a>
+      <h1 style="margin-bottom: 80px;">+ Nó +</h1>
       <div class="col-md-2">
       {% if nodo.imagem %}
         <img class="no-imagem" src="{{ nodo.imagem.url }}" alt="...">
@@ -14,13 +17,20 @@
         <img class="no-imagem" src="{% static 'img/default_objeto.jpg' %}" alt="...">
       {% endif %}
       </div>
-      <div class="col-md-6">
+      <div class="col-md-8">
         <h1 class="no-title">{{ nodo.user }}</h1>
+      </div>
+      <div class="col-md-2 text-center">
+        <p class="qr-title">Endereço qr:</p>
+        <img class="no-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&bgcolor=21efe9&color=111c3c&data=Example" alt="...">
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 col-md-offset-2">
-        <p class="quem-sou">{{ nodo.quem_sou }} Em 1937 o economista Ronald Coase publicou o artigo A Natureza da Firma: origem, evolução e desenvolvimento, onde afirma que as organizações surgem para atuar nos mercados com o objetivo de diminuir os custos de transação (custos de busca e aquisição, de contratação e controle, de coordenação e de confiança). Em 1937 o economista Ronald Coase publicou o artigo A Natureza da Firma: origem, evolução e desenvolvimento, onde afirma que as organizações surgem para atuar nos mercados com o objetivo de diminuir os custos de transação (custos de busca e aquisição, de contratação e controle, de coordenação e de confiança).</p>
+      <div class="col-md-8 col-md-offset-2">
+        <p class="quem-sou text-justify">{{ nodo.quem_sou }} Em 1937 o economista Ronald Coase publicou o artigo A Natureza da Firma: origem, evolução e desenvolvimento, onde afirma que as organizações surgem para atuar nos mercados com o objetivo de diminuir os custos de transação (custos de busca e aquisição, de contratação e controle, de coordenação e de confiança). Em 1937 o economista Ronald Coase publicou o artigo A Natureza da Firma: origem, evolução e desenvolvimento, onde afirma que as organizações surgem para atuar nos mercados com o objetivo de diminuir os custos de transação (custos de busca e aquisição, de contratação e controle, de coordenação e de confiança).</p>
+        {% if nodo.user == user %}
+          <a href="{% url "no_update" %}" class="btn btn-prospera btn-edit" role="button">Editar</a>
+        {% endif %}
       </div>
     </div>
   </section>
@@ -46,7 +56,7 @@
         </tbody>
       </table>
 
-      <h3>Transações</h3>
+      <h3 style="margin-top: 80px;">Transações</h3>
 
       <table class="table table-bordered">
         <thead>

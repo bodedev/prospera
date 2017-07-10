@@ -32,6 +32,13 @@ class ImageValidator():
                 raise forms.ValidationError("A imagem enviada tem %i pixel(s) de altura. Ela necessita ter %i pixels." % (altura_imagem, altura))
         return imagem
 
+class NodoForm(forms.ModelForm, ImageValidator):
+
+    quem_sou = forms.CharField(max_length=500, required=False)
+
+    class Meta:
+        model = User
+        fields = ('username', 'quem_sou')
 
 class NodosForm(forms.ModelForm, ImageValidator):
 

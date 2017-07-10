@@ -29,6 +29,9 @@ body.no-detail{
   .dropdown-menu{
     background-color: $azulClaro;
   }
+  .navbar-default .navbar-collapse .navbar-nav a:hover, .navbar-default .navbar-collapse .navbar-nav a:focus {
+    color: $azul;
+  }
 }
 
 // Navbar
@@ -126,6 +129,10 @@ h1{font-size: 24px;}
 h2{font-size: 18px;}
 h3{font-size: 14px;}
 h4{font-size: 12px;}
+
+.form-control{
+  height: 46px;
+}
 
 // Button Prospera
 .btn-prospera{
@@ -570,13 +577,30 @@ h4{font-size: 12px;}
         margin: auto;
         padding-top: 80px;
 
+        .voltar{
+          filter: grayscale(100%);
+        }
+
         .no-imagem{
           border-radius: 50%;
           width: 160px;
         }
+        .no-qr{
+          width: 130px;
+        }
+        .qr-title{
+          font-family: $gotham;
+          font-size: 12px;
+          letter-spacing: 0.05em;
+          color: $azul;
+          text-transform: uppercase;
+        }
         .no-title{
           font-weight: 700;
           font-size: 40px;
+          margin-top: 50px;
+          overflow: hidden;
+          word-wrap: break-word;
         }
         h1 {
           color: $azul;
@@ -588,6 +612,9 @@ h4{font-size: 12px;}
           color: $azul;
           letter-spacing: 0.05em;
           line-height: 2em;
+        }
+        .btn-edit{
+          color: $azul;
         }
       }
       h3 {
@@ -635,6 +662,38 @@ h4{font-size: 12px;}
             }
           }
         }
+      }
+    }
+
+    // Comunidade Create
+    .no-edit{
+      .descricao-content{
+        margin: auto;
+        padding: 80px 0;
+      }
+      h1{
+        color: $azul;
+      }
+      .ex{
+        color: $azul;
+      }
+      label{
+        font-family: $gotham;
+        font-weight: 300;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: $azul;
+      }
+      input{
+        background-color: $azulclarin;
+        border-radius: 0px;
+        border: 0;
+        color: $azul;
+      }
+      button.btn-prospera, .file-upload{
+        background-color: $prime;
+        color: $branco;
+        font-weight: 300;
       }
     }
 
