@@ -16,20 +16,28 @@ from plataforma.constants import NODOS_TAMANHO_IMAGEM_LISTAGEM_LARGURA, NODOS_TA
 from plataforma.constants import OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA
 
 
-class Nodo(BaseModel, LogicDeletable):
+class BaseContatoModel(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nome = models.CharField(u"Nome", max_length=50, blank=True, null=True)
-    quem_sou = models.TextField(u"Quem Sou?", max_length=500, blank=True, null=True)
-    carteira = models.CharField(u"Hash Carteira", max_length=42, blank=True, null=True)
-    imagem = models.ImageField(upload_to="imagens/nodo/fotos", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, NODO_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
     contato_facebook = models.URLField(u"Facebook", null=True, blank=True)
     contato_whatsapp = models.URLField(u"WhatsApp", null=True, blank=True)
     contato_zoom = models.URLField(u"Zoom", null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+
+class Nodo(BaseModel, BaseContatoModel, LogicDeletable):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nome = models.CharField(u"Nome", max_length=50, blank=True, null=True)
+    quem_sou = models.TextField(u"Quem Sou?", max_length=2000, blank=True, null=True)
+    carteira = models.CharField(u"Hash Carteira", max_length=42, blank=True, null=True)
+    imagem = models.ImageField(upload_to="imagens/nodo/fotos", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, NODO_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
+
     history = HistoricalRecords()
 
 
-class Nodos(BaseModel, LogicDeletable):
+class Nodos(BaseModel, BaseContatoModel, LogicDeletable):
 
     criado_por = models.ForeignKey(User, null=True)
     nome = models.CharField(u"Nome da Comunidade", max_length=50)
@@ -38,17 +46,13 @@ class Nodos(BaseModel, LogicDeletable):
     resumo = models.CharField(u"Resumo", max_length=140, null=True, blank=True)
     descricao = models.TextField(u"Descrição", null=True, blank=True)
 
-    contato_facebook = models.URLField(u"Facebook", null=True, blank=True)
-    contato_whatsapp = models.URLField(u"WhatsApp", null=True, blank=True)
-    contato_zoom = models.URLField(u"Zoom", null=True, blank=True)
-
     history = HistoricalRecords()
 
     def __unicode__(self):
         return u"%s" % self.nome
 
 
-class Objeto(BaseModel, LogicDeletable):
+class Objeto(BaseModel, BaseContatoModel, LogicDeletable):
 
     criado_por = models.ForeignKey(User, null=True)
     nodos = models.ForeignKey(Nodos)
@@ -56,10 +60,6 @@ class Objeto(BaseModel, LogicDeletable):
     slug = AutoSlugField(populate_from='nome')
     imagem = models.ImageField(upload_to="imagens/objetos/listagem", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
     descricao = models.TextField(u"Descrição", null=True, blank=True)
-
-    contato_facebook = models.URLField(u"Facebook", null=True, blank=True)
-    contato_whatsapp = models.URLField(u"WhatsApp", null=True, blank=True)
-    contato_zoom = models.URLField(u"Zoom", null=True, blank=True)
 
     history = HistoricalRecords()
 
