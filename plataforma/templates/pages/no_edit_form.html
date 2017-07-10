@@ -24,7 +24,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="nome">Nome</label>
-              <input type="text" name="username" id="username" class="form-control" value="{{ user }}" disabled="true">
+              <input type="text" name="username" id="username" class="form-control" value="{{ user }}" disabled="true" style="text-transform:uppercase;">
               <span class="help-block"></span>
             </div>
 
@@ -67,7 +67,7 @@
               {% endif %}
             </div>
             <label>Upload da Imagem</label>
-            <p class="ex">Best Fit: 500px x 315px</p>
+            <p class="ex">Best Fit: 400px x 400px</p>
             <p class="ex">Tamanho máximo 2MB</p>
             <div class="form-group {% if form.imagem.errors %} has-error{% endif %}">
               <label for="id_imagem" class="file-upload btn btn-prospera btn-lg">Selecionar</label>
