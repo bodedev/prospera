@@ -38,7 +38,7 @@ class NodoForm(forms.ModelForm, ImageValidator):
     quem_sou = forms.CharField(max_length=500, required=False)
 
     def clean_foto(self):
-        imagem = self.cleaned_data.get("foto")
+        imagem = self.cleaned_data.get("imagem")
         return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
 
     class Meta:
