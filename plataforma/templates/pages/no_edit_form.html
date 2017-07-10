@@ -34,10 +34,10 @@
               <span class="help-block">{{ form.quem_sou.errors }}</span>
             </div>
 
-            <div class="form-group{% if form.quem_sou.errors %} has-error{% endif %}">
-              <label for="quem_sou">Hash da Carteira</label>
-              <input type="text" name="quem_sou" id="quem_sou" class="form-control" value="{{ form.quem_sou.value|default:"" }}">
-              <span class="help-block">{{ form.quem_sou.errors }}</span>
+            <div class="form-group{% if form.carteira.errors %} has-error{% endif %}">
+              <label for="carteira">Hash da Carteira</label>
+              <input type="text" name="carteira" id="carteira" class="form-control" value="{{ form.carteira.value|default:"" }}">
+              <span class="help-block">{{ form.carteira.errors }}</span>
             </div>
 
             <div class="form-group{% if form.contato_facebook.errors %} has-error{% endif %}">

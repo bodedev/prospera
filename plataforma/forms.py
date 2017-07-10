@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.core.files.images import get_image_dimensions
 
 from plataforma import constants
-from plataforma.models import Nodos, Objeto
+from plataforma.models import Nodo, Nodos, Objeto
 
 
 class SignUpForm(UserCreationForm):
@@ -32,13 +32,19 @@ class ImageValidator():
                 raise forms.ValidationError("A imagem enviada tem %i pixel(s) de altura. Ela necessita ter %i pixels." % (altura_imagem, altura))
         return imagem
 
+
 class NodoForm(forms.ModelForm, ImageValidator):
 
     quem_sou = forms.CharField(max_length=500, required=False)
 
+    def clean_foto(self):
+        imagem = self.cleaned_data.get("foto")
+        return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
+
     class Meta:
-        model = User
-        fields = ('username', 'quem_sou')
+        model = Nodo
+        fields = ('quem_sou', 'carteira', 'contato_facebook', 'contato_whatsapp', 'contato_zoom',)
+
 
 class NodosForm(forms.ModelForm, ImageValidator):
 
