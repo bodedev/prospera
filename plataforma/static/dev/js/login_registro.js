@@ -1,7 +1,6 @@
 // Form por AJAX
 $('.formAccessAjax').on('submit', function(e){
   e.preventDefault();
-  console.log('HERE!');
   var form = $(this);
   var url = form.attr('action');
   var data = form.serialize();
@@ -28,9 +27,13 @@ $('.formAccessAjax').on('submit', function(e){
       var json = JSON.parse(data.responseJSON);
       Object.keys(json).map((key, index) => {
         json[key].map((input) => {
-          var parent = form.find('[name='+key+']').parent();
-          parent.addClass('has-error');
-          parent.find('p.help-block').text(input.message);
+          if(key == "__all__"){
+            form.find("p#__all__").text(input.message);
+          }else{
+            var parent = form.find('[name='+key+']').parent();
+            parent.addClass('has-error');
+            parent.find('p.help-block').text(input.message);
+          }
         });
       });
     }

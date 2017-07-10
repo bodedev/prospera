@@ -100,6 +100,15 @@ body.no-detail{
   }
 }
 
+.alert{
+  position: absolute;
+  width: 50%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 75px;
+}
+
 .content{
   margin-top: -70px;
 }
