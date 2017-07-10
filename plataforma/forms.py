@@ -43,7 +43,7 @@ class NodoForm(forms.ModelForm, ImageValidator):
 
     class Meta:
         model = Nodo
-        fields = ('quem_sou', 'carteira', 'contato_facebook', 'contato_whatsapp', 'contato_zoom',)
+        fields = ('quem_sou', 'carteira', 'contato_facebook', 'contato_whatsapp', 'contato_zoom', 'imagem')
 
 
 class NodosForm(forms.ModelForm, ImageValidator):

@@ -119,7 +119,7 @@ class NoEditView(UpdateView):
     form_class = NodoForm
     model = Nodo
     slug_url_kwarg = "no"
-    success_url = reverse_lazy("nos_list")
+    success_url = reverse_lazy("no_detail")
     template_name = "pages/no_edit_form.html"
 
     def get_context_data(self, **kwargs):
@@ -129,6 +129,7 @@ class NoEditView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user.nodo
+
 
 @method_decorator(login_required, name='dispatch')
 class UserChangePassword(FormView):
