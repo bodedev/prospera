@@ -10,8 +10,10 @@
     <img class="logo" src="{% static 'img/prospera-logo.png' %}" alt="Prospera">
 
     <div class="prospera-margin text-center">
+      {% if not user.id %}
       <a id="btn-login" class="btn btn-prospera btn-lg" role="button">Entrar</a>
       <a id="btn-registro" class="btn btn-prospera btn-lg" role="button">Criar Conta</a>
+      {% endif %}
     </div>
 
     <div class="prospera-margin text-center">
