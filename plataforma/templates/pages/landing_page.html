@@ -19,50 +19,14 @@
     <div class="prospera-margin text-center">
       <h3>Emissão de Prospers até agora:</h3>
       <div class="prsps-counter">
-        <img class="inline-block" src="{% static 'img/prsp.png' %}" alt="Prsp">
-        <p class="inline-block">200.000.000 PRSP</p>
+        {% include 'pages/partial_landing_total.html' %}
       </div>
     </div>
 
     <h3 class="text-center">Distribuição, Movimentação e Contribuição</h3>
 
     <div class="prospera-margin prsps-dist text-center container" style="overflow-x:auto;">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Nó</th>
-            <th>Quanto ganhou<br> com a Prospera</th>
-            <th>Quanto contribuiu<br> para o nós</th>
-            <th>Quanto recebeu<br> como nós</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td scope="row"><strong>Oswaldo Oliveira</strong></td>
-            <td>100.000</td>
-            <td>10.000</td>
-            <td>20.000</td>
-          </tr>
-          <tr>
-            <td scope="row"><strong>Everton Fraga</strong></td>
-            <td>50.000</td>
-            <td>5.000</td>
-            <td>30.000</td>
-          </tr>
-          <tr>
-            <td scope="row"><strong>1P2B6KPTC73uJcBLVwKG5rPxkxn9peVw4V</strong></td>
-            <td>100.000</td>
-            <td>10.000</td>
-            <td>20.000</td>
-          </tr>
-          <tr>
-            <td scope="row"><strong>1P2B6KPTC73uJcBLVwKG5rPxkxn9peVw4V</strong></td>
-            <td>50.000</td>
-            <td>5.000</td>
-            <td>30.000</td>
-          </tr>
-        </tbody>
-      </table>
+      {% include 'pages/partial_landing_history.html' %}
     </div>
   </section>
 
