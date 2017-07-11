@@ -194,6 +194,24 @@ class NoDetailSummaryView(TemplateView):
         return HttpResponseServerError
 
 
+class TotalProsperEmitidosSummaryView(TemplateView):
+
+    template_name = "pages/partial_landing_total.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(TotalProsperEmitidosSummaryView, self).get_context_data(**kwargs)
+        try:
+            r = requests.get("https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=%s&apikey=%s" % (settings.ETHERSCAN_CONTRACT_ADDRESS, settings.ETHERSCAN_APIKEY))
+            if r.status_code == 200:
+                data = r.json()
+                if data["status"] == "1":
+                    context["total_emitido"] = int(data["result"]) / 1000000000
+        except:
+            # Condição inicial
+            context["total_emitido"] = 750
+        return context
+
+
 @method_decorator(login_required, name='dispatch')
 class NoEditView(UpdateView):
 
