@@ -128,7 +128,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 ETHERSCAN_APIKEY = "TI3JTME844UTC71TFZ2YQD35F75GHQNQN7"
-EHTERSCAN_TOKENNAME = "DGD"
+ETHERSCAN_TOKENNAME = "Prosper"
+ETHERSCAN_CONTRACT_ADDRESS = "0x0c04d4f331da8df75f9e2e271e3f3f1494c66c36"
 
 if not os.path.exists(os.path.join(BASE_DIR, 'prospera', 'local.py')):
     raise Exception("Couldn't import the local configuration file!")
