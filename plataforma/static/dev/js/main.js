@@ -21,7 +21,6 @@ $(document).ready(function() {
     var element = $(this);
     var url = $(this).data('url');
     if(url != ""){
-      console.log("TEM url "+url);
       $.ajax({
           url: url,
           type: 'GET',
