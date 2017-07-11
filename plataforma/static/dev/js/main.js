@@ -18,8 +18,24 @@ $(document).ready(function() {
 
   // Spinners
   $(".loading-spinner").each(function(index) {
+    var element = $(this);
     var url = $(this).data('url');
-    console.log(url);
+    if(url != ""){
+      console.log("TEM url "+url);
+      $.ajax({
+          url: url,
+          type: 'GET',
+          success: function(data) {
+            $(element).css("display", "none");
+            $(element).after(data);
+          },
+          error: function(err) {
+            console.log("erro");
+          }
+      });
+    }else{
+      console.log("Elemento não possui url");
+    }
   });
 
 })
