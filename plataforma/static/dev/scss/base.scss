@@ -396,10 +396,17 @@ h4{font-size: 12px;}
             }
             .button-container{
               background-color: $branco;
-              padding: 36px 0;
+              padding: 16px 0;
               h2{
+                font-size: 12px;
                 color: $azul;
                 letter-spacing: .1em;
+              }
+              @media (min-width: $screen-sm-min) {
+                padding: 36px 0;
+                h2{
+                  font-size: 18px;
+                }
               }
             }
             &:hover{
@@ -542,6 +549,9 @@ h4{font-size: 12px;}
 
         .comunidade-imagem{
           width: 100%;
+          @media (min-width: $screen-sm-min) {
+            width: inherit;
+          }
         }
       }
 
@@ -593,11 +603,17 @@ h4{font-size: 12px;}
         background-color: transparentize($branco, .9);
         height: 70px;
         .item-contato{
-          min-width: 128px;
           color: $branco;
           font-size: 33px;
-          vertical-align: bottom;
-          margin: 20px 5px;
+          vertical-align: middle;
+          margin: 15px 0px;
+          min-width: 20px;
+          width: 80px;
+          @media (min-width: $screen-sm-min) {
+            min-width: 128px;
+            margin: 20px 5px;
+            vertical-align: bottom;
+          }
         }
       }
     }
@@ -610,10 +626,16 @@ h4{font-size: 12px;}
 
         h1.objeto-title{
           font-size: 45px;
-          margin-top: 100px;
+          margin-top: 40px;
+          @media (min-width: $screen-sm-min) {
+            margin-top: 100px;
+          }
         }
         .objeto-imagem{
-          max-width: 360px;
+          max-width: 60%;
+          @media (min-width: $screen-sm-min) {
+            max-width: 360px;
+          }
         }
       }
       p{
@@ -633,11 +655,17 @@ h4{font-size: 12px;}
         background-color: transparentize($branco, .9);
         height: 70px;
         .item-contato{
-          min-width: 128px;
           color: $branco;
           font-size: 33px;
-          vertical-align: bottom;
-          margin: 20px 5px;
+          vertical-align: middle;
+          margin: 15px 0px;
+          min-width: 20px;
+          width: 80px;
+          @media (min-width: $screen-sm-min) {
+            min-width: 128px;
+            margin: 20px 5px;
+            vertical-align: bottom;
+          }
         }
       }
     }
@@ -776,11 +804,17 @@ h4{font-size: 12px;}
         background-color: transparentize($branco, .9);
         height: 70px;
         .item-contato{
-          min-width: 128px;
           color: $branco;
           font-size: 33px;
-          vertical-align: bottom;
-          margin: 20px 5px;
+          vertical-align: middle;
+          margin: 15px 0px;
+          min-width: 20px;
+          width: 80px;
+          @media (min-width: $screen-sm-min) {
+            min-width: 128px;
+            margin: 20px 5px;
+            vertical-align: bottom;
+          }
         }
       }
     }
