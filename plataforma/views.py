@@ -23,6 +23,9 @@ from plataforma.models import Nodo, Nodos, Objeto
 import requests
 
 
+ETHER_DIVISOR = 1000000000
+
+
 class LandingPageView(TemplateView):
 
     template_name = "pages/landing_page.html"
@@ -136,7 +139,7 @@ class NoDetailTransactionView(TemplateView):
                     context["transactions"].append(
                         {
                             "date": datetime.fromtimestamp(float(t["timeStamp"])),
-                            "value": int(t["value"]) / float(1000000000),
+                            "value": int(t["value"]) / float(ETHER_DIVISOR),
                             "to": t["to"],
                             "from": t["from"],
                             "in_or_out": "in" if t["to"] == nodo.carteira else "out"
@@ -162,26 +165,33 @@ class NoDetailSummaryView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(NoDetailSummaryView, self).get_context_data(**kwargs)
-        quanto_ganhou_com_a_prospera = 0
-        quanto_contribuiu_com_a_prospera = 0
-        quanto_recebeu_como_nos = 0
         nodo = self.get_object()
         context["nodo"] = nodo
-        r = requests.get("http://api.etherscan.io/api?module=account&action=txlist&address=%s&startblock=0&endblock=99999999&sort=asc&apikey=%s" % (nodo.carteira, settings.ETHERSCAN_APIKEY))
-        if r.status_code == 200:
-            data = r.json()
-            if data["status"] == "1":
-                for t in data["result"]:
-                    # Soma o quanto enviou para a prospera
-                    if t["to"] == nodo.carteira and t["from"] == settings.ETHERSCAN_CONTRACT_ADDRESS:
-                        quanto_ganhou_com_a_prospera = quanto_ganhou_com_a_prospera + int(t["value"]) / float(1000000000)
-                        continue
-                    if t["from"] == nodo.carteira and t["to"] == settings.ETHERSCAN_CONTRACT_ADDRESS:
-                        quanto_contribuiu_com_a_prospera = quanto_contribuiu_com_a_prospera + int(t["value"]) / float(1000000000)
-                    # TODO: como saber quanto recebeu como nós?
-            context["quanto_ganhou_com_a_prospera"] = quanto_ganhou_com_a_prospera
-            context["quanto_contribuiu_com_a_prospera"] = quanto_contribuiu_com_a_prospera
-            context["quanto_recebeu_como_nos"] = quanto_recebeu_como_nos
+        try:
+            r = requests.get("https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=%s&address=%s&tag=latest&apikey=%s" % (settings.ETHERSCAN_CONTRACT_ADDRESS, nodo.carteira, settings.ETHERSCAN_APIKEY))
+            if r.status_code == 200:
+                data = r.json()
+                if data["status"] == "1":
+                    context["quanto_ganhou_com_a_prospera"] = float(data["result"]) / float(1000000000)
+        except Exception, e:
+            print str(e)
+            pass
+        quanto_contribuiu_com_a_prospera = 0
+        quanto_recebeu_como_nos = 0
+        # r = requests.get("http://api.etherscan.io/api?module=account&action=txlist&address=%s&startblock=0&endblock=99999999&sort=asc&apikey=%s" % (nodo.carteira, settings.ETHERSCAN_APIKEY))
+        # if r.status_code == 200:
+        #     data = r.json()
+        #     if data["status"] == "1":
+        #         for t in data["result"]:
+        #             # Soma o quanto enviou para a prospera
+        #             if t["to"] == nodo.carteira and t["from"] == settings.ETHERSCAN_CONTRACT_ADDRESS:
+        #                 quanto_ganhou_com_a_prospera = quanto_ganhou_com_a_prospera + int(t["value"]) / float(ETHER_DIVISOR)
+        #                 continue
+        #             if t["from"] == nodo.carteira and t["to"] == settings.ETHERSCAN_CONTRACT_ADDRESS:
+        #                 quanto_contribuiu_com_a_prospera = quanto_contribuiu_com_a_prospera + int(t["value"]) / float(ETHER_DIVISOR)
+        #             # TODO: como saber quanto recebeu como nós?
+        context["quanto_contribuiu_com_a_prospera"] = quanto_contribuiu_com_a_prospera
+        context["quanto_recebeu_como_nos"] = quanto_recebeu_como_nos
         return context
 
     def get_object(self, queryset=None):
@@ -205,7 +215,7 @@ class TotalProsperEmitidosSummaryView(TemplateView):
             if r.status_code == 200:
                 data = r.json()
                 if data["status"] == "1":
-                    context["total_emitido"] = int(data["result"]) / 1000000000
+                    context["total_emitido"] = int(data["result"]) / ETHER_DIVISOR
         except:
             # Condição inicial
             context["total_emitido"] = 750
