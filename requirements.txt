@@ -3,5 +3,6 @@ django-autoslug==1.9.3
 django-braces
 django-extensions==1.7.9
 django-simple-history
+mysql-python
 social-auth-app-django==1.2.0
 pillow

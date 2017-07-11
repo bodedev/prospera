@@ -156,6 +156,62 @@ class NoDetailTransactionView(TemplateView):
         return HttpResponseServerError
 
 
+class NoDetailSummaryView(TemplateView):
+
+    template_name = "pages/partial_no_status.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(NoDetailSummaryView, self).get_context_data(**kwargs)
+        quanto_ganhou_com_a_prospera = 0
+        quanto_contribuiu_com_a_prospera = 0
+        quanto_recebeu_como_nos = 0
+        nodo = self.get_object()
+        context["nodo"] = nodo
+        r = requests.get("http://api.etherscan.io/api?module=account&action=txlist&address=%s&startblock=0&endblock=99999999&sort=asc&apikey=%s" % (nodo.carteira, settings.ETHERSCAN_APIKEY))
+        if r.status_code == 200:
+            data = r.json()
+            if data["status"] == "1":
+                for t in data["result"]:
+                    # Soma o quanto enviou para a prospera
+                    if t["to"] == nodo.carteira and t["from"] == settings.ETHERSCAN_CONTRACT_ADDRESS:
+                        quanto_ganhou_com_a_prospera = quanto_ganhou_com_a_prospera + int(t["value"]) / float(1000000000)
+                        continue
+                    if t["from"] == nodo.carteira and t["to"] == settings.ETHERSCAN_CONTRACT_ADDRESS:
+                        quanto_contribuiu_com_a_prospera = quanto_contribuiu_com_a_prospera + int(t["value"]) / float(1000000000)
+                    # TODO: como saber quanto recebeu como nós?
+            context["quanto_ganhou_com_a_prospera"] = quanto_ganhou_com_a_prospera
+            context["quanto_contribuiu_com_a_prospera"] = quanto_contribuiu_com_a_prospera
+            context["quanto_recebeu_como_nos"] = quanto_recebeu_como_nos
+        return context
+
+    def get_object(self, queryset=None):
+        try:
+            nodo = Nodo.objects.get(user__id=self.kwargs["pk"])
+            if nodo.carteira:
+                return nodo
+        except:
+            pass
+        return HttpResponseServerError
+
+
+class TotalProsperEmitidosSummaryView(TemplateView):
+
+    template_name = "pages/partial_landing_total.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(TotalProsperEmitidosSummaryView, self).get_context_data(**kwargs)
+        try:
+            r = requests.get("https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=%s&apikey=%s" % (settings.ETHERSCAN_CONTRACT_ADDRESS, settings.ETHERSCAN_APIKEY))
+            if r.status_code == 200:
+                data = r.json()
+                if data["status"] == "1":
+                    context["total_emitido"] = int(data["result"]) / 1000000000
+        except:
+            # Condição inicial
+            context["total_emitido"] = 750
+        return context
+
+
 @method_decorator(login_required, name='dispatch')
 class NoEditView(UpdateView):
 
