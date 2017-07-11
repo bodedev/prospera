@@ -2,14 +2,16 @@
 
 
 from braces.views import AjaxResponseMixin, JSONResponseMixin
+from datetime import datetime
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm, AdminPasswordChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth.views import LoginView
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseServerError
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, DetailView, FormView, ListView, TemplateView, UpdateView
@@ -17,6 +19,8 @@ from social_django.models import UserSocialAuth
 
 from plataforma.forms import NodoForm, NodosForm, ObjetoForm, SignUpForm
 from plataforma.models import Nodo, Nodos, Objeto
+
+import requests
 
 
 class LandingPageView(TemplateView):
@@ -111,6 +115,45 @@ class NoDetailView(UpdateView):
         if "pk" in self.kwargs:
             return Nodo.objects.get(user__id=self.kwargs["pk"])
         return self.request.user.nodo
+
+
+class NoDetailTransactionView(TemplateView):
+
+    template_name = "pages/partial_no_transactions.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(NoDetailTransactionView, self).get_context_data(**kwargs)
+        context["transactions"] = []
+        nodo = self.get_object()
+        context["nodo"] = nodo
+        r = requests.get("http://api.etherscan.io/api?module=account&action=txlist&address=%s&startblock=0&endblock=99999999&sort=asc&apikey=%s" % (nodo.carteira, settings.ETHERSCAN_APIKEY))
+        if r.status_code == 200:
+            max_transactions = getattr(settings, "MAX_TRANSACTIONS_PROFILE", 5)
+            data = r.json()
+            if data["status"] == "1":
+                for t in data["result"]:
+                    max_transactions = max_transactions - 1
+                    context["transactions"].append(
+                        {
+                            "date": datetime.fromtimestamp(float(t["timeStamp"])),
+                            "value": int(t["value"]) / float(1000000000),
+                            "to": t["to"],
+                            "from": t["from"],
+                            "in_or_out": "in" if t["to"] == nodo.carteira else "out"
+                        }
+                    )
+                    if not max_transactions:
+                        break
+        return context
+
+    def get_object(self, queryset=None):
+        try:
+            nodo = Nodo.objects.get(user__id=self.kwargs["pk"])
+            if nodo.carteira:
+                return nodo
+        except:
+            pass
+        return HttpResponseServerError
 
 
 @method_decorator(login_required, name='dispatch')
