@@ -4,36 +4,6 @@
 
 $gotham: 'gotham', sans-serif;
 
-
-// Body Colors
-body.landing-page, body.comunidade-detail, body.login, body.registro{
-  background-color: $prime;
-  .dropdown-menu{
-    background-color: $prime;
-  }
-}
-body.comunidades{
-  background-color: $azul;
-  .dropdown-menu{
-    background-color: $azul;
-  }
-}
-body.objeto-detail{
-  background-color: $azulObjeto;
-  .dropdown-menu{
-    background-color: $azulObjeto;
-  }
-}
-body.no-detail{
-  background-color: $azulClaro;
-  .dropdown-menu{
-    background-color: $azulClaro;
-  }
-  .navbar-default .navbar-collapse .navbar-nav a:hover, .navbar-default .navbar-collapse .navbar-nav a:focus {
-    color: $azul;
-  }
-}
-
 // Navbar
 .navbar-default {
   background-color: transparentize($branco, .9);
@@ -107,6 +77,47 @@ body.no-detail{
   }
 }
 
+// Body Colors
+body.landing-page, body.comunidade-detail, body.login, body.registro{
+  background-color: $prime;
+  .navbar-default {
+    background-color: $primeBarra;
+  }
+  .dropdown-menu{
+    background-color: $prime;
+  }
+}
+body.comunidades{
+  background-color: $azul;
+  .navbar-default {
+    background-color: $azulBarra;
+  }
+  .dropdown-menu{
+    background-color: $azul;
+  }
+}
+body.objeto-detail{
+  background-color: $azulObjeto;
+  .navbar-default {
+    background-color: $azulObjetoBarra;
+  }
+  .dropdown-menu{
+    background-color: $azulObjeto;
+  }
+}
+body.no-detail{
+  background-color: $azulClaro;
+  .navbar-default {
+    background-color: $azulPerfilBarra;
+  }
+  .dropdown-menu{
+    background-color: $azulClaro;
+  }
+  .navbar-default .navbar-collapse .navbar-nav a:hover, .navbar-default .navbar-collapse .navbar-nav a:focus {
+    color: $azul;
+  }
+}
+
 .alert{
   position: absolute;
   width: 50%;
@@ -117,7 +128,7 @@ body.no-detail{
 }
 
 .content{
-  margin-top: -70px;
+  // margin-top: -70px;
 }
 
 .inline-block{
@@ -451,14 +462,14 @@ h4{font-size: 12px;}
       }
       input{
         font-family: $gotham;
-        background-color: $azulCinza;
+        background-color: $azulComunidadeInputBg;
         border-radius: 0px;
         border: 0;
         color: $branco;
       }
       textarea{
         font-family: $gotham;
-        background-color: $azulCinza;
+        background-color: $azulComunidadeInputBg;
         color: $branco;
         border: 0;
         border-radius: 0px;
@@ -774,14 +785,14 @@ h4{font-size: 12px;}
       }
       input{
         font-family: $gotham;
-        background-color: $azulclarin;
+        background-color: $azulPerfilInputBg;
         border-radius: 0px;
         border: 0;
         color: $azul;
       }
       textarea{
         font-family: $gotham;
-        background-color: $azulclarin;
+        background-color: $azulPerfilInputBg;
         color: $azul;
         border: 0;
         border-radius: 0px;
