@@ -4,7 +4,7 @@
 from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
 
-from plataforma.views import NoCreateView, NoEditView, LandingPageView, NoDetailView, UserChangePassword, NoDetailTransactionView
+from plataforma.views import NoCreateView, NoEditView, LandingPageView, NoDetailView, UserChangePassword, NoDetailSummaryView, NoDetailTransactionView
 from plataforma.views import NosCreateView, NosDetailView, NosEditView, NosListView
 from plataforma.views import ObjectCreateView, ObjectDetailView, ObjectEditView
 from plataforma.views import LoginWithAjaxView
@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace="social")),
     url(r'^no/$', NoDetailView.as_view(), name="no_detail"),
     url(r'^no/(?P<pk>\d+)/detalhes/$', NoDetailView.as_view(), name="no_detail_public"),
+    url(r'^no/(?P<pk>\d+)/detalhes/resumo/$', NoDetailSummaryView.as_view(), name="no_detail_public_summary"),
     url(r'^no/(?P<pk>\d+)/detalhes/transacoes/$', NoDetailTransactionView.as_view(), name="no_detail_public_transactions"),
     url(r'^no/alterar-senha/$', UserChangePassword.as_view(), name="no_change_password"),
     url(r'^no/editar/$', NoEditView.as_view(), name="no_update"),
