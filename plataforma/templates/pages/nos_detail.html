@@ -10,9 +10,9 @@
         </a>
         <h1>+ Comunidade +</h1>
         {% if nos.imagem %}
-        <img class="col-md-6" src="{{ nos.imagem.url }}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
+        <img class="col-md-6 comunidade-imagem" src="{{ nos.imagem.url }}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
         {% else %}
-        <img class="col-md-6" src="{% static 'img/default_comunidade.jpg' %}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
+        <img class="col-md-6 comunidade-imagem" src="{% static 'img/default_comunidade.jpg' %}" alt="{{ nos.nome }}" title="{{ nos.nome }}">
         {% endif %}
 
         <div class="col-md-6">

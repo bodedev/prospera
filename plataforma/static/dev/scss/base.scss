@@ -201,7 +201,10 @@ h4{font-size: 12px;}
 
 // Maring
 .prospera-margin{
-  margin: 90px auto;
+  margin: 30px auto;
+  @media (min-width: $screen-sm-min) {
+    margin: 90px auto;
+  }
 }
 
 .content {
@@ -223,6 +226,7 @@ h4{font-size: 12px;}
 
       h3{
         font-weight: normal;
+        line-height: 20px;
       }
 
       .presentation-content{
@@ -251,9 +255,13 @@ h4{font-size: 12px;}
             margin: 0px;
             font-family: $gotham;
             font-weight: 300;
-            font-size: 20px;
+            font-size: 12px;
             letter-spacing: 0.2em;
             vertical-align: middle;
+
+            @media (min-width: $screen-sm-min) {
+              font-size: 20px;
+            }
           }
         }
         .prsps-dist{
@@ -351,19 +359,25 @@ h4{font-size: 12px;}
 
       .descricao-content{
         margin: auto;
-        padding: 80px 0;
+        padding-top: 80px;
+        padding-bottom: 80px;
 
         p{
           line-height: 2em;
           margin-top: 38px;
-          padding-right: 30px;
+          margin-left: 10px;
+          margin-right: 10px;
+          @media (min-width: $screen-sm-min) {
+            padding-right: 30px;
+            margin-left: 0;
+            margin-right: 0;
+          }
         }
       }
       .comunidades-content{
         margin: auto;
 
         .comunidades-list{
-          padding: 0;
           a{
             text-decoration: none;
           }
@@ -394,6 +408,9 @@ h4{font-size: 12px;}
                 border: solid 4px white;
               }
             }
+          }
+          @media (min-width: $screen-sm-min) {
+            padding: 0;
           }
         }
       }
@@ -522,6 +539,10 @@ h4{font-size: 12px;}
       .descricao-content{
         margin: auto;
         padding-top: 80px;
+
+        .comunidade-imagem{
+          width: 100%;
+        }
       }
 
       .objetos-content{

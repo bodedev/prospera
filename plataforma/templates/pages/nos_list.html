@@ -8,22 +8,26 @@
 <div id="nos">
   <section class="descricao-content container">
     <div class="row">
-      <h1 class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">+ Comunidades +</h1>
-    </div>
-    <div class="row">
-      <p class="col-md-8 col-lg-10 col-md-offset-1 col-lg-offset-0 text-justify">
-        Em 1937 o economista Ronald Coase publicou o artigo A Natureza da Firma: origem, evolução e desenvolvimento, onde afirma que as organizações surgem para atuar nos mercados com o objetivo de diminuir os custos de transação (custos de busca e aquisição, de contratação e controle, de coordenação e de confiança).
-      </p>
-      <img class="inline-block hidden-sm hidden-xs" src="{% static 'img/prospera-circle.png' %}" alt="Prospera">
+      <div class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">
+        <h1>+ Comunidades +</h1>
+      </div>
+      <div class="col-md-8 col-lg-10 col-md-offset-1 col-lg-offset-0">
+        <p class="text-justify">
+          Em 1937 o economista Ronald Coase publicou o artigo A Natureza da Firma: origem, evolução e desenvolvimento, onde afirma que as organizações surgem para atuar nos mercados com o objetivo de diminuir os custos de transação (custos de busca e aquisição, de contratação e controle, de coordenação e de confiança).
+        </p>
+      </div>
+      <div class="inline-block hidden-sm hidden-xs">
+        <img class="" src="{% static 'img/prospera-circle.png' %}" alt="Prospera">
+      </div>
     </div>
   </section>
 
   <section class="comunidades-content container">
     <div class="row">
-      <div class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0 comunidades-list">
+      <div class="col-xs-12 col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0 comunidades-list">
         <div class="row">
           {% for nos in object_list %}
-          <a class="col-sm-6 col-md-4" href="{% url 'nos_detail' nos.slug %}">
+          <a class="col-xs-12 col-sm-6 col-md-4" href="{% url 'nos_detail' nos.slug %}">
             <div class="thumbnail">
               {% if nos.imagem %}
                 <img class="media-object" src="{{ nos.imagem.url }}" alt="...">
@@ -37,7 +41,7 @@
             </div>
           </a>
           {% endfor %}
-          <a href="{% url "nos_create" %}" class="col-sm-6 col-md-4">
+          <a href="{% url "nos_create" %}" class="col-xs-12 col-sm-6 col-md-4">
             <div class="thumbnail text-center">
               <div class="button-container">
                 <p class="plus">+</p>
