@@ -16,4 +16,10 @@ $(document).ready(function() {
     $(".alert").slideUp(500);
   });
 
+  // Spinners
+  $(".loading-spinner").each(function(index) {
+    var url = $(this).data('url');
+    console.log(url);
+  });
+
 })

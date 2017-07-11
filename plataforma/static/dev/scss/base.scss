@@ -863,4 +863,12 @@ h4{font-size: 12px;}
       }
     }
   }
+  .loading-spinner{
+    font-size:24px;
+    vertical-align: middle;
+    color: $branco;
+    &.invert{
+      color: $preto;
+    }
+  }
 }
