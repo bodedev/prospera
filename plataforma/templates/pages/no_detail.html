@@ -37,8 +37,8 @@
     </div>
   </section>
 
+  {% if nodo.carteira %}
   <section>
-
     <div class="prospera-margin prsps-dist text-center container">
       <i class="fa fa-circle-o-notch fa-spin loading-spinner" data-url=""></i>
       <!-- {% include 'pages/partial_no_status.html' %} -->
@@ -48,6 +48,7 @@
       <!-- {% include 'pages/partial_no_transactions.html' %} -->
     </div>
   </section>
+  {% endif %}
   {% if nodo.contato_facebook or nodo.contato_whatsapp or nodo.contato_zoom  %}
   <section class="contato-content">
     <div class="text-center">
