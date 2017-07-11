@@ -11,33 +11,14 @@
     </tr>
   </thead>
   <tbody>
+    {% for t in transactions %}
     <tr>
-      <td scope="row">4min ago</td>
-      <td><strong>1P2B6KPTC73uJcBLVwKG5rPxkxn9peVw4V</strong></td>
-      <td><span class="in">IN</span></td>
-      <td><strong>1P2B6KPTC73uJcBLVwKG5rPxkxn9peVw4V</strong></td>
-      <td><strong>0.2644934</strong> PRSP</td>
+      <td scope="row">{{ t.date|timesince }}</td>
+      <td><strong>{{ t.from }}</strong></td>
+      <td><span class="{{ t.in_or_out }}">{{ t.in_or_out|upper }}</span></td>
+      <td><strong>{{ t.to }}</strong></td>
+      <td><strong>{{ t.value|floatformat:5 }}</strong> PRSP</td>
     </tr>
-    <tr>
-      <td scope="row">4min ago</td>
-      <td><strong>1P2B6KPTC73uJcBLVwKG5rPxkxn9peVw4V</strong></td>
-      <td><span class="out">OUT</span></td>
-      <td><strong>1P2B6KPTC73uJcBLVwKG5rPxkxn9peVw4V</strong></td>
-      <td><strong>0.2644934</strong> PRSP</td>
-    </tr>
-    <tr>
-      <td scope="row">4min ago</td>
-      <td><strong>1P2B6KPTC73uJcBLVwKG5rPxkxn9peVw4V</strong></td>
-      <td><span class="out">OUT</span></td>
-      <td><strong>1P2B6KPTC73uJcBLVwKG5rPxkxn9peVw4V</strong></td>
-      <td><strong>0.2644934</strong> PRSP</td>
-    </tr>
-    <tr>
-      <td scope="row">4min ago</td>
-      <td><strong>1P2B6KPTC73uJcBLVwKG5rPxkxn9peVw4V</strong></td>
-      <td><span class="in">IN</span></td>
-      <td><strong>1P2B6KPTC73uJcBLVwKG5rPxkxn9peVw4V</strong></td>
-      <td><strong>0.2644934</strong> PRSP</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
