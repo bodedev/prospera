@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-6">
           <h1 class="objeto-title">{{ objeto.nome }}</h1>
-          <h4 class="owner media-heading">Criado por: <a>{{ objeto.criado_por }}</a></h4>
+          <h4 class="owner media-heading">Criado por: <a href="{% url "no_detail_public" objeto.criado_por.id %}">{{ objeto.criado_por }}</a></h4>
         </div>
       </div>
         {% if objeto.criado_por == user %}
