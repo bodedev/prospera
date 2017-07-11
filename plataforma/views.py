@@ -170,7 +170,6 @@ class NoDetailSummaryView(TemplateView):
         r = requests.get("http://api.etherscan.io/api?module=account&action=txlist&address=%s&startblock=0&endblock=99999999&sort=asc&apikey=%s" % (nodo.carteira, settings.ETHERSCAN_APIKEY))
         if r.status_code == 200:
             data = r.json()
-            print str(data)
             if data["status"] == "1":
                 for t in data["result"]:
                     # Soma o quanto enviou para a prospera
