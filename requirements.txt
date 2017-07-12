@@ -1,8 +1,10 @@
-django==1.11.3
 django-autoslug==1.9.3
 django-braces
 django-extensions==1.7.9
 django-simple-history
+django==1.11.3
 mysql-python
-social-auth-app-django==1.2.0
 pillow
+requests
+requests[security]
+social-auth-app-django==1.2.0
