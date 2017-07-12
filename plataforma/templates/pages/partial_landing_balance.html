@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nó</th>
+      <th>Quanto ganhou<br /> com a Prospera</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for saldo in object_list %}
+    <tr>
+      <td scope="row"><strong>{{ saldo.carteira }}</strong></td>
+      <td>{{ saldo.total|floatformat:6 }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

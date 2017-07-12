@@ -77,3 +77,12 @@ def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Nodo.objects.create(user=instance)
     instance.nodo.save()
+
+
+class Saldo(models.Model):
+
+    carteira = models.CharField(u"Hash da Carteira", max_length=42, unique=True)
+    total = models.FloatField()
+
+    def __unicode__(self):
+        return u"%s: %0.6f" % self.nome

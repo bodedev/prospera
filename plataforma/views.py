@@ -18,7 +18,7 @@ from django.views.generic import CreateView, DetailView, FormView, ListView, Tem
 from social_django.models import UserSocialAuth
 
 from plataforma.forms import NodoForm, NodosForm, ObjetoForm, SignUpForm
-from plataforma.models import Nodo, Nodos, Objeto
+from plataforma.models import Nodo, Nodos, Objeto, Saldo
 
 import requests
 
@@ -52,6 +52,13 @@ class LandingLastOperationsByTokenView(TemplateView):
         except Exception, e:
             pass
         return context
+
+
+class LandingBalanceByTokenView(ListView):
+
+    model = Saldo
+    ordering = ("-total", )
+    template_name = "pages/partial_landing_balance.html"
 
 
 @method_decorator(csrf_exempt, name='dispatch')
