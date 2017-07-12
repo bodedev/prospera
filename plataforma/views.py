@@ -129,7 +129,7 @@ class NoDetailTransactionView(TemplateView):
         context["transactions"] = []
         nodo = self.get_object()
         context["nodo"] = nodo
-        r = requests.get("http://api.etherscan.io/api?module=account&action=txlist&address=%s&startblock=0&endblock=99999999&sort=asc&apikey=%s" % (nodo.carteira, settings.ETHERSCAN_APIKEY))
+        r = requests.get("http://api.etherscan.io/api?module=account&action=txlist&address=%s&startblock=%d&endblock=99999999&sort=asc&apikey=%s" % (nodo.carteira, settings.ETHERSCAN_START_BLOCK_NUMBER, settings.ETHERSCAN_APIKEY))
         if r.status_code == 200:
             max_transactions = getattr(settings, "MAX_TRANSACTIONS_PROFILE", 5)
             data = r.json()
