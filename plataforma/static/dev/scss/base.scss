@@ -127,6 +127,9 @@ body.no-detail{
   background-color: $azulClaro;
   .navbar-default {
     background-color: $azulPerfilBarra;
+    .navbar-toggle {
+      border-color: $prime;
+    }
   }
   .dropdown-menu{
     background-color: $azulClaro;
