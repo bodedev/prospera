@@ -8,12 +8,13 @@ from plataforma.views import NoCreateView, NoEditView, LandingPageView, NoDetail
 from plataforma.views import NosCreateView, NosDetailView, NosEditView, NosListView
 from plataforma.views import ObjectCreateView, ObjectDetailView, ObjectEditView
 from plataforma.views import LoginWithAjaxView
-from plataforma.views import TotalProsperEmitidosSummaryView
+from plataforma.views import TotalProsperEmitidosSummaryView, LandingLastOperationsByTokenView
 from plataforma.views_ethereum import TotalEmitidoDetailView, UltimasTransacoesDetailView
 
 
 urlpatterns = [
     url(r'^$', LandingPageView.as_view(), name="home"),
+    url(r'^historico/$', LandingLastOperationsByTokenView.as_view(), name="home_historico"),
     url(r'^login/$', LoginWithAjaxView.as_view(), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(next_page="home"), name="logout"),
     url(r'^prosper/total/$', TotalProsperEmitidosSummaryView.as_view(), name="prosper_total"),

@@ -31,6 +31,29 @@ class LandingPageView(TemplateView):
     template_name = "pages/landing_page.html"
 
 
+class LandingLastOperationsByTokenView(TemplateView):
+
+    template_name = "pages/partial_landing_history.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(LandingLastOperationsByTokenView, self).get_context_data(**kwargs)
+        context["transacoes"] = []
+        try:
+            r = requests.get("https://api.ethplorer.io/getTokenHistory/%s/?apiKey=freekey" % (settings.ETHERSCAN_CONTRACT_ADDRESS, ))
+            if r.status_code == 200:
+                data = r.json()
+                for operation in data["operations"]:
+                    context["transacoes"].append({
+                        "date": datetime.fromtimestamp(float(operation["timestamp"])),
+                        "value": int(operation["value"]) / float(ETHER_DIVISOR),
+                        "from": operation["from"],
+                        "to": operation["to"],
+                    })
+        except Exception, e:
+            pass
+        return context
+
+
 @method_decorator(csrf_exempt, name='dispatch')
 class LoginWithAjaxView(AjaxResponseMixin, JSONResponseMixin, LoginView):
 
@@ -174,7 +197,6 @@ class NoDetailSummaryView(TemplateView):
                 if data["status"] == "1":
                     context["quanto_ganhou_com_a_prospera"] = float(data["result"]) / float(1000000000)
         except Exception, e:
-            print str(e)
             pass
         quanto_contribuiu_com_a_prospera = 0
         quanto_recebeu_como_nos = 0

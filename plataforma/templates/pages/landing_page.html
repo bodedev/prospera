@@ -20,15 +20,13 @@
       <h3>Emissão de Prospers até agora:</h3>
       <div class="prsps-counter">
         <i class="fa fa-circle-o-notch fa-spin loading-spinner invert" data-url="{% url "prosper_total" %}"></i>
-        <!-- {% include 'pages/partial_landing_total.html' %} -->
       </div>
     </div>
 
     <h3 class="text-center">Distribuição, Movimentação e Contribuição</h3>
 
     <div class="prospera-margin prsps-dist text-center container" style="overflow-x:auto;">
-      <i class="fa fa-circle-o-notch fa-spin loading-spinner" data-url=""></i>
-      <!-- {% include 'pages/partial_landing_history.html' %} -->
+      <i class="fa fa-circle-o-notch fa-spin loading-spinner" data-url="{% url "home_historico" %}"></i>
     </div>
   </section>
 
