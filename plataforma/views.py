@@ -172,9 +172,6 @@ class NoDetailTransactionView(TemplateView):
                         "in_or_out": "in" if t["to"] == nodo.carteira.lower() else "out"
                     }
                 )
-                print t["to"]
-                print nodo.carteira.lower()
-                print 60 * "*"
         except:
             pass
         return context
@@ -207,18 +204,6 @@ class NoDetailSummaryView(TemplateView):
             pass
         quanto_contribuiu_com_a_prospera = 0
         quanto_recebeu_como_nos = 0
-        # r = requests.get("http://api.etherscan.io/api?module=account&action=txlist&address=%s&startblock=0&endblock=99999999&sort=asc&apikey=%s" % (nodo.carteira, settings.ETHERSCAN_APIKEY))
-        # if r.status_code == 200:
-        #     data = r.json()
-        #     if data["status"] == "1":
-        #         for t in data["result"]:
-        #             # Soma o quanto enviou para a prospera
-        #             if t["to"] == nodo.carteira and t["from"] == settings.ETHERSCAN_CONTRACT_ADDRESS:
-        #                 quanto_ganhou_com_a_prospera = quanto_ganhou_com_a_prospera + int(t["value"]) / float(ETHER_DIVISOR)
-        #                 continue
-        #             if t["from"] == nodo.carteira and t["to"] == settings.ETHERSCAN_CONTRACT_ADDRESS:
-        #                 quanto_contribuiu_com_a_prospera = quanto_contribuiu_com_a_prospera + int(t["value"]) / float(ETHER_DIVISOR)
-        #             # TODO: como saber quanto recebeu como nós?
         context["quanto_contribuiu_com_a_prospera"] = quanto_contribuiu_com_a_prospera
         context["quanto_recebeu_como_nos"] = quanto_recebeu_como_nos
         return context
