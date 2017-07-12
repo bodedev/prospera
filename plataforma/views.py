@@ -158,25 +158,25 @@ class NoDetailTransactionView(TemplateView):
         context = super(NoDetailTransactionView, self).get_context_data(**kwargs)
         context["transactions"] = []
         nodo = self.get_object()
-        context["nodo"] = nodo
-        r = requests.get("http://api.etherscan.io/api?module=account&action=txlist&address=%s&startblock=%d&endblock=99999999&sort=asc&apikey=%s" % (nodo.carteira, settings.ETHERSCAN_START_BLOCK_NUMBER, settings.ETHERSCAN_APIKEY))
-        if r.status_code == 200:
-            max_transactions = getattr(settings, "MAX_TRANSACTIONS_PROFILE", 5)
+        try:
+            url = "https://api.ethplorer.io/getAddressHistory/%s?apiKey=freekey" % (nodo.carteira.lower())
+            r = requests.get(url)
             data = r.json()
-            if data["status"] == "1":
-                for t in data["result"]:
-                    max_transactions = max_transactions - 1
-                    context["transactions"].append(
-                        {
-                            "date": datetime.fromtimestamp(float(t["timeStamp"])),
-                            "value": int(t["value"]) / float(ETHER_DIVISOR),
-                            "to": t["to"],
-                            "from": t["from"],
-                            "in_or_out": "in" if t["to"] == nodo.carteira else "out"
-                        }
-                    )
-                    if not max_transactions:
-                        break
+            for t in data["operations"]:
+                context["transactions"].append(
+                    {
+                        "date": datetime.fromtimestamp(float(t["timestamp"])),
+                        "value": int(t["value"]) / float(ETHER_DIVISOR),
+                        "to": t["to"],
+                        "from": t["from"],
+                        "in_or_out": "in" if t["to"] == nodo.carteira.lower() else "out"
+                    }
+                )
+                print t["to"]
+                print nodo.carteira.lower()
+                print 60 * "*"
+        except:
+            pass
         return context
 
     def get_object(self, queryset=None):
