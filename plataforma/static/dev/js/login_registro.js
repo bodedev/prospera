@@ -39,3 +39,13 @@ $('.formAccessAjax').on('submit', function(e){
     }
   })
 });
+
+$('[data-toggle="changeLogin"]').on('click', function(e){
+  e.preventDefault()
+  var btn = $(this),
+      target = btn.data('target'),
+      active = btn.closest('form').attr('id');
+
+  $('#'+target).css("display", "block");
+  $('#'+active).css("display", "none");
+})

@@ -19,8 +19,12 @@ $gotham: 'gotham', sans-serif;
       line-height: 34px;
       padding-left: 10px;
       margin-bottom: 0px;
+      @media (min-width: $screen-sm-min) {
+        display:none !important;
+      }
     }
     .navbar-toggle {
+      display:inline-block;
       border-radius: 3px;
       border-color: $azulClaro;
       color: $branco;
@@ -33,7 +37,7 @@ $gotham: 'gotham', sans-serif;
         color: $azul;
       }
       @media (min-width: $screen-sm-min) {
-        display:inline-block;
+        display:none;
       }
     }
   }
@@ -55,7 +59,12 @@ $gotham: 'gotham', sans-serif;
         transition: color 0.3s ease;
 
         @media (min-width: $screen-sm-min) {
+          padding: 25px 18px;
+          font-size: 10px;
+        }
+        @media (min-width: $screen-md-min) {
           padding: 25px 35px;
+          font-size: 14px;
         }
 
         &:hover, &:focus {
@@ -745,10 +754,13 @@ h4{font-size: 12px;}
         }
         .no-title{
           font-weight: 700;
-          font-size: 40px;
+          font-size: 30px;
           margin-top: 50px;
           overflow: hidden;
           word-wrap: break-word;
+          @media (min-width: $screen-sm-min) {
+            font-size: 40px;
+          }
         }
         h1 {
           color: $azul;
@@ -906,7 +918,7 @@ h4{font-size: 12px;}
         }
       }
       .modal-body{
-        padding: 35px 120px;
+        padding: 35px 35px;
         h2{
           margin-top: 40px;
           color: $preto;
@@ -928,6 +940,9 @@ h4{font-size: 12px;}
             color: $preto;
             text-decoration: underline;
           }
+        }
+        @media (min-width: $screen-sm-min) {
+          padding: 35px 120px;
         }
       }
     }
