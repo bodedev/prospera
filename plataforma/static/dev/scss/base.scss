@@ -14,6 +14,12 @@ $gotham: 'gotham', sans-serif;
   }
 
   .navbar-header {
+    .header-title{
+      display:inline-block !important;
+      line-height: 34px;
+      padding-left: 10px;
+      margin-bottom: 0px;
+    }
     .navbar-toggle {
       border-radius: 3px;
       border-color: $azulClaro;
@@ -25,6 +31,9 @@ $gotham: 'gotham', sans-serif;
         border-color: $azulClaro;
         background-color: $azulClaro;
         color: $azul;
+      }
+      @media (min-width: $screen-sm-min) {
+        display:inline-block;
       }
     }
   }
@@ -152,7 +161,12 @@ h1, h2, h3, h4{
   font-family: $gotham;
   letter-spacing: 0.2em;
 }
-h1{font-size: 24px;}
+h1{
+  font-size: 20px;
+  @media (min-width: $screen-sm-min) {
+    font-size: 24px;
+  }
+}
 h2{font-size: 18px;}
 h3{font-size: 14px;}
 h4{font-size: 12px;}
