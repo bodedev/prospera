@@ -8,7 +8,7 @@ from django.contrib import admin
 
 
 from plataforma.forms import NodosForm, ObjetoForm
-from plataforma.models import Nodos, Objeto
+from plataforma.models import Nodos, Objeto, Saldo
 
 
 @admin.register(Nodos)
@@ -23,6 +23,12 @@ class ObjetoAdmin(admin.ModelAdmin):
 
     form = ObjetoForm
     list_display = ("id", "nodos", "nome")
+
+
+@admin.register(Saldo)
+class SaldoAdmin(admin.ModelAdmin):
+
+    list_display = ("carteira", "total", )
 
 
 admin.site.site_header = u"Administração Prospera"
