@@ -18,7 +18,7 @@ from django.views.generic import CreateView, DetailView, FormView, ListView, Tem
 from social_django.models import UserSocialAuth
 
 from plataforma.constants import ETHER_DIVISOR
-from plataforma.forms import NodoForm, NodosForm, ObjetoForm, SignUpForm
+from plataforma.forms import ProsperaLoginForm, NodoForm, NodosForm, ObjetoForm, SignUpForm
 from plataforma.models import Nodo, Nodos, Objeto, Saldo
 
 import requests
@@ -61,6 +61,8 @@ class LandingBalanceByTokenView(ListView):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class LoginWithAjaxView(AjaxResponseMixin, JSONResponseMixin, LoginView):
+
+    form_class = ProsperaLoginForm
 
     def post_ajax(self, request, *args, **kwargs):
         form = self.get_form()

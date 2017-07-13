@@ -2,7 +2,7 @@
 
 
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.core.files.images import get_image_dimensions
 
@@ -10,9 +10,20 @@ from plataforma import constants
 from plataforma.models import Nodo, Nodos, Objeto
 
 
+class ProsperaLoginForm(AuthenticationForm):
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        return username.lower()
+
+
 class SignUpForm(UserCreationForm):
 
     quem_sou = forms.CharField(max_length=2000, required=False)
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        return username.lower()
 
     class Meta:
         model = User
