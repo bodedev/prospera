@@ -8,3 +8,4 @@ pillow
 requests
 requests[security]
 social-auth-app-django==1.2.0
+uwsgi
