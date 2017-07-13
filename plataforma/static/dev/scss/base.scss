@@ -318,6 +318,41 @@ h4{font-size: 12px;}
             padding: 20px;
           }
         }
+        .exchanges{
+          p{
+            color: $branco;
+            font-family: $gotham;
+            font-weight: 300;
+            font-size: 12px;
+            text-transform: uppercase;
+            text-align: center;
+          }
+          .bloco{
+            width: 100%;
+            border: solid 4px $branco;
+            margin: auto;
+            margin-top: 25px;
+            p{
+              margin: 25px 25px 0px 25px;
+            }
+            div{
+              margin: 15px 25px 25px 25px;
+              a{
+                color: $branco;
+                font-family: $gotham;
+                font-weight: 500;
+                font-size: 16px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                text-decoration: underline;
+              }
+            }
+            @media (min-width: $screen-sm-min) {
+              width: 480px;
+            }
+          }
+
+        }
       }
 
       .quemsomos-content{
