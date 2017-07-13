@@ -222,7 +222,8 @@ h4{font-size: 12px;}
   background-color: transparent;
   border: 1px solid;
   padding: 10px 14px;
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 // Maring
@@ -375,6 +376,29 @@ h4{font-size: 12px;}
         }
         .video-container{
           margin: 70px auto;
+        }
+        .bloco{
+          width: 100%;
+          border: solid 2px $preto;
+          margin: auto;
+          p{
+            margin: 25px 25px 0px 25px;
+          }
+          div{
+            margin: 25px;
+            a{
+              color: $preto;
+              font-family: $gotham;
+              font-weight: 400;
+              font-size: 16px;
+              letter-spacing: 0.2em;
+              text-transform: uppercase;
+              text-decoration: underline;
+            }
+          }
+          @media (min-width: $screen-sm-min) {
+            width: 480px;
+          }
         }
       }
 
