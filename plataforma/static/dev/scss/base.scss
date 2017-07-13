@@ -198,6 +198,7 @@ h4{font-size: 12px;}
   font-size: 14px;
   letter-spacing: 0.45em;
   padding: 15px 22px;
+  margin: 5px 0;
 
   &:hover, &:focus{
     color: $azulClaro;
@@ -377,27 +378,14 @@ h4{font-size: 12px;}
         .video-container{
           margin: 70px auto;
         }
-        .bloco{
-          width: 100%;
-          border: solid 2px $preto;
-          margin: auto;
-          p{
-            margin: 25px 25px 0px 25px;
-          }
-          div{
-            margin: 25px;
-            a{
-              color: $preto;
-              font-family: $gotham;
-              font-weight: 400;
-              font-size: 16px;
-              letter-spacing: 0.2em;
-              text-transform: uppercase;
-              text-decoration: underline;
+        .companies-container{
+          .btn-prospera{
+            font-size: 10px;
+            padding: 15px 22px;
+            @media (min-width: $screen-sm-min) {
+              font-size: 14px;
+              padding: 15px 22px;
             }
-          }
-          @media (min-width: $screen-sm-min) {
-            width: 480px;
           }
         }
       }
