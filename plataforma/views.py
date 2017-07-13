@@ -245,7 +245,7 @@ class NoEditView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(NoEditView, self).get_context_data(**kwargs)
-        context["action"] = u'Editar'
+        context["action"] = u'Salvar'
         return context
 
     def get_object(self, queryset=None):
@@ -314,7 +314,7 @@ class NosEditView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(NosEditView, self).get_context_data(**kwargs)
-        context["action"] = u'Editar'
+        context["action"] = u'Salvar'
         return context
 
     def get_object(self, queryset=None):
@@ -358,7 +358,7 @@ class ObjectEditView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(ObjectEditView, self).get_context_data(**kwargs)
-        context["action"] = u'Editar'
+        context["action"] = u'Salvar'
         return context
 
     def get_object(self, queryset=None):
