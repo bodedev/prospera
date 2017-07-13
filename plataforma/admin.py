@@ -8,7 +8,13 @@ from django.contrib import admin
 
 
 from plataforma.forms import NodosForm, ObjetoForm
-from plataforma.models import Nodos, Objeto, Saldo
+from plataforma.models import Nodo, Nodos, Objeto, Saldo
+
+
+@admin.register(Nodo)
+class NodoAdmin(admin.ModelAdmin):
+
+    list_display = ("id", "user", "nome", "carteira",)
 
 
 @admin.register(Nodos)
