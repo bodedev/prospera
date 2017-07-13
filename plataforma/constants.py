@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+ETHER_DIVISOR = 1000000000
+
 MIMETYPES_IMAGENS_ACEITOS = ["image/jpeg", "image/png"]
 
 NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA = 400

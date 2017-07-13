@@ -17,13 +17,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, DetailView, FormView, ListView, TemplateView, UpdateView
 from social_django.models import UserSocialAuth
 
+from plataforma.constants import ETHER_DIVISOR
 from plataforma.forms import NodoForm, NodosForm, ObjetoForm, SignUpForm
 from plataforma.models import Nodo, Nodos, Objeto, Saldo
 
 import requests
-
-
-ETHER_DIVISOR = 1000000000
 
 
 class LandingPageView(TemplateView):

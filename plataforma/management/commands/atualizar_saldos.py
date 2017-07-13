@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-from django.core.management.base import BaseCommand
 from django.conf import settings
+from django.core.management.base import BaseCommand
+from plataforma.constants import ETHER_DIVISOR
 from plataforma.models import Saldo
 import requests
 
@@ -22,7 +23,7 @@ class Command(BaseCommand):
                 if r.status_code == 200:
                     data = r.json()
                     if data["status"] == "1":
-                        saldo = float(data["result"]) / float(1000000000)
+                        saldo = float(data["result"]) / float(ETHER_DIVISOR)
                         _, created = Saldo.objects.update_or_create(carteira=carteira, defaults={"total": saldo})
                         print "%s: %0.6f (%s)" % (carteira, saldo, str(created))
             except Exception, e:
