@@ -9,7 +9,6 @@ from plataforma.views import NosCreateView, NosDetailView, NosEditView, NosListV
 from plataforma.views import ObjectCreateView, ObjectDetailView, ObjectEditView
 from plataforma.views import LoginWithAjaxView
 from plataforma.views import TotalProsperEmitidosSummaryView, LandingLastOperationsByTokenView, LandingBalanceByTokenView
-from plataforma.views_ethereum import TotalEmitidoDetailView, UltimasTransacoesDetailView
 
 
 urlpatterns = [
@@ -34,6 +33,4 @@ urlpatterns = [
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/novo/$', ObjectCreateView.as_view(), name="object_create"),
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/detalhes/$', ObjectDetailView.as_view(), name="object_detail"),
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/editar/$', ObjectEditView.as_view(), name="object_update"),
-    url(r'^api/total-supply/$', TotalEmitidoDetailView.as_view(), name="api_total_supply"),
-    url(r'^api/(?P<wallet>[-\w]+)/transactions/$', UltimasTransacoesDetailView.as_view(), name="api_last_transacions"),
 ]
