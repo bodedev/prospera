@@ -41,19 +41,19 @@
             </div>
 
             <div class="form-group{% if form.contato_facebook.errors %} has-error{% endif %}">
-              <label for="contato_facebook">Link para grupo no Facebook</label>
+              <label for="contato_facebook">Link para perfil no Facebook</label>
               <input type="text" name="contato_facebook" id="contato_facebook" class="form-control" value="{{ form.contato_facebook.value|default:"" }}">
               <span class="help-block">{{ form.contato_facebook.errors }}</span>
             </div>
 
             <div class="form-group{% if form.contato_whatsapp.errors %} has-error{% endif %}">
-              <label for="contato_whatsapp">Link para grupo no Whatsapp</label>
+              <label for="contato_whatsapp">Link para contato no Whatsapp</label>
               <input type="text" name="contato_whatsapp" id="contato_whatsapp" class="form-control" value="{{ form.contato_whatsapp.value|default:"" }}">
               <span class="help-block">{{ form.contato_whatsapp.errors }}</span>
             </div>
 
             <div class="form-group{% if form.contato_zoom.errors %} has-error{% endif %}">
-              <label for="contato_zoom">Link para grupo no Zoom</label>
+              <label for="contato_zoom">Link para contato no Zoom</label>
               <input type="text" name="contato_zoom" id="contato_zoom" class="form-control" value="{{ form.contato_zoom.value|default:"" }}">
               <span class="help-block">{{ form.contato_zoom.errors }}</span>
             </div>
