@@ -48,11 +48,12 @@ class NodoForm(forms.ModelForm, ImageValidator):
 
     quem_sou = forms.CharField(max_length=2000, required=False)
 
-    def clean_imagem(self):
-        imagem = self.cleaned_data.get("imagem")
-        if "imagem" in self.changed_data:
-            return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
-        return imagem
+    # Removendo validação do tamanho da imagem
+    # def clean_imagem(self):
+    #     imagem = self.cleaned_data.get("imagem")
+    #     if "imagem" in self.changed_data:
+    #         return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
+    #     return imagem
 
     class Meta:
         model = Nodo
@@ -66,9 +67,10 @@ class NodosForm(forms.ModelForm, ImageValidator):
         model = Nodos
         exclude = ["created", "updated", "excluido", "excluido_por", "excluido_em", "criado_por"]
 
-    def clean_imagem(self):
-        imagem = self.cleaned_data.get("imagem")
-        return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
+    # Removendo validação do tamanho da imagem
+    # def clean_imagem(self):
+    #     imagem = self.cleaned_data.get("imagem")
+    #     return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.NODOS_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
 
 
 class ObjetoForm(forms.ModelForm, ImageValidator):
@@ -78,6 +80,7 @@ class ObjetoForm(forms.ModelForm, ImageValidator):
         model = Objeto
         exclude = ["created", "updated", "excluido", "excluido_por", "excluido_em", "criado_por", "nodos"]
 
-    def clean_imagem(self):
-        imagem = self.cleaned_data.get("imagem")
-        return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
+    # Removendo validação do tamanho da imagem
+    # def clean_imagem(self):
+    #     imagem = self.cleaned_data.get("imagem")
+    #     return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
