@@ -88,61 +88,25 @@ class NoCreateView(AjaxResponseMixin, JSONResponseMixin, FormView):
         user = authenticate(username=user.username, password=raw_password)
         login(self.request, user)
         messages.success(self.request, u'Bem-vindo a Prospera!')
-        return True
+        return user
 
     def form_valid(self, form):
-        self.create_the_user(form)
-        return HttpResponseRedirect(reverse_lazy("no_detail"))
+        user = self.create_the_user(form)
+        return HttpResponseRedirect(reverse_lazy("no_detail_public", args=[user.id]))
 
     def post_ajax(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
-            self.create_the_user(form)
-            return self.render_json_response({"next": reverse_lazy("no_detail")})
+            user = self.create_the_user(form)
+            return self.render_json_response({"next": reverse_lazy("no_detail_public", args=[user.id])})
         else:
             return self.render_json_response(form.errors.as_json(), status=400)
 
 
-@method_decorator(login_required, name='dispatch')
-class NoDetailView(UpdateView):
+class NoDetailView(DetailView):
 
     fields = ["quem_sou"]
     template_name = "pages/no_detail.html"
-    success_url = reverse_lazy("no_detail")
-
-    def form_valid(self, form):
-        self.object = form.save()
-        messages.success(self.request, u'Os dados do seu perfil foram salvos.')
-        return HttpResponseRedirect(self.get_success_url())
-
-    def get_context_data(self, **kwargs):
-        context = super(NoDetailView, self).get_context_data(**kwargs)
-        context["github_login"] = None
-        try:
-            context["github_login"] = self.request.user.social_auth.get(provider='github')
-        except UserSocialAuth.DoesNotExist:
-            pass
-
-        context["twitter_login"] = None
-        try:
-            context["twitter_login"] = self.request.user.social_auth.get(provider='twitter')
-        except UserSocialAuth.DoesNotExist:
-            pass
-
-        context["facebook_login"] = None
-        try:
-            context["facebook_login"] = self.request.user.social_auth.get(provider='facebook')
-        except UserSocialAuth.DoesNotExist:
-            pass
-
-        context["google_login"] = None
-        try:
-            context["google_login"] = self.request.user.social_auth.get(provider='google-oauth2')
-        except UserSocialAuth.DoesNotExist:
-            pass
-
-        context["can_disconnect"] = (self.request.user.social_auth.count() > 1 or self.request.user.has_usable_password())
-        return context
 
     def get_object(self, queryset=None):
         if "pk" in self.kwargs:
@@ -242,7 +206,6 @@ class NoEditView(UpdateView):
     form_class = NodoForm
     model = Nodo
     slug_url_kwarg = "no"
-    success_url = reverse_lazy("no_detail")
     template_name = "pages/no_edit_form.html"
 
     def get_context_data(self, **kwargs):
@@ -252,6 +215,9 @@ class NoEditView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user.nodo
+
+    def get_success_url(self):
+        return reverse_lazy("no_detail_public", args=[self.request.user.id])
 
 
 @method_decorator(login_required, name='dispatch')
@@ -273,7 +239,7 @@ class UserChangePassword(FormView):
         form.save()
         update_session_auth_hash(self.request, form.user)
         messages.success(self.request, u'Sua senha foi alterada!')
-        return HttpResponseRedirect(reverse_lazy('no_detail'))
+        return HttpResponseRedirect(reverse_lazy('no_detail_public', args=[self.request.user.id]))
 
 
 @method_decorator(login_required, name='dispatch')

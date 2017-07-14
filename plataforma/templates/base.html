@@ -93,7 +93,7 @@
                   {% endif %}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dLabel">
-                  <li><a href="{% url "no_detail" %}">Perfil</a></li>
+                  <li><a href="{% url "no_detail_public" user.id %}">Perfil</a></li>
                   <li><a href="{% url "logout" %}">Sair</a></li>
                 </ul>
               </li>
