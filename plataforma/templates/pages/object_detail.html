@@ -28,7 +28,11 @@
     </section>
 
     <section class="container">
+      {% if objeto.descricao|length > 360 %}
       <p class="description text-justify">{{ objeto.descricao }}</p>
+      {% else %}
+      <p style="column-width: inherit;max-width: 85%;margin: auto;">{{ objeto.descricao }}</p>
+      {% endif %}
     </section>
 
     {% if objeto.contato_facebook or objeto.contato_whatsapp or objeto.contato_zoom  %}
