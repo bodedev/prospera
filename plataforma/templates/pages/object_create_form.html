@@ -22,7 +22,7 @@
         <div>
           <div class="col-md-6">
             <div class="form-group{% if form.nome.errors %} has-error{% endif %}">
-              <label for="nome">Nome da Comunidade</label>
+              <label for="nome">Nome do Objeto</label>
               <input type="text" name="nome" id="nome" class="form-control" value="{{ form.nome.value|default:"" }}">
               <span class="help-block">{{ form.nome.errors }}</span>
             </div>
