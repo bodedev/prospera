@@ -19,7 +19,6 @@ urlpatterns = [
     url(r'^logout/$', auth_views.LogoutView.as_view(next_page="home"), name="logout"),
     url(r'^prosper/total/$', TotalProsperEmitidosSummaryView.as_view(), name="prosper_total"),
     url(r'^oauth/', include('social_django.urls', namespace="social")),
-    url(r'^no/$', NoDetailView.as_view(), name="no_detail"),
     url(r'^no/(?P<pk>\d+)/detalhes/$', NoDetailView.as_view(), name="no_detail_public"),
     url(r'^no/(?P<pk>\d+)/detalhes/resumo/$', NoDetailSummaryView.as_view(), name="no_detail_public_summary"),
     url(r'^no/(?P<pk>\d+)/detalhes/transacoes/$', NoDetailTransactionView.as_view(), name="no_detail_public_transactions"),
