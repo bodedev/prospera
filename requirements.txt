@@ -5,6 +5,7 @@ django-simple-history
 django==1.11.3
 mysql-python
 pillow
+pyopenssl
 requests
 requests[security]
 social-auth-app-django==1.2.0
