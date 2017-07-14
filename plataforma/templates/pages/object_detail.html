@@ -28,7 +28,7 @@
     </section>
 
     <section class="container">
-      {% if objeto.descricao|length > 360 %}
+      {% if objeto.descricao|length > 500 %}
       <p class="description text-justify">{{ objeto.descricao }}</p>
       {% else %}
       <p class="description" style="column-width: inherit;max-width: 90%;margin: auto;margin-top: 10px;">{{ objeto.descricao }}</p>
