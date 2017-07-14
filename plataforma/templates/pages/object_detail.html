@@ -28,11 +28,7 @@
     </section>
 
     <section class="container">
-      {% if objeto.descricao|length > 500 %}
-      <p class="description text-justify">{{ objeto.descricao }}</p>
-      {% else %}
-      <p class="description" style="column-width: inherit;max-width: 90%;margin: auto;margin-top: 10px;">{{ objeto.descricao }}</p>
-      {% endif %}
+      <p class="description" style="max-width: 90%;margin: auto;margin-top: 10px;">{{ objeto.descricao|default:""|linebreaks }}</p>
     </section>
 
     {% if objeto.contato_facebook or objeto.contato_whatsapp or objeto.contato_zoom  %}
