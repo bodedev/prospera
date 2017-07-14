@@ -54,7 +54,7 @@ $gotham: 'gotham', sans-serif;
         color: $branco;
         font-family: $gotham;
         letter-spacing: 0.25em;
-        font-size: 14px;
+        font-size: 12px;
         text-transform: uppercase;
         transition: color 0.3s ease;
 
@@ -63,8 +63,8 @@ $gotham: 'gotham', sans-serif;
           font-size: 10px;
         }
         @media (min-width: $screen-md-min) {
-          padding: 25px 35px;
-          font-size: 14px;
+          padding: 25px 30px;
+          font-size: 12px;
         }
 
         &:hover, &:focus {
