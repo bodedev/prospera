@@ -33,6 +33,7 @@ class Nodo(BaseModel, BaseContatoModel, LogicDeletable):
     quem_sou = models.TextField(u"Quem Sou?", max_length=2000, blank=True, null=True)
     carteira = models.CharField(u"Hash Carteira", max_length=42, blank=True, null=True)
     imagem = models.ImageField(upload_to="imagens/nodo/fotos", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, NODO_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
+    telefone = models.CharField(u"Telefone", max_length=42, null=True, blank=True)
 
     def get_tracking_url(self):
         if self.carteira:

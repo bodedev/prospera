@@ -50,11 +50,13 @@ class NodoForm(forms.ModelForm, ImageValidator):
 
     def clean_imagem(self):
         imagem = self.cleaned_data.get("imagem")
-        return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
+        if "imagem" in self.changed_data:
+            return self.validar_imagem(imagem, constants.MIMETYPES_IMAGENS_ACEITOS, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, constants.NODO_TAMANHO_IMAGEM_LISTAGEM_ALTURA)
+        return imagem
 
     class Meta:
         model = Nodo
-        fields = ('quem_sou', 'carteira', 'contato_facebook', 'contato_whatsapp', 'contato_zoom', 'imagem')
+        fields = ('quem_sou', 'carteira', 'contato_facebook', 'telefone', 'contato_zoom', 'imagem')
 
 
 class NodosForm(forms.ModelForm, ImageValidator):
