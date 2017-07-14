@@ -29,7 +29,7 @@
     </div>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <div class="quem-sou text-justify">{{ nodo.quem_sou|default:""|linebreaks }}</div>
+        <div class="quem-sou">{{ nodo.quem_sou|default:""|linebreaks }}</div>
         {% if nodo.telefone %}
         <div class="quem-sou text-justify"><p><i class="fa fa-whatsapp item-contato" aria-hidden="true"></i> {{ nodo.telefone }}</p></div>
         {% endif %}
