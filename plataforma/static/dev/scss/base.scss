@@ -693,29 +693,8 @@ h4{font-size: 12px;}
       }
     }
 
-    // Objetos
+    // Detalhes de Objeto
     #object-detail{
-      .description{
-        margin-top: 10px;
-      }
-      .descricao-content{
-        margin: auto;
-        padding-top: 80px;
-
-        h1.objeto-title{
-          font-size: 45px;
-          margin-top: 40px;
-          @media (min-width: $screen-sm-min) {
-            margin-top: 100px;
-          }
-        }
-        .objeto-imagem{
-          max-width: 60%;
-          @media (min-width: $screen-sm-min) {
-            max-width: 360px;
-          }
-        }
-      }
       p{
         font-family: $gotham;
         font-weight: 300;
@@ -724,6 +703,19 @@ h4{font-size: 12px;}
         letter-spacing: 0.05em;
         line-height: 2em;
       }
+
+      .descricao-content{
+        margin: auto;
+        padding-top: 80px;
+
+        .objeto-imagem{
+          max-width: 60%;
+          @media (min-width: $screen-sm-min) {
+            max-width: 360px;
+          }
+        }
+      }
+
       .contato-content{
         margin: auto;
         margin-top: 80px;

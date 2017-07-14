@@ -9,26 +9,20 @@
           <img class="voltar" src="{% static 'img/voltar.png' %}" alt="Voltar">
         </a>
         <h1>+ OBJETO +</h1>
-        <div class="col-md-4">
         {% if objeto.imagem %}
-          <img class="objeto-imagem" src="{{ objeto.imagem.url }}" alt="...">
-          {% else %}
-          <img class="objeto-imagem" src="{% static 'img/default_objeto.jpg' %}" alt="...">
+        <img class="col-md-6 objeto-imagem" src="{{ objeto.imagem.url }}" alt="...">
+        {% else %}
+        <img class="col-md-6 objeto-imagem" src="{% static 'img/default_objeto.jpg' %}" alt="...">
         {% endif %}
-        </div>
         <div class="col-md-6">
           <h1 class="objeto-title">{{ objeto.nome }}</h1>
           <h4 class="owner media-heading">Criado por: <a href="{% url "no_detail_public" objeto.criado_por.id %}">{{ objeto.criado_por }}</a></h4>
+          <p class="description">{{ objeto.descricao|default:""|linebreaks }}</p>
+          {% if objeto.criado_por == user %}
+          <a href="{% url "object_update" objeto.nodos.slug objeto.slug %}" class="btn btn-prospera btn-edit" role="button">Editar</a>
+          {% endif %}
         </div>
       </div>
-        {% if objeto.criado_por == user %}
-        <a href="{% url "object_update" objeto.nodos.slug objeto.slug %}" class="btn btn-prospera btn-edit" role="button">Editar</a>
-        {% endif %}
-        <!-- <br /> -->
-    </section>
-
-    <section class="container">
-      <p class="description" style="max-width: 90%;margin: auto;margin-top: 10px;">{{ objeto.descricao|default:""|linebreaks }}</p>
     </section>
 
     {% if objeto.contato_facebook or objeto.contato_whatsapp or objeto.contato_zoom  %}
