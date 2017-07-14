@@ -12,18 +12,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='historicalnodo',
-            name='history_change_reason',
-        ),
-        migrations.RemoveField(
-            model_name='historicalnodos',
-            name='history_change_reason',
-        ),
-        migrations.RemoveField(
-            model_name='historicalobjeto',
-            name='history_change_reason',
-        ),
         migrations.AddField(
             model_name='historicalnodo',
             name='telefone',
