@@ -61,6 +61,11 @@ class NodoForm(forms.ModelForm, ImageValidator):
 
 class NodosForm(forms.ModelForm, ImageValidator):
 
+    def __init__(self, *args, **kwargs):
+        super(NodosForm, self).__init__(*args, **kwargs)
+        for key in ["nome", "imagem", "resumo", "descricao"]:
+            self.fields[key].required = True
+
     class Meta:
 
         model = Nodos
@@ -72,6 +77,11 @@ class NodosForm(forms.ModelForm, ImageValidator):
 
 
 class ObjetoForm(forms.ModelForm, ImageValidator):
+
+    def __init__(self, *args, **kwargs):
+        super(ObjetoForm, self).__init__(*args, **kwargs)
+        for key in ["nome", "imagem", "descricao",]:
+            self.fields[key].required = True
 
     class Meta:
 
