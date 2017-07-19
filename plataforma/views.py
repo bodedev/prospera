@@ -207,7 +207,7 @@ class NoDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        self.object.delete()
+        self.object.user.delete()
         logout(request)
         messages.success(request, u"Seu perfil foi excluído!")
         return HttpResponseRedirect(reverse_lazy("home"))
