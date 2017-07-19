@@ -6,7 +6,7 @@ from django.contrib.auth import views as auth_views
 
 from plataforma.views import NoCreateView, NoEditView, LandingPageView, NoDetailView, UserChangePassword, NoDetailSummaryView, NoDetailTransactionView
 from plataforma.views import NosCreateView, NosDetailView, NosEditView, NosListView
-from plataforma.views import ObjectCreateView, ObjectDetailView, ObjectEditView
+from plataforma.views import ObjectCreateView, ObjectDetailView, ObjectEditView, ObjectListView
 from plataforma.views import LoginWithAjaxView
 from plataforma.views import TotalProsperEmitidosSummaryView, LandingLastOperationsByTokenView, LandingBalanceByTokenView
 
@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/novo/$', ObjectCreateView.as_view(), name="object_create"),
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/detalhes/$', ObjectDetailView.as_view(), name="object_detail"),
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/editar/$', ObjectEditView.as_view(), name="object_update"),
+    url(r'^objetos/$', ObjectListView.as_view(), name="object_list"),
 ]

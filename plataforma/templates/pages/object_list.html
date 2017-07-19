@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block bodyclass %}class="comunidades"{% endblock %}
+{% block content %}
+
+<div id="nos">
+  <section class="descricao-content container">
+    <div class="row">
+      <div class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">
+        <h1>+ Objetos +</h1>
+      </div>
+      <div class="col-md-8 col-lg-10 col-md-offset-1 col-lg-offset-0">
+        <p class="text-justify">
+          São grupos de interesse, aprendizagem e prática que se formam organicamente no sistema. Os sujeitos se agrupam por interesses comuns. E o objetivo da comunidade é ser um ambiente onde o sujeito gera receita para si por meio da criação e comercialização de objetos que estejam alinhados com os interesses da comunidade.
+        </p>
+      </div>
+      <div class="inline-block hidden-sm hidden-xs">
+        <img class="" src="{% static 'img/prospera-circle.png' %}" alt="Prospera">
+      </div>
+    </div>
+  </section>
+
+  <section class="comunidades-content container">
+    <div class="row">
+      <div class="col-xs-12 col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0 comunidades-list">
+        <div class="row">
+          {% for object in object_list %}
+          <a class="col-xs-12 col-sm-6 col-md-4" href="{% url 'nos_detail' object.slug %}">
+            <div class="thumbnail">
+              {% if object.imagem %}
+                <img class="media-object" src="{{ object.imagem.url }}" alt="...">
+              {% else %}
+                <img class="media-object" src="{% static 'img/default_comunidade.jpg' %}" alt="...">
+              {% endif %}
+              <div class="caption">
+                <h2>{{ object.nome }}</h2>
+                <p>{{ object.resumo }}</p>
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+          <a href="{% url "nos_create" %}" class="col-xs-12 col-sm-6 col-md-4">
+            <div class="thumbnail text-center">
+              <div class="button-container">
+                <p class="plus">+</p>
+                <h2>CRIAR UMA COMUNIDADE</h2>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% endblock %}

@@ -337,3 +337,9 @@ class ObjectEditView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("object_detail", kwargs={"nos": self.object.nodos.slug, "objeto": self.object.slug})
+
+
+class ObjectListView(ListView):
+
+    model = Objeto
+    template_name = "pages/object_list.html"
