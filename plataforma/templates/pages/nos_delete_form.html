@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block bodyclass %}class="comunidade-detail"{% endblock %}
+{% block content %}
+
+<div class="object-create create">
+  <section class="descricao-content container">
+    <div class="row">
+      <h1 class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">+ Excluir uma Comunidade +</h1>
+    </div>
+    <div class="row">
+      <form class="" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <p class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">Você tem certeza que deseja excluir a comunidade <strong>{{ object.nome }}</strong>?</p>
+        <div class="col-xs-12">
+          <button class="btn btn-prospera btn-lg" type="submit">Sim</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+{% endblock %}

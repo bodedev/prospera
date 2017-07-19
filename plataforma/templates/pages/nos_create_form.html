@@ -77,6 +77,9 @@
           </div>
           <div class="col-xs-12">
             <button class="btn btn-prospera btn-lg" type="submit">{% if action %} {{action}} {% else %}Criar {% endif %}</button>
+            {% if action %}
+            <a href="{% url 'nos_delete' object.slug %}" class="btn btn-prospera btn-lg" style="margin-left: 40px;">Excluir</a>
+            {% endif %}
           </div>
         </div>
       </form>

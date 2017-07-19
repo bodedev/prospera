@@ -262,6 +262,31 @@ class NosListView(ListView):
     template_name = "pages/nos_list.html"
 
 
+@method_decorator(login_required, name='dispatch')
+class NosDeleteView(DeleteView):
+
+    model = Nodos
+    slug_url_kwarg = "nos"
+    template_name = "pages/nos_delete_form.html"
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        messages.success(request, u"A Comunidade foi excluída!")
+        return HttpResponseRedirect(reverse_lazy("nos_list"))
+
+    def get_context_data(self, **kwargs):
+        context = super(NosDeleteView, self).get_context_data(**kwargs)
+        context["action"] = u'Excluir'
+        return context
+
+    def get_object(self, queryset=None):
+        self.object = super(NosDeleteView, self).get_object(queryset)
+        if self.object.criado_por != self.request.user:
+            raise PermissionDenied
+        return self.object
+
+
 class NosDetailView(DetailView):
 
     context_object_name = "nos"

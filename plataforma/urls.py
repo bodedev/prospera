@@ -5,7 +5,7 @@ from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
 
 from plataforma.views import NoCreateView, NoEditView, LandingPageView, NoDetailView, UserChangePassword, NoDetailSummaryView, NoDetailTransactionView
-from plataforma.views import NosCreateView, NosDetailView, NosEditView, NosListView
+from plataforma.views import NosCreateView, NosDeleteView, NosDetailView, NosEditView, NosListView
 from plataforma.views import ObjectCreateView, ObjectDeleteView, ObjectDetailView, ObjectEditView, ObjectListView
 from plataforma.views import LoginWithAjaxView
 from plataforma.views import TotalProsperEmitidosSummaryView, LandingLastOperationsByTokenView, LandingBalanceByTokenView
@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^comunidades/nova/$', NosCreateView.as_view(), name="nos_create"),
     url(r'^comunidades/(?P<nos>[-\w]+)/detalhes/$', NosDetailView.as_view(), name="nos_detail"),
     url(r'^comunidades/(?P<nos>[-\w]+)/editar/$', NosEditView.as_view(), name="nos_update"),
+    url(r'^comunidades/(?P<nos>[-\w]+)/excluir/$', NosDeleteView.as_view(), name="nos_delete"),
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/novo/$', ObjectCreateView.as_view(), name="object_create"),
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/detalhes/$', ObjectDetailView.as_view(), name="object_detail"),
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/editar/$', ObjectEditView.as_view(), name="object_update"),
