@@ -70,9 +70,11 @@
           </div>
           <div class="col-xs-12">
             <button class="btn btn-prospera btn-lg" type="submit">{% if action %}{{action}}{% else %}Criar{% endif %}</button>
+
           </div>
         </div>
       </form>
+      <a href="{% url "object_delete" object.nodos.slug object.slug %}"><button class="btn btn-prospera btn-lg">Excluir</button></a>
     </div>
   </section>
 </div>

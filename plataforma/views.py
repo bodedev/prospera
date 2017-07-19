@@ -14,8 +14,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponseServerError
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import CreateView, DetailView, FormView, ListView, TemplateView, UpdateView
-from social_django.models import UserSocialAuth
+from django.views.generic import CreateView, DeleteView, DetailView, FormView, ListView, TemplateView, UpdateView
 
 from plataforma.constants import ETHER_DIVISOR
 from plataforma.forms import ProsperaLoginForm, NodoForm, NodosForm, ObjetoForm, SignUpForm
@@ -306,6 +305,32 @@ class ObjectCreateView(CreateView):
         objeto.save()
         messages.success(self.request, u'Objeto criado com sucesso!')
         return HttpResponseRedirect(reverse_lazy("object_detail", args=[objeto.nodos.slug, objeto.slug]))
+
+
+@method_decorator(login_required, name='dispatch')
+class ObjectDeleteView(DeleteView):
+
+    model = Objeto
+    slug_url_kwarg = "objeto"
+    template_name = "pages/object_delete_form.html"
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        comunidade_slug = self.object.nodos.slug
+        self.object.delete()
+        messages.success(request, u"O objeto foi excluído!")
+        return HttpResponseRedirect(reverse_lazy("nos_detail", args=[comunidade_slug]))
+
+    def get_context_data(self, **kwargs):
+        context = super(ObjectDeleteView, self).get_context_data(**kwargs)
+        context["action"] = u'Excluir'
+        return context
+
+    def get_object(self, queryset=None):
+        self.object = super(ObjectDeleteView, self).get_object(queryset)
+        if self.object.criado_por != self.request.user:
+            raise PermissionDenied
+        return self.object
 
 
 class ObjectDetailView(DetailView):
