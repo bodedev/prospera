@@ -70,6 +70,7 @@ $gotham: 'gotham', sans-serif;
         &:hover, &:focus {
           color: $azulClaro;
           outline: 0;
+          background-color: transparent;
         }
         &.profile{
           padding: 15px 35px;
@@ -85,6 +86,13 @@ $gotham: 'gotham', sans-serif;
         a{
           padding: 10px;
         }
+      }
+      @media (min-width: $screen-sm-min) {
+          .prsp-menu:hover{
+            .dropdown-menu{
+                display:block;
+            }
+          }
       }
     }
     .profile-imagem{

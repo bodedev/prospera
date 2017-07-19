@@ -78,22 +78,22 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                <li>
-                <a href="#" class="scroll" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Prospera <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dLabel">
-                    <li><a href="{% url 'nos_list' %}">Comunidades</a></li>
-                    <li><a href="{% url 'object_list' %}">Objetos</a></li>
-                    <li><a href="{% url 'no_list' %}">Sujeitos</a></li>
-                </ul>
+                <li class="prsp-menu">
+                    <a href="#" class="scroll" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Prospera <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                        <li><a href="{% url 'nos_list' %}">Comunidades</a></li>
+                        <li><a href="{% url 'object_list' %}">Objetos</a></li>
+                        <li><a href="{% url 'no_list' %}">Sujeitos</a></li>
+                    </ul>
               </li>
               <li><a class="scroll" href="{% url 'home' %}">Home</a></li>
               <li><a class="scroll" href="{% url 'home' %}#quem-somos">Quem Somos</a></li>
               <li><a class="scroll" href="{% url 'home' %}#contato">Contato</a></li>
               <li><a class="scroll" href="https://zoom.us/j/7874523266" target="_blank">Zoom</a></li>
               {% if user.id %}
-              <li>
+              <li class="prsp-menu">
                 <a href="#" class="scroll {% if user.nodo.imagem %}profile{% endif %}" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {% if user.nodo.imagem %}
                     <img src="{{ user.nodo.imagem.url }}" class="profile-imagem"><span class="caret"></span>
