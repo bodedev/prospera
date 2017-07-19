@@ -4,7 +4,7 @@
 from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
 
-from plataforma.views import NoCreateView, NoEditView, NoListView, LandingPageView, NoDetailView, UserChangePassword, NoDetailSummaryView, NoDetailTransactionView
+from plataforma.views import NoCreateView, NoDeleteView, NoEditView, NoListView, LandingPageView, NoDetailView, UserChangePassword, NoDetailSummaryView, NoDetailTransactionView
 from plataforma.views import NosCreateView, NosDeleteView, NosDetailView, NosEditView, NosListView
 from plataforma.views import ObjectCreateView, ObjectDeleteView, ObjectDetailView, ObjectEditView, ObjectListView
 from plataforma.views import LoginWithAjaxView
@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^prosper/total/$', TotalProsperEmitidosSummaryView.as_view(), name="prosper_total"),
     url(r'^oauth/', include('social_django.urls', namespace="social")),
     url(r'^no/(?P<pk>\d+)/detalhes/$', NoDetailView.as_view(), name="no_detail_public"),
+    url(r'^no/(?P<pk>\d+)/excluir/$', NoDeleteView.as_view(), name="no_delete"),
     url(r'^no/(?P<pk>\d+)/detalhes/resumo/$', NoDetailSummaryView.as_view(), name="no_detail_public_summary"),
     url(r'^no/(?P<pk>\d+)/detalhes/transacoes/$', NoDetailTransactionView.as_view(), name="no_detail_public_transactions"),
     url(r'^no/alterar-senha/$', UserChangePassword.as_view(), name="no_change_password"),
@@ -35,5 +36,5 @@ urlpatterns = [
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/editar/$', ObjectEditView.as_view(), name="object_update"),
     url(r'^comunidades/(?P<nos>[-\w]+)/objeto/(?P<objeto>[-\w]+)/excluir/$', ObjectDeleteView.as_view(), name="object_delete"),
     url(r'^objetos/$', ObjectListView.as_view(), name="object_list"),
-url(r'^sujeitos/$', NoListView.as_view(), name="no_list"),
+    url(r'^sujeitos/$', NoListView.as_view(), name="no_list"),
 ]

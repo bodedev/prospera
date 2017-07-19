@@ -5,7 +5,7 @@ from braces.views import AjaxResponseMixin, JSONResponseMixin
 from datetime import datetime
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, update_session_auth_hash
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth.views import LoginView
@@ -197,6 +197,31 @@ class TotalProsperEmitidosSummaryView(TemplateView):
             # Condição inicial
             context["total_emitido"] = 750
         return context
+
+
+@method_decorator(login_required, name='dispatch')
+class NoDeleteView(DeleteView):
+    model = Nodo
+    slug_url_kwarg = "no"
+    template_name = "pages/no_delete_form.html"
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        logout(request)
+        messages.success(request, u"Seu perfil foi excluído!")
+        return HttpResponseRedirect(reverse_lazy("home"))
+
+    def get_context_data(self, **kwargs):
+        context = super(NoDeleteView, self).get_context_data(**kwargs)
+        context["action"] = u'Excluir'
+        return context
+
+    def get_object(self, queryset=None):
+        self.object = super(NoDeleteView, self).get_object(queryset)
+        if self.object.user != self.request.user:
+            raise PermissionDenied
+        return self.object
 
 
 @method_decorator(login_required, name='dispatch')
