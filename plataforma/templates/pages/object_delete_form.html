@@ -9,13 +9,11 @@
       <h1 class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">+ Excluir um Objeto +</h1>
     </div>
     <div class="row">
-      <form class="prospera-margin" enctype="multipart/form-data" method="POST">
+      <form class="" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
-        <div>
-        Você tem certeza que deseja excluir o objeto {{ object.nome }}?
-          <div class="col-xs-12">
-            <button class="btn btn-prospera btn-lg" type="submit">Sim</button>
-          </div>
+        <p class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">Você tem certeza que deseja excluir o objeto <strong>{{ object.nome }}</strong>?</p>
+        <div class="col-xs-12">
+          <button class="btn btn-prospera btn-lg" type="submit">Sim</button>
         </div>
       </form>
     </div>
