@@ -758,6 +758,9 @@ h4{font-size: 12px;}
               line-height: 1.4em;
               margin-top: 6px;
               text-transform: uppercase;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
 
         }
