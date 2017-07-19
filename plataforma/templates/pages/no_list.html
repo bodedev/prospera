@@ -26,7 +26,7 @@
     <div class="row text-center">
       <div class="objetos-list">
         {% for object in object_list %}
-        <div class="col-xs-6 col-md-2">
+        <div class="col-xs-6 col-md-2 object-item">
           <a class="" href="{% url 'no_detail_public' object.id %}">
             {% if object.imagem %}
               <img class="objeto-imagem" src="{{ object.imagem.url }}" alt="...">
