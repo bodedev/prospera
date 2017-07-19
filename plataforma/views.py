@@ -219,6 +219,12 @@ class NoEditView(UpdateView):
         return reverse_lazy("no_detail_public", args=[self.request.user.id])
 
 
+class NoListView(ListView):
+
+    model = Nodo
+    template_name = "pages/no_list.html"
+
+
 @method_decorator(login_required, name='dispatch')
 class UserChangePassword(FormView):
 

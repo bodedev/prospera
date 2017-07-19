@@ -9,7 +9,7 @@
   <section class="descricao-content container">
     <div class="row">
       <div class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">
-        <h1>+ Objetos +</h1>
+        <h1>+ Sujeitos +</h1>
       </div>
       <div class="col-md-8 col-lg-10 col-md-offset-1 col-lg-offset-0">
         <p class="text-justify">
@@ -27,13 +27,13 @@
       <div class="objetos-list">
         {% for object in object_list %}
         <div class="col-xs-6 col-md-2">
-          <a class="" href="{% url 'object_detail' object.nodos.slug  object.slug %}">
+          <a class="" href="{% url 'no_detail_public' object.id %}">
             {% if object.imagem %}
               <img class="objeto-imagem" src="{{ object.imagem.url }}" alt="...">
             {% else %}
               <img class="objeto-imagem" src="{% static 'img/default_objeto.jpg' %}" alt="...">
             {% endif %}
-            <p class="sub">{{ object.nome }}</p>
+            <p class="sub">{{ object.user }}</p>
           </a>
         </div>
         {% endfor %}
