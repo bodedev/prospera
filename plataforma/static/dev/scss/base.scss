@@ -693,6 +693,65 @@ h4{font-size: 12px;}
       }
     }
 
+
+    // Objetos
+    #object{
+      background-color: $azul;
+
+      p{
+        font-family: $gotham;
+        font-weight: 400;
+        font-size: 12px;
+        color: $branco;
+        letter-spacing: 0.05em;
+      }
+
+      .descricao-content{
+        margin: auto;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        p{
+          line-height: 2em;
+          margin-top: 38px;
+          margin-left: 10px;
+          margin-right: 10px;
+          @media (min-width: $screen-sm-min) {
+            padding-right: 30px;
+            margin-left: 0;
+            margin-right: 0;
+          }
+        }
+      }
+      .objetos-content{
+        margin: auto;
+
+        .objetos-list{
+          a{
+            text-decoration: none;
+          }
+
+          .objeto-imagem{
+              width: 120px;
+              height: 120px;
+              opacity: .8;
+
+              &:hover{
+                opacity: 1;
+                // margin: -2px;
+                border: solid 4px white;
+              }
+            }
+            p.sub{
+              line-height: 1.4em;
+              margin-top: 6px;
+              text-transform: uppercase;
+            }
+
+        }
+      }
+    }
+
     // Detalhes de Objeto
     #object-detail{
       p{
