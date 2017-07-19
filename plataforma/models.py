@@ -49,7 +49,7 @@ class Nodo(BaseModel, BaseContatoModel, LogicDeletable):
 class Nodos(BaseModel, BaseContatoModel, LogicDeletable):
 
     criado_por = models.ForeignKey(User, null=True)
-    nome = models.CharField(u"Nome da Comunidade", max_length=50)
+    nome = models.CharField(u"Nome da Comunidade", max_length=50, unique=True)
     slug = AutoSlugField(populate_from='nome')
     imagem = models.ImageField(upload_to="imagens/nodos/listagem", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (NODOS_TAMANHO_IMAGEM_LISTAGEM_LARGURA, NODOS_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
     resumo = models.CharField(u"Resumo", max_length=140, null=True, blank=True)
@@ -68,7 +68,7 @@ class Objeto(BaseModel, BaseContatoModel, LogicDeletable):
 
     criado_por = models.ForeignKey(User, null=True)
     nodos = models.ForeignKey(Nodos)
-    nome = models.CharField(u"Nome do Objeto", max_length=50, null=True, blank=True)
+    nome = models.CharField(u"Nome do Objeto", max_length=50, null=True, blank=True, unique=True)
     slug = AutoSlugField(populate_from='nome')
     imagem = models.ImageField(upload_to="imagens/objetos/listagem", null=True, blank=True, help_text=u"Dimensões da imagem: %d pixels x %d pixels" % (OBJETO_TAMANHO_IMAGEM_LISTAGEM_LARGURA, OBJETO_TAMANHO_IMAGEM_LISTAGEM_ALTURA))
     descricao = models.TextField(u"Descrição", null=True, blank=True)
@@ -77,6 +77,9 @@ class Objeto(BaseModel, BaseContatoModel, LogicDeletable):
 
     def __unicode__(self):
         return u"%s" % self.nome
+
+    class Meta:
+        unique_together = (("nodos", "nome"), )
 
 
 @receiver(post_save, sender=User)
