@@ -42,6 +42,9 @@ class Nodo(BaseModel, BaseContatoModel, LogicDeletable):
 
     history = HistoricalRecords()
 
+    class Meta:
+        verbose_name = "Sujeito"
+
 
 class Nodos(BaseModel, BaseContatoModel, LogicDeletable):
 
@@ -56,6 +59,9 @@ class Nodos(BaseModel, BaseContatoModel, LogicDeletable):
 
     def __unicode__(self):
         return u"%s" % self.nome
+
+    class Meta:
+        verbose_name = "Comunidade"
 
 
 class Objeto(BaseModel, BaseContatoModel, LogicDeletable):
