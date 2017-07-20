@@ -215,6 +215,8 @@ class NoDeleteView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super(NoDeleteView, self).get_context_data(**kwargs)
         context["action"] = u'Excluir'
+        context["comunidades_list"] = Nodos.objects.filter(criado_por=self.request.user)
+        context["objetos_list"] = Objeto.objects.filter(criado_por=self.request.user)
         return context
 
     def get_object(self, queryset=None):
@@ -248,6 +250,10 @@ class NoListView(ListView):
 
     model = Nodo
     template_name = "pages/no_list.html"
+
+    def get_queryset(self):
+        queryset = super(NoListView, self).get_queryset()
+        return queryset.exclude(user__id__in=[4])
 
 
 @method_decorator(login_required, name='dispatch')
@@ -309,6 +315,7 @@ class NosDeleteView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super(NosDeleteView, self).get_context_data(**kwargs)
         context["action"] = u'Excluir'
+        context["objetos_list"] = Objeto.objects.filter(nodos=self.object)
         return context
 
     def get_object(self, queryset=None):

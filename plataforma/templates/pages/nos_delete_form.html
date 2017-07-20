@@ -9,13 +9,22 @@
       <h1 class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">+ Excluir uma Comunidade +</h1>
     </div>
     <div class="row">
-      <form class="" enctype="multipart/form-data" method="POST">
-        {% csrf_token %}
-        <p class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">Você tem certeza que deseja excluir a comunidade <strong>{{ object.nome }}</strong>?</p>
-        <div class="col-xs-12">
-          <button class="btn btn-prospera btn-lg" type="submit">Sim</button>
-        </div>
-      </form>
+      {% if objetos_list %}
+      <p style="margin-left: 20px;"><strong>Atenção:</strong> Existem Objeto(s) registrados a sua Comunidade. Antes de excluir a sua Comunidade, remova os itens abaixo:</p>
+      <ul>
+        {% for ob in objetos_list %}
+        <li><a href="{% url 'object_detail' ob.nodos.slug ob.slug %}" target="_blank" style="color: white;">{{ ob }}</a></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+        <form class="" enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          <p class="col-md-10 col-lg-12 col-md-offset-1 col-lg-offset-0">Você tem certeza que deseja excluir a comunidade <strong>{{ object.nome }}</strong>?</p>
+          <div class="col-xs-12">
+            <button class="btn btn-prospera btn-lg" type="submit">Sim</button>
+          </div>
+        </form>
+      {% endif %}
     </div>
   </section>
 </div>
