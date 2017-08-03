@@ -192,10 +192,10 @@ class TotalProsperEmitidosSummaryView(TemplateView):
             if r.status_code == 200:
                 data = r.json()
                 if data["status"] == "1":
-                    context["total_emitido"] = int(data["result"]) / ETHER_DIVISOR
+                    context["total_emitido"] = int(data["result"]) / float(ETHER_DIVISOR)
         except:
             # Condição inicial
-            context["total_emitido"] = 750
+            context["total_emitido"] = 781.25
         return context
 
 
