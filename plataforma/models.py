@@ -40,8 +40,6 @@ class Nodo(BaseModel, BaseContatoModel, LogicDeletable):
             return "https://api.qrserver.com/v1/create-qr-code/?size=130x130&bgcolor=21efe9&color=111c3c&data=https://etherscan.io/address/%s" % self.carteira
         return None
 
-    history = HistoricalRecords()
-
     class Meta:
         verbose_name = "Sujeito"
 
