@@ -38,8 +38,9 @@ class Command(BaseCommand):
             if carteira_from not in saldos_atualizados:
                 if buscar_saldo(carteira_from):
                     saldos_atualizados.append(carteira_from)
-            carteira_to = transacion["topics"][2].replace("0x000000000000000000000000", "0x")
-            if carteira_to not in saldos_atualizados:
-                if buscar_saldo(carteira_to):
-                    saldos_atualizados.append(carteira_to)
+            if len(transacion["topics"]) >= 3:
+                carteira_to = transacion["topics"][2].replace("0x000000000000000000000000", "0x")
+                if carteira_to not in saldos_atualizados:
+                    if buscar_saldo(carteira_to):
+                        saldos_atualizados.append(carteira_to)
         print "Fim de processo!"
