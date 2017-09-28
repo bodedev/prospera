@@ -2,7 +2,7 @@ django-autoslug==1.9.3
 django-braces
 django-extensions==1.7.9
 django-simple-history
-django==1.11.3
+django==1.11.5
 mysql-python
 pillow
 pyopenssl
