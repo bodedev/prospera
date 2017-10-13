@@ -3,6 +3,7 @@ django-braces
 django-extensions==1.7.9
 django-simple-history
 django==1.11.5
+bode-django-error-pages
 mysql-python
 pillow
 pyopenssl

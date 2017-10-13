@@ -13,6 +13,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponseServerError
 from django.utils.decorators import method_decorator
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, DeleteView, DetailView, FormView, ListView, TemplateView, UpdateView
 
@@ -109,7 +110,7 @@ class NoDetailView(DetailView):
 
     def get_object(self, queryset=None):
         if "pk" in self.kwargs:
-            return Nodo.objects.get(user__id=self.kwargs["pk"])
+            return get_object_or_404(Nodo, user__id=self.kwargs["pk"])
         return self.request.user.nodo
 
 

@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'social_django',
     'common',
     'plataforma',
+    'bode_error_pages',
 ]
 
 MIDDLEWARE = [
